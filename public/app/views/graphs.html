@@ -1,0 +1,215 @@
+<div layout='row' layout-xs='column' layout-margin>
+    <md-card flex='50' flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Initial Investment vs Current Value</span>
+                <span class="md-subhead">Using Available Data</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <canvas id="bar" class="chart chart-bar" chart-data="dataBar" chart-options="optionsBar" chart-colors="colors" chart-labels="labelsBar">
+                chart-series="series"
+            </canvas>
+
+        </md-card-content>
+        <md-card-actions></md-card-actions>
+    </md-card>
+    <md-card flex flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Stock Weight</span>
+                <span class="md-subhead">Showing weight of each stock in intial, and current values</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+            <canvas id="radar" chart-colors="colorsRadar" class="chart chart-radar" chart-data="dataRadar" chart-options="optionsRadar"
+                chart-labels="labelsRadar">
+            </canvas>
+        </md-card-content>
+        <md-card-actions></md-card-actions>
+    </md-card>
+    <md-card flex flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{titleText}}
+                        </span>
+                <span class="md-subhead">{{subtitleText}}</span>
+
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+            <canvas id="doughnut" chart-options="optionsDoughnut" legend="true" chart-colors="colorsDoughnut" class="chart chart-doughnut"
+                chart-data="dataDoughnut" chart-labels="labelsDoughnut">
+            </canvas>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changeDoughnutGraph('d')" class="fab-color md-primary">Sort By Percent
+
+            </md-button>
+            <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changeDoughnutGraph('s')" class="fab-color md-primary">Sort By Shares
+
+            </md-button>
+        </md-card-actions>
+    </md-card>
+
+</div>
+<div layout='row' layout-margin layout-wrap>
+    <md-card flex='80' flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Account Value</span>
+                <span class="md-subhead">Historic account value, visit Coin more often to populate this data</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+            <canvas id="line" height='350' chart-colors="colorsLine" class="chart chart-line" chart-data="data" chart-labels="labels"
+                chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+
+        </md-card-content>
+        <md-card-actions></md-card-actions>
+    </md-card>
+    <md-card flex flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{titleTextPolar}}</span>
+                <span class="md-subhead">{{subtitleTextPolar}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+            <canvas id="polar-area" chart-colors="colorsDoughnut" class="chart chart-polar-area"
+            chart-data="dataPolar" chart-labels="labelsPolar" chart-options="optionsPolar">
+            </canvas> 
+
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changePolarMetric('d')" class="fab-color md-primary">Dollar Gain
+
+            </md-button>
+            <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changePolarMetric('p')" class="fab-color md-primary">Percent Gain
+
+            </md-button>
+        </md-card-actions>
+    </md-card>
+</div>
+<!--<div layout='row' layout-margin layout-wrap>
+    <md-card flex='80' flex-xs='100'>
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Historic Share Values</span>
+                <span class="md-subhead">Historic share values, visit Coin more often to populate this data</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+
+            <canvas id="sharesLine" height='350' chart-colors="colorsLine" class="chart chart-line" chart-data="dataSharesLine" chart-labels="labels"
+                chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+            </canvas>
+
+        </md-card-content>
+        <md-card-actions></md-card-actions>
+    </md-card>
+
+</div>-->
+
+
+<!--
+
+<div layout='column'>
+    <div layout='row' layout-xs='column' layout-margin flex>
+        <div layout='column' flex='50' flex-xs='100'>
+
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Initial Investment vs Current Value</span>
+                        <span class="md-subhead">Using Available Data</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <canvas id="bar" class="chart chart-bar" chart-data="dataBar" chart-options="optionsBar" chart-colors="colors" chart-labels="labelsBar">
+                        chart-series="series"
+                    </canvas>
+
+                </md-card-content>
+                <md-card-actions></md-card-actions>
+            </md-card>
+            <md-card class='card-margin-correction'>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Account Value</span>
+                        <span class="md-subhead">Historic account value, visit Coin more often to populate this data</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+
+                    <canvas id="line" height='350' chart-colors="colorsLine" class="chart chart-line" chart-data="data" chart-labels="labels"
+                        chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+                    </canvas>
+
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex='25' flex-xs='100'>
+
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Stock Weight</span>
+                        <span class="md-subhead">Showing weight of each stock in intial, and current values</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+
+                    <canvas id="radar" chart-colors="colorsRadar" class="chart chart-radar" chart-data="dataRadar" chart-options="optionsRadar"
+                        chart-labels="labelsRadar">
+                    </canvas>
+                </md-card-content>
+                <md-card-actions></md-card-actions>
+            </md-card>
+        </div>
+        <div flex='25' flex-xs='100'>
+
+            <md-card>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Percent Value of Portfolio
+                        </span>
+                        <span class="md-subhead">Stock values by dollar breakdown                 
+                        </span>
+
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+
+                    <canvas id="doughnut" chart-options="optionsDoughnut" legend="true" chart-colors="colorsDoughnut" class="chart chart-doughnut"
+                        chart-data="dataDoughnut" chart-labels="labelsDoughnut">
+                    </canvas>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changeDoughnutGraph('d')" class="fab-color md-primary">Sort By Percent
+
+                    </md-button>
+                    <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="changeDoughnutGraph('s')" class="fab-color md-primary">Sort By Shares
+
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+
+
+
+    </div>
+    <div layout='row' layout-xs='column' layout-margin>
+        <div flex='75' flex-xs='100'>
+
+
+        </div>
+    </div>
+
+
+</div>-->

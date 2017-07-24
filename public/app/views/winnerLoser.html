@@ -1,0 +1,109 @@
+
+<md-content class="winner-loser-area" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">
+    <div hide-sm hide-xs layout="row" >
+        <div class="center" flex="25" >
+            <!--<p class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Winner</p>-->
+                <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
+                    <div class="gain center win-lose-title animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{key}}</div>
+                    <div class="gain center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{value.CompanyName}}</div>
+                <p class="center no-one-wins animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.winnerNegative == true">No Winners Today</p>
+                </div>    
+                                <p class="center no-one-wins animated flipInX" ng-if="service.marketsOpen == false">Markets Currently Closed</p>
+       
+                <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="row" layout-align="center center" ng-hide="service.marketsOpen == false">
+                    <div class="gain center win-lose-metric animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">${{value.DollarGainLossToday | number:2}} | {{value.PercentGainLossToday | number:2}}%</div>
+                </div>
+
+
+
+
+        </div>
+        <div class='center' flex='50'>
+            <div layout="column" ng-class="{'table-cell-bright': service.brightTheme == true}">
+                <div flex="100" class="investment-label center">Portfolio Value</div>
+
+                <div flex="100" ng-class="{'small-screen-text': screenIsExtraSmall == true}" class="investment-title center animated flipInX">${{dataTransferService.accountEquity | number:2}}</div>
+
+                <span ng-class="{'gain': service.accountValueDollarChange > 0, 'loss': service.accountValueDollarChange < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': service.accountValueDollarChange == 0}"
+                    class="center win-lose-metric animated flipInX">${{service.accountValueDollarChange | number:2}} | {{service.accountValuePercentChange | number:2}}%</span>
+
+            </div>
+        </div>
+        <div class="center" flex="25">
+            <!--<p  class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Loser</p>-->
+             <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
+                <div class="loss center win-lose-title animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{key}}</div>
+                <div class="loss center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{value.CompanyName}}</div>
+                <p class="center no-one-wins animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == true">No Losers Today</p>
+            </div>      
+                            <p class="center no-one-wins animated flipInX" ng-if="service.marketsOpen == false">Markets Currently Closed</p>
+     
+            <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="row" layout-align="center center" ng-hide="service.marketsOpen == false">
+                <div class="loss center win-lose-metric animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">(${{value.DollarGainLossToday | number:2}}) | (${{value.PercentGainLossToday | number:2}})</div>
+
+
+                                <!--DollarGainLossToday: {{value.DollarGainLossToday}} | loserDollar: {{service.loserDollar}} | loserPositive?: {{service.loserPositive}} | dollar loss: {{value.DollarGainLossToday }} | percent loss: {{value.PercentGainLossToday}}-->
+
+            </div>
+            
+        </div>
+    </div>
+    <div hide-md hide-lg hide-xl layout="column" layout-wrap>
+        <div class='center' flex='100'>
+            <div layout="column" class="account-info" ng-class="{'table-cell-bright': service.brightTheme == true}">
+                <div flex="100" class="investment-label center">Portfolio Value</div>
+
+                <div flex="100" ng-class="{'small-screen-text': screenIsExtraSmall == true}" class="investment-title center animated flipInX" >${{dataTransferService.accountEquity | number:2}}</div>
+
+                <span ng-class="{'gain': service.accountValueDollarChange > 0, 'loss': service.accountValueDollarChange < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': service.accountValueDollarChange == 0}"
+                    class="center win-lose-metric animated flipInX">${{service.accountValueDollarChange | number:2}} | {{service.accountValuePercentChange | number:2}}%</span>
+
+            </div>
+        </div>
+        <md-divider></md-divider>
+        <div class="center" flex="100">
+            <p class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Winner</p>
+
+                <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
+                    <div class="gain center win-lose-title animated flipInX" ng-class="{'small-screen-text-win-lose': screenIsExtraSmall == true}" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{key}}</div>
+                    <div class="gain center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{value.CompanyName}}</div>
+                <p class="center no-one-wins animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.winnerNegative == true">No Winners Today</p>
+                </div>    
+                                <p class="center no-one-wins animated flipInX" ng-if="service.marketsOpen == false">Markets Currently Closed</p>
+       
+                <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="row" layout-align="center center" ng-hide="service.marketsOpen == false">
+                    <div class="gain center win-lose-metric animated flipInX" ng-class="{'small-screen-text-metric': screenIsExtraSmall == true}" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">${{value.DollarGainLossToday | number:2}} | {{value.PercentGainLossToday | number:2}}%</div>
+                </div>
+
+
+
+
+        </div>
+        <md-divider></md-divider>
+        <div class="center" flex="100">
+            <p  class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Loser</p>
+
+             <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
+                <div class="loss center win-lose-title animated flipInX" ng-class="{'small-screen-text-win-lose': screenIsExtraSmall == true}" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{key}}</div>
+                <div class="loss center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{value.CompanyName}}</div>
+                <div class="loss center win-lose-title animated flipInX" ng-class="{'small-screen-text-win-lose': screenIsExtraSmall == true}" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == true">None</div>
+                <div class="oss center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == true">No Losers Today</div>
+
+            </div>      
+                            <p class="center no-one-wins animated flipInX" ng-if="service.marketsOpen == false">Markets Currently Closed</p>
+     
+            <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="row" layout-align="center center" ng-hide="service.marketsOpen == false">
+                <div class="loss center win-lose-metric animated flipInX" ng-class="{'small-screen-text-metric': screenIsExtraSmall == true}"  ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">(${{value.DollarGainLossToday | number:2}}) | ({{value.PercentGainLossToday | number:2}}%)</div>
+
+
+                                <!--DollarGainLossToday: {{value.DollarGainLossToday}} | loserDollar: {{service.loserDollar}} | loserPositive?: {{service.loserPositive}} | dollar loss: {{value.DollarGainLossToday }} | percent loss: {{value.PercentGainLossToday}}-->
+
+            </div>
+            
+            
+        </div>
+
+    </div>
+</md-content>
+
+

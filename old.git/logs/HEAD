@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 b430a0e6a144f44798e8ca35f94d0d9449d87c2a Evan J Freymiller <ejf1990@gmail.com> 1499908761 -0500	commit (initial): First check in
+b430a0e6a144f44798e8ca35f94d0d9449d87c2a e35cb2fe691c89be0013938ba68b06255b6df08c Evan J Freymiller <ejf1990@gmail.com> 1499912727 -0500	commit: rearranged winner part
+e35cb2fe691c89be0013938ba68b06255b6df08c 9aaf1323133cd046ca248ab47588302179cc58d8 Evan J Freymiller <ejf1990@gmail.com> 1500522744 -0500	commit: Added a Procfile.
+9aaf1323133cd046ca248ab47588302179cc58d8 03341e3e9a67e6974319af809f9ec5fe6f28f415 Evan J Freymiller <ejf1990@gmail.com> 1500527206 -0500	commit: ignore node_modules
+03341e3e9a67e6974319af809f9ec5fe6f28f415 9ada4d673117fab84617723f40ea18f66f26ca36 Evan J Freymiller <ejf1990@gmail.com> 1500528126 -0500	commit: changed server.js to not use port
+9ada4d673117fab84617723f40ea18f66f26ca36 8f42792a3a624980eaceec514ec3479a72fafd54 Evan J Freymiller <ejf1990@gmail.com> 1500528211 -0500	commit: changed server.js to not use port
+8f42792a3a624980eaceec514ec3479a72fafd54 09bb1174673a5ce987bf24bf614bdad73e8d095e Evan J Freymiller <ejf1990@gmail.com> 1500528311 -0500	commit: changed server.js to not use port
+09bb1174673a5ce987bf24bf614bdad73e8d095e 0d2fe11081b4dc3b8beab28e1f8d878532dd2c67 Evan J Freymiller <ejf1990@gmail.com> 1500605863 -0500	commit: changed server.js to use Heroku port
+0d2fe11081b4dc3b8beab28e1f8d878532dd2c67 6b2069822d840d3766506462f124360d1a63d9e3 Evan J Freymiller <ejf1990@gmail.com> 1500607299 -0500	commit: added / for get command to server index.html
+6b2069822d840d3766506462f124360d1a63d9e3 eb752afcf4a8b52c3b15930599ac762cd7b8972a Evan J Freymiller <ejf1990@gmail.com> 1500608043 -0500	commit: changed listening port from port to PORT server.js
+eb752afcf4a8b52c3b15930599ac762cd7b8972a 12cbc9287c14be7af965133b9ba6f4708e72dc20 Evan J Freymiller <ejf1990@gmail.com> 1500608219 -0500	commit: changed to http from https
+12cbc9287c14be7af965133b9ba6f4708e72dc20 e7fd3951b970b4d57b5e2b7f476aeafbe53ffa82 Evan J Freymiller <ejf1990@gmail.com> 1500826750 -0500	commit: changed get to post, removed all console.logs
+e7fd3951b970b4d57b5e2b7f476aeafbe53ffa82 a8874ef163a6e5419c3ac708c5dd539145c20741 Evan J Freymiller <ejf1990@gmail.com> 1500872294 -0500	commit: added graphs to home page
+a8874ef163a6e5419c3ac708c5dd539145c20741 63561a0d21124bdbddfa82f74fe0f18e32c4967c Evan J Freymiller <ejf1990@gmail.com> 1500872364 -0500	commit: changed to default dark theme

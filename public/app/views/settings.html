@@ -1,0 +1,43 @@
+<div layout="column" layout-align="center center">
+    <!--<img class="logo-splash-settings" ng-show="service.brightTheme == false" src="app/content/logoflipped.svg" ng-click="backToReport()">
+    <img class="logo-splash-settings" ng-show="service.brightTheme == true" src="app/content/logoSideNav.png" ng-click="backToReport()">-->
+
+    <div layout="row" layout-align="center end">
+        <div class="app-title-splash animated flipInX" ng-class="{'app-title-bright': service.brightTheme == true}">Coin</div>
+        
+    </div> 
+    <!--<div layout="row" class="setting-divider" ng-class="{'setting-divider-bright': service.brightTheme == true}" layout-align="center end" layout-padding>
+        <div class="app-subtitle-splash animated flipInX" ng-class="{'app-subtitle-splash-bright': service.brightTheme == true}">Best friends forever.</div> 
+    </div>     -->
+
+        <md-divider></md-divider>
+
+    
+
+
+        
+    <div class="setting-divider" layout="row" layout-align="center end" layout-padding>
+        <md-button class="md-icon-button bt-margin" ng-click="showConfirmAccountLookup()" analytics-on="click" analytics-event="AccountDeleted">
+            <md-icon ng-class="{'dark-icon': service.brightTheme == true}"  class="material-icons">healing</md-icon>
+            <md-tooltip md-direction="left" analytics-on="click" analytics-event="Settings">Account Recovery</md-tooltip>
+        </md-button>
+        <md-switch ng-model="service.brightTheme" ng-change="service.saveTheme()" aria-label="Switch 1">
+                   <md-icon class="material-icons white-icon" ng-class="{'dark-icon': service.brightTheme == true}">lightbulb_outline</md-icon>
+        </md-switch>
+        <md-button class="md-icon-button bt-margin" ng-click="showConfirm()" analytics-on="click" analytics-event="AccountDeleted">
+            <md-icon ng-class="{'dark-icon': service.brightTheme == true}"  class="material-icons">delete_forever</md-icon>
+            <md-tooltip md-direction="right" analytics-on="click" analytics-event="Settings">Delete Account</md-tooltip>
+        </md-button>
+
+    </div> 
+
+    <div layout="row" layout-align="center end"> 
+        <p class="value-title animated flipInX" ng-class="{'app-title-bright': service.brightTheme == true}">Account Code: {{service.accountCode}} |</p>
+        <p class="value-title animated flipInX" ng-class="{'app-title-bright': service.brightTheme == true}">| Version: {{version}}</p>   
+    </div> 
+    <!--<div layout="row" layout-align="center end" layout-padding>
+        <img class="freyteklogo-width" src="app/content/freyteklogo.png" alt="">
+    </div>    -->
+</div>
+
+

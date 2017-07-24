@@ -1,0 +1,41 @@
+<div class="min-width dragscroll" ng-init="initialLoad()">
+    <div ng-scrollbars ng-scrollbars-config="config" layout="row" layout-padding class="tickers md-whiteframe-1dp" ng-class="{'tickers-bright': service.brightTheme == true}">
+        
+        <div class="item-min-width" ng-class="{'border-right-quote': service.brightTheme == false, 'border-right-quote-bright': service.brightTheme == true}" flex='25' ng-repeat="(key, value) in dataTransferService.combinedData" >
+            <div ng-class="{'small-ticker': screenIsExtraSmall == true}" class="center ticker-title animated flipInX">{{key}}</div>
+            <div ng-class="{'small-ticker-price': screenIsExtraSmall == true}" class="center stock-price animated flipInX">${{value.quotes.last_trade_price | number:2}}</div>
+            <div layout="row" layout-align="center center">
+                <span ng-class="{'gain': (value.quotes.last_trade_price-value.quotes.previous_close) > 0, 'loss': (value.quotes.last_trade_price-value.quotes.previous_close) < 0, 'small-ticker-dollar': screenIsExtraSmall == true}" class="center ticker-metric animated flipInX">${{(value.quotes.last_trade_price-value.quotes.previous_close) | number:2}}</span>
+                <span hide-xs ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}" class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
+            </div>
+        </div>
+    </div>
+
+    <div >
+    </div>
+
+    <div>
+
+    </div>
+
+    
+    <!--<h1>Current Investment Value</h1>
+
+    <div ng-repeat="value in allCurrentValues">
+        {{value.Company}} | {{value.Price}}
+    </div>
+    <br>
+    <div ng-repeat="(key, value) in data.Shares">
+        {{key}} | {{value}}
+    </div>
+
+    <div>
+        Account Value | {{accountValue}}
+    </div>-->
+
+</div>
+
+
+<!--https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column_index=4&start_date=2014-01-01&end_date=2014-01-02&api_key=tzFMoxxcgcFesZ4meJxC-->
+
+<!--https://www.quandl.com/api/v3/datasets/WIKI/AMD.json?column_index=4&start_date=2014-01-01&end_date=2014-01-02&api_key=tzFMoxxcgcFesZ4meJxC-->

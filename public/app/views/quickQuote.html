@@ -1,0 +1,26 @@
+<div layout="column" layout-align="center center" layout-margin layout-padding layout-fill>
+          <div class="app-subtitle-splash animated flipInX" ng-class="{'app-subtitle-splash-bright': service.brightTheme == true}">Quick Quote</div>
+          <md-input-container class="top-margin" ng-hide="selectedAStock == true">
+              <label ng-class="{'bright-input': service.brightTheme == true}" class="table-header">Ticker or Company</label>
+              <input ng-class="{'bright-input': service.brightTheme == true}" required ng-change="fetchValidTickers()" ng-model="user.ticker">
+          </md-input-container>
+          <div layout="column" layout-align="center center" layout-padding ng-hide="selectedAStock == false">
+                <div class="quick-quote-title center animated flipInX" ng-class="{'quick-quote-title-bright': service.brightTheme == true}">{{allStockData[0].t}}</div>
+                <div layout="row" class="top-border" ng-class="{'top-border-bright': service.brightTheme == true}" layout-align="center center" layout-padding >
+                      <div class="quick-quote-subtitle animated flipInX" ng-class="{'quick-quote-subtitle-bright': service.brightTheme == true}">{{selectedCompany}}</div>
+                      <span class="quick-quote-price center animated flipInX" ng-class="{'gain': allStockData[0].cp > 0, 'loss': allStockData[0].cp < 0}">${{allStockData[0].l | number:2}}</span>
+                      
+                </div>
+                <span ng-class="{'gain': allStockData[0].cp > 0, 'loss': allStockData[0].cp < 0}" class="quick-quote center animated flipInX">${{allStockData[0].cp | number:2}} | {{allStockData[0].c | number:2}}%</span>
+
+
+        </div>
+
+
+</div>
+
+        <div layout="row" ng-hide="selectedAStock == true" class="cursor" layout-align="center center" ng-repeat="company in autoFillObject | limitTo:limit" ng-click="fetchCurrentStockPrice(company.n, $index)">
+                <div class="table-header" flex-xs-offset="5" flex-xs="20" flex-sm="20" flex-md-offset="10" flex-md="15" flex-lg-offset="10" flex-lg="15" flex="5">{{company.t}}</div>
+                <div class="table-header" flex-xs="75" flex-sm="40" flex-md="60" flex="20"  flex-lg="60">{{company.n}}</div>
+                <div hide-xs class="table-header" flex-xs="40" flex-sm="15" flex-md="40" flex-lg="40"flex="5">{{company.e}}</div>
+        </div>

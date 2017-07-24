@@ -1,0 +1,794 @@
+html.md-default-theme, html, body.md-default-theme, body {
+    background-color: #1A1A1A;
+    color:white;
+}
+.card-margin-correction{
+    margin-top:-10px;
+}
+.body-bright{
+    background-color: #f6f6f6;
+}
+.account-info-area {
+    color: white;
+    background-color: #1A1A1A;
+    font-family: Roboto;
+    font-weight: 200;
+    padding: 30px;
+    transition: 250ms;
+}
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: #CCCCCC;
+}
+.right-divider{
+    border-right: 1px solid #383838;
+}
+.right-divider-bright{
+    border-right: 1px solid #cacaca;
+        transition:250ms;
+
+}
+.left-divider{
+    border-left: 1px solid #383838;
+}
+.left-divider-bright{
+    border-left: 1px solid #cacaca;
+        transition:250ms;
+
+}
+.no-change{
+    color: rgba(174, 174, 174, 0.87) !important;
+}
+
+.logo{
+    max-width:100px;
+}
+.logo:hover{
+    cursor: pointer;
+}
+.align-logo{
+    margin-top:23px;
+}
+.md-headline{
+    font-weight:300;
+}
+.center{
+    text-align: center;
+}
+.gain{
+    color:#5bda90;
+}
+.loss{
+    color:#ff766c;
+}
+
+md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-active {
+ min-width: 170px !important;
+ width: 50vw !important;
+ max-width: 170px !important;
+}
+.winner-loser-area{
+    color:white;
+    background-color:#1A1A1A;
+    font-family:Roboto;
+    font-weight:300;
+    padding:30px;
+        transition:250ms;
+}
+.winner-loser-area-bright{
+    background-color:#f6f6f6;
+    color:#838383;
+    transition:250ms;
+}
+.app-left{
+    margin-left:10px;
+}
+.win-lose-title{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:72px;
+}
+.win-lose-subtitle{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:16px;
+}
+.win-lose-metric{
+    font-size:24px;
+    padding:5px
+}
+
+.ticker-title{
+    font-family:Roboto;
+    font-weight:900;
+    font-size:56px ;
+    color: rgb(172, 172, 172);
+}
+.content-area{
+    background-color: #1A1A1A;
+    overflow-x: hidden !important;
+}
+.content-area-bright{
+    background-color: #f6f6f6;
+    overflow-x: hidden !important;
+    transition:250ms;
+}
+.for-rh{
+    font-family:Roboto;
+    font-weight:600;
+    font-size:24px;
+    
+}
+.logo-ticker{
+    max-width:35px;
+}
+.tickers{
+    background-color:#202020;
+    padding:5px;
+    overflow: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+
+}
+.app-bright{
+    color:#5d5d5d  !important;
+}
+.item-min-width-xs{
+    min-width:100px !important;
+}
+div.item-min-width{
+    min-width:225px !important;
+}
+.individual-ticker{
+    display:inline-block;
+}
+.tickers-bright{
+    background-color:#f6f6f6;
+    padding:5px;
+    transition:250ms;
+}
+.tickers-bright div{
+    background-color:#f6f6f6;
+    color:#9d9d9d;
+    transition:250ms;
+}
+.winlose-title{
+    font-weight:300;
+}
+.small-screen-text-win-lose{
+    font-size:48px !important;
+}
+.small-screen-text-metric{
+    font-size:14px !important;
+    font-family: Roboto;
+    font-weight: 300;
+}
+
+.ticker-metric{
+    padding:5px;
+    font-family:Roboto;
+    font-weight:300;
+    font-size:14px;
+    color: 1A1A1A;
+}
+.investment-label{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:18px;
+    color: white;
+}
+.account-info{
+    padding:20px;
+}
+.investment-title{
+    font-family:Roboto;
+    font-weight:900;
+    font-size:150px;
+    color: white;
+}
+.table-header{
+    color:#b6b5b5;
+    font-family:Roboto;
+    font-weight:400;
+    font-size:21px;
+    padding:10px;
+}
+.table-header-bright{
+    color:#a2a2a2;
+    font-family:Roboto;
+    font-weight:300;
+    font-size:21px;
+    padding:10px;
+}
+
+.market-header{
+    color:#525252;
+    font-family:Roboto;
+    font-weight:400;
+    font-size:14px;
+    padding:10px;
+        text-align: center;
+}
+.table-cell-bright div{
+    color:#363636;
+}
+.table-cell-ticker{
+    font-family:Roboto;
+    font-weight:400;
+    font-size:36px;
+    color: white;
+}
+.table-cell-company-name{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:16px;
+    color: white;    
+}
+.row-padding{
+    padding:15px;
+}
+.table-cell-change{
+    font-family:Roboto;
+    font-weight:400;
+    font-size:24px;
+}
+.table-cell-initial-investment{
+    font-family:Roboto;
+    font-weight:400;
+    font-size:24px;
+        color: white;
+
+}
+.table-cell-investment{
+    font-family:Roboto;
+    font-weight:400;
+    font-size:24px;
+    color: white;
+}
+.app-title{
+    color:white;
+    font-family:Great Vibes;
+    font-weight:200;
+    font-size:36px;
+}
+.value-title{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:14px;
+    color: white;
+}
+.value-value{
+    font-family:Roboto;
+    font-weight:400;
+    font-size:36px;
+    color: white;
+}
+.title-margin{
+    margin-bottom:15px;
+}
+.value-margin{
+    margin-bottom:25px;
+}
+
+.md-button.md-default-theme.md-fab, .md-button.md-fab {
+    background-color: #353535;
+    color: rgb(255,255,255);
+}
+/*
+.md-button.md-default-theme.md-fab:not([disabled]):hover, .md-button.md-fab:not([disabled]):hover {
+    background-color: #4D4D4D;
+}*/
+.stock-price{
+    font-family:Roboto;
+    font-weight:300;
+    font-size:24px;
+    color: rgb(172, 172, 172);
+}
+.splash-top{
+    padding-top:100px;
+}
+.logo-splash{
+    max-width:200px;
+}
+.dark-icon{
+    margin-right:5px;
+    color:#1A1A1A !important;
+}
+
+
+.app-title-splash{
+    font-family:Great Vibes;
+    font-weight:100;
+    font-size:72px;
+    color: white;
+    margin-top: 30px;
+}
+.app-title-splash-bright{
+    font-family:Great Vibes;
+    font-weight:100;
+    font-size:72px;
+    color: #1A1A1A;
+
+    margin-top: 30px;
+    transition:250ms;
+}
+
+
+
+.app-title-bright{
+    color: #1A1A1A;
+
+}
+.white-icon{
+    color:white;
+}
+.app-subtitle-splash{
+    font-family:Roboto;
+    font-weight:200;
+    font-size:24px;
+    color: white;
+    
+}
+
+.app-subtitle-splash-bright{
+    font-family:Roboto;
+    font-weight:200;
+    font-size:24px;
+    color: #2e2e2e !important;
+    
+}
+
+.height{
+    height: 100vh;
+}
+md-input-container.md-default-theme .md-input, md-input-container .md-input {
+    border-color: rgb(250,250,250);
+    color:white;
+}
+.input-label{
+    color:white;
+    font-family:Roboto;
+    font-weight:200;
+    font-size:18px;
+}
+md-divider.body-divider {
+
+    border-color: #333333;
+    border-width:2px;
+}
+md-divider.body-divider-bright {
+    border-color: #d2d2d2;
+    border-width: 2px;
+}
+.bt-margin{
+    margin-bottom: 19px !important;
+}
+.r-border{
+    border-right:2px solid grey;
+}
+.l-border{
+    border-left:2px solid grey;
+}
+.freyteklogo-width{
+    max-width:50px;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label, md-input-container:not(.md-input-invalid).md-input-has-value label {
+    color: white;
+}
+.margin-correction-remove{
+    margin-top: -7px;
+}
+.fab-color{
+    margin-bottom:45px;
+}
+
+.logo-splash-settings{
+    max-width:115px;
+    cursor: pointer;
+}
+.setting-divider{
+    border-bottom: 2px solid #313131;
+}
+.setting-divider-bright{
+    border-bottom: 2px solid #b1b1b1;
+}
+.full-height{
+    min-height: 100vh;
+}
+.no-one-wins{
+    font-size:36px;
+}
+
+.top-margin{
+    margin-top:40px;
+}
+.cursor{
+    cursor:pointer;
+}
+.company-header {
+    color: #666666;
+    font-family: Roboto;
+    font-weight: 200;
+    font-size: 24px;
+    padding: 10px;
+}
+.company-tip{
+    color: white;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content, md-sidenav md-content {
+    background-color: rgb(19, 19, 19);
+}
+.nav-bright{
+    background-color:white;
+    transition:250ms;
+}
+.nav-bright div{
+    color:#3c3c3c;
+    transition:250ms;
+    border-color:#e9e9e9;
+        transition:250ms;
+
+}
+.nav-button-bright{
+    background-color:rgb(53, 53, 53) !important;
+    color:white !important;
+    transition:background-color 250ms;
+}
+.nav-button-icon-bright{
+    color:white !important;
+        transition:color 250ms;
+
+}
+
+
+
+.side-nav-divider{
+    padding-bottom:20px;
+    border-bottom:1px solid #262626;
+}
+.market-ticker{
+    background-color: #101010;
+}
+.market-ticker-bright{
+    background-color: #f6f6f6;
+    transition:250ms;
+}
+
+
+.quick-quote-title{
+    font-size: 150px;
+    font-family: Roboto;
+    font-weight: 200;
+    color: white;
+}
+.quick-quote-title-bright{
+    font-size: 150px;
+    font-family: Roboto;
+    font-weight: 200;
+    color: #7f7f7f;
+        transition:250ms;
+
+}
+.quick-quote-subtitle{
+    font-size: 24px;
+    font-family: Roboto;
+    font-weight: 200;
+    color: white;
+}
+
+.quick-quote-subtitle-bright{
+    font-size: 24px;
+    font-family: Roboto;
+    font-weight: 200;
+    color: #7f7f7f !important;
+        transition:250ms;
+
+}
+.quick-quote{
+    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 200;
+        margin-top: -30px;
+}
+.quick-quote-border-bottom{
+        border-bottom: 1px solid #3e3e3e;
+}
+.quick-quote-price{
+        font-size: 56px;
+    font-family: Roboto;
+    font-weight: 200;
+}
+.top-border{
+        border-top: 2px solid #363636;
+
+}
+.top-border-bright{
+    border-color:#cdcdcd !important;
+        transition:250ms;
+
+}
+
+.bright-input{
+    border-color: rgb(196, 196, 196) !important;
+    color: #969696 !important;
+        transition:250ms;
+
+}
+
+
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+md-input-container.md-default-theme .md-input, md-input-container .md-input {
+    border-color: rgb(250,250,250);
+    color: #515151;
+}
+.virtualRepeatdemoHorizontalUsage #horizontal-container {
+  height: 100px;
+  width: 100%;
+  max-width: 830px; }
+
+.virtualRepeatdemoHorizontalUsage .repeated-item {
+  border-right: 1px solid #ddd;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 84px;
+  padding-top: 35px;
+  text-align: center;
+  width: 50px; }
+
+.virtualRepeatdemoHorizontalUsage md-content {
+  margin: 16px; }
+
+.virtualRepeatdemoHorizontalUsage md-virtual-repeat-container {
+  border: solid 1px grey; }
+
+.show-nav-button{   
+    margin-bottom: 11px;
+}
+
+/*MEDIA QUERY CSS*/
+.small-screen-text{
+    font-size:56px !important;
+}
+.small-ticker{
+    font-size:24px !important;
+}
+.small-ticker-price{
+    font-size:18px !important;
+}
+.small-ticker-dollar{
+    font-size:14px !important;
+}
+
+
+
+.tickers::-webkit-scrollbar-track
+{
+	background-color: #303030;
+}
+
+.tickers::-webkit-scrollbar
+{
+	width: 10px;
+}
+
+.tickers::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+	background-color: #3f3f3f;
+	
+}
+
+
+
+.tickers-bright::-webkit-scrollbar-track
+{
+	background-color: #b7b7b7;
+}
+
+.tickers-bright::-webkit-scrollbar
+{
+	width: 10px;
+}
+
+.tickers-bright::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+	background-color: #c8c8c8;
+	
+}
+
+
+
+
+
+html::-webkit-scrollbar-track
+{
+	background-color: #303030;
+}
+
+html::-webkit-scrollbar
+{
+	width: 10px;
+}
+
+html::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+	background-color: #3f3f3f;
+	
+}
+
+
+
+
+
+
+
+.fd-symbol{
+    font-size:150px;
+    font-weight:900;
+    font-family:Roboto;
+}
+.fd-simple-name{
+    font-size: 24px;
+    font-weight: 300;
+    font-family: Roboto;
+    margin-left: 10px;
+    margin-top: -25px;
+}
+.fd-price{
+    font-size: 72px;
+    font-family: Roboto;
+    font-weight: 100;
+        margin-left: 10px;
+
+}
+.fd-description{
+    font-size: 12px;
+    font-weight: 300;
+    font-family: Roboto;
+}
+.fd-divider{
+    border-top: 2px solid grey;
+}
+.fd-card{
+        background-color: #595959;
+}
+.fd-metric{
+    font-size: 42px;
+    font-weight: 300;
+    color: #2d2d2d;
+
+}
+.fd-title{
+    color:#3c3c3c;
+}
+.fab-correction{
+        margin-top: 48px;
+}
+.border-bright{
+    border-top: 2px solid #dedede;    
+}
+.border-dark{
+    border-top: 2px solid #222222;
+
+}
+.coin-simple-name{
+    font-size: 24px;
+    font-weight: 300;
+    font-family: Roboto;
+        opacity: .25;
+}
+.coin-simple-name-bright{
+    font-size: 24px;
+    font-weight: 300;
+    font-family: Roboto;
+        opacity: .25;
+    color:black;
+}
+.coin-symbol{
+    font-size:56px;
+    font-weight:900;
+    font-family:Roboto;
+        opacity: .25;
+}
+.coin-symbol-bright{
+    font-size:56px;
+    font-weight:900;
+    font-family:Roboto;
+    opacity: .25;  
+    color:black;
+}
+.security{
+    min-height: 380px;
+    background-color: rgb(31, 31, 31);
+}
+.serurity-bright{
+    min-height: 380px;
+    background-color: rgb(243, 243, 243);
+}
+
+.coin-percent{
+    font-size: 48px;
+}
+.coin-quantity{
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 36px;
+    color: white;
+        opacity: .25;
+}
+.divider-expanded{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.coin-initial{
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 14px;
+    color: white;
+        opacity: .25;
+}
+.coin-price{
+        font-size: 100px;
+    font-family: Roboto;
+    font-weight: 100;
+        opacity: .8;
+}
+.coin-price-bright{
+        font-size: 100px;
+    font-family: Roboto;
+    font-weight: 100;
+        opacity: .5;
+        color:black;
+}
+.coin-quantity-title{
+        opacity: .25;
+}
+.progress-padding{
+    padding:50px;
+        background-color: transparent !important;
+
+}
+.no-box-shadow{
+    box-shadow: 0 0px 0px 0px rgba(0,0,0,0);
+    background-color: transparent;
+}
+.account-info{
+    background-color: #171717;
+}
+.account-info-bright{
+        border-top: 1px solid #dedede;
+}
+.border-right-quote{
+    border-right: 1px solid #2f2f2f;
+}
+.border-right-quote-bright{
+    border-right: 1px solid #e2e2e2;
+}
+
+.grid{
+    border-bottom: 1px solid #1e1e1e;
+    border-right: 1px solid #1e1e1e;
+}
+.grid-bright{
+    border-bottom: 1px solid #c7c7c7;
+    border-right: 1px solid #c7c7c7;
+}
+.dark{
+        opacity: .25;
+        color:white;
+}
+.bright{
+        opacity: .25;
+        color:black;
+}

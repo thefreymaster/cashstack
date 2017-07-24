@@ -1,0 +1,101 @@
+<md-dialog flex='80'>
+    <md-toolbar>
+        <div class='md-toolbar-tools'>
+            <h2>Details</h2>
+            <div flex></div>
+            <md-button ng-click='dialogService.closeDialog()' class="md-icon-button" aria-label="More">
+                <md-icon><i class="material-icons">close</i></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <div class='md-dialog-content'>
+            <!--{{response.results[0].previous_close}}-->
+            <div layout='row' layout-wrap layout-padding>
+
+                <div flex='25'>
+                    <div class='fd-symbol'>{{info.instruments.symbol}}</div>
+                    <div class='fd-simple-name'>{{info.instruments.name}}</div>
+                    <div class='fd-price'>${{info.quotes.last_trade_price | number:2}}</div>
+                    <!--<div class='fd-description'>{{fundamentals.description}}</div>-->
+
+                </div>
+                <div flex='65'>
+                    <md-card class='fd-card'>
+                        <md-card-content layout='row' layout-wrap>
+   
+                            <div flex='33' class='fd-title'>
+                                Market Cap
+                                <div class='fd-metric'>${{fundamentals.market_cap | number:0}}</div>
+                            </div> 
+                            <div flex='33' class='fd-title'>
+                                Total Shares
+                                <div class='fd-metric'>{{fundamentals.volume | number:0}}</div>
+                            </div> 
+                        </md-card-content>
+                        
+                    </md-card>
+                    <br>
+                    <md-card class='fd-card'>
+                        <md-card-content layout='row' layout-wrap>
+                            <div flex='20' class='fd-title'>
+                                Today's Open
+                                <div class='fd-metric'>${{fundamentals.open | number:2}}</div>
+                            </div>
+                            <div flex='20' class='fd-title'>
+                                Today's High
+                                <div class='fd-metric'>${{fundamentals.high | number:2}}</div>
+                            </div>
+                            <div flex='20' class='fd-title'>
+                                Today's Low
+                                <div class='fd-metric'>${{fundamentals.low | number:2}}</div>
+                            </div>   
+                            <div flex='20' class='fd-title'>
+                                52 Week High
+                                <div class='fd-metric'>${{fundamentals.high_52_weeks | number:2}}</div>
+                            </div>
+                            <div flex='20' class='fd-title'>
+                                52 Week Low
+                                <div class='fd-metric'>${{fundamentals.low_52_weeks | number:2}}</div>
+                            </div>  
+ 
+                        </md-card-content>
+                        
+                    </md-card>
+                </div>
+
+                <div flex='10'>
+                    <div layout='column' layout-padding layout-align='center center'>
+                        <div ng-if='info.quotes.last_trade_price > fundamentals.open' class='gain'>Trending Up</div>
+                        <i ng-if='info.quotes.last_trade_price > fundamentals.open'  class="material-icons md-48 gain">trending_up</i>
+
+                        <div ng-if='info.quotes.last_trade_price < fundamentals.open' class='loss'>Trending Down</div>
+                        <i ng-if='info.quotes.last_trade_price < fundamentals.open'  class="material-icons md-48 loss">trending_down</i>
+
+                        <!--<div>{{info.instruments.country}}</div>
+                        <i class="material-icons md-36">account_balance</i>-->
+
+                        <div class='fd-divider'>Currently Trading</div>
+                        <i ng-if='!info.quotes.trading_halted' class="material-icons md-36 gain">check_circle</i>
+                        <i ng-if='info.quotes.trading_halted' class="material-icons md-36 loss">cancel</i>
+
+
+                    </div>
+                </div>
+                <div flex='25'>
+                    {{fundamentals.description}}
+                </div>
+                <div flex='60'>
+                    <canvas id="line" class="chart chart-line" chart-data="data"
+                    chart-labels="labels"  chart-colors="colours" chart-series="series" chart-options="options"
+                    chart-dataset-override="datasetOverride" chart-click="onClick">
+                    </canvas
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </md-dialog-content>
+</md-dialog>

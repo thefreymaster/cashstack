@@ -1,0 +1,31 @@
+{
+  "name": "coinapp",
+  "version": "1.9.2",
+  "description": "a financial app that interfaces with Robinhood",
+  "main": "server.js",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "openssl": "^1.1.0",
+    "package.json": "^2.0.1",
+    "request": "^2.81.0"
+  },
+  "engines": {
+    "node": "8.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Evan Freymiller",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/heroku-coin.git"
+  },
+  "keywords": [
+    "Coin"
+  ]
+}

@@ -1,0 +1,35 @@
+<md-dialog flex='25'>
+    <md-toolbar>
+        <div class='md-toolbar-tools'>
+            Login
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout='column' layout-padding>
+        <div>
+            <form>
+                <md-input-container >
+                    <label>Username</label>
+                    <input ng-disabled='showMFAinput' type='text' ng-model="config.params.username">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Password</label>
+                    <input ng-disabled='showMFAinput' ng-model="config.params.password" type="password">
+                </md-input-container>
+
+                <md-input-container ng-if='showMFAinput'>
+                    <label>MFA Code</label>
+                    <input ng-model="config.params.mfa_code" type="number">
+                </md-input-container>
+            </form>
+
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-if='!showMFAinput' ng-disabled='loading' ng-click='getTokenFromService(config)'>
+            <div ng-if='!loading'>Login</div>
+            <md-progress class="md-accent" ng-if='loading' md-diameter="15"></md-progress>
+        </md-button>
+        <md-button ng-if='showMFAinput' ng-click='getTokenFromServiceMFA(config)'>Login</md-button>
+    </md-dialog-actions>
+</md-dialog>

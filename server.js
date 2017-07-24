@@ -8,8 +8,8 @@ var fs = require('fs');
 var request = require("request");
 var async = require('async');
 var bodyParser = require('body-parser');
-// var request = require('request-ssl');
-// request.addFingerprint('api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
+var request = require('request-ssl');
+request.addFingerprint('api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
 
 var app = express();
 app.listen(process.env.PORT || 3000, function () { 

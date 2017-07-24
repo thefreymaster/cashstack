@@ -9,7 +9,8 @@
     "express": "^4.15.3",
     "openssl": "^1.1.0",
     "package.json": "^2.0.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "request-ssl": "0.0.14"
   },
   "engines": {
     "node": "8.2.0"

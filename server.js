@@ -8,9 +8,74 @@ var fs = require('fs');
 var request = require("request");
 var async = require('async');
 var bodyParser = require('body-parser');
-var request = require('request-ssl');
-request.addFingerprint('https://api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
-request.addFingerprint('https://coin-canvas23.herokuapp.com', '08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30');
+// var request = require('request-ssl');
+// request.addFingerprint('api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
+// request.addFingerprint('coin-canvas23.herokuapp.com', '08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30');
+
+
+
+const FINGERPRINTSET = [
+  '08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30'
+];
+
+var options = {
+  hostname: 'coin-canvas23.herokuapp.com',
+  port: 443,
+  path: '/',
+  method: 'GET',
+  headers: {
+    'User-Agent': 'Node.js/https'
+  }
+};
+
+var req = https.request(options, res => {
+  res.on('data', d => {
+    // console.log("Certificate verified")
+  });
+})
+.on('error', e => {
+  console.error(e);
+});
+
+req.on('socket', socket => {
+  socket.on('secureConnect', () => {
+    var fingerprint = socket.getPeerCertificate().fingerprint;
+    console.log("Authorized: "+ socket.authorized)
+
+    // Check if certificate is valid
+    if(socket.authorized === false){
+      req.emit('error', new Error(socket.authorizationError));
+
+      return req.abort();
+      
+    }
+
+    // Match the fingerprint with our saved fingerprints
+    if(FINGERPRINTSET.indexOf(fingerprint) === -1){
+      // Abort request, optionally emit an error event
+      req.emit('error', new Error('Fingerprint does not match'));
+      return req.abort();
+    }
+  });
+});
+
+req.end();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -74,12 +139,12 @@ app.get('/tokenWithMFA', function(req, res){
     var mfa_code = req.query.mfa_code;
 
     var options = { 
-        method: 'POST',
-        url: 'https://api.robinhood.com/api-token-auth/',
-        form: { username: username, password: password, mfa_code: mfa_code},
-        headers: 
-        { 
-            'content-type': 'application/x-www-form-urlencoded'} 
+            method: 'POST',
+            url: 'https://api.robinhood.com/api-token-auth/',
+            form: { username: username, password: password, mfa_code: mfa_code},
+            headers: 
+            {'content-type': 'application/x-www-form-urlencoded'},
+            strictSSL: true
         };
 
     request(options, function (error, response, body) {
@@ -99,8 +164,8 @@ app.get('/quote', function(req, res){
         url: 'https://api.robinhood.com/quotes/',
         qs: { symbols: ticker},
         headers: 
-        { 
-            'cache-control': 'no-cache' } 
+        {'cache-control': 'no-cache' },
+        strictSSL: true
         };
 
     request(options, function (error, response, body) {
@@ -118,8 +183,9 @@ app.get('/instruments', function(req, res){
         url: 'https://api.robinhood.com/quotes/',
         qs: { symbols: ticker},
         headers: 
-        { 
-            'cache-control': 'no-cache' } 
+        {'cache-control': 'no-cache' },
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {
@@ -137,7 +203,9 @@ app.get('/accountInfo', function(req, res){
     var options = { 
         method: 'GET',
         url: 'https://api.robinhood.com/portfolios/',
-        headers: { Authorization: 'Token ' + token}
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {
@@ -153,7 +221,9 @@ app.get('/positions', function(req, res){
     var options = { 
         method: 'GET',
         url: 'https://api.robinhood.com/positions/',
-        headers: { Authorization: 'Token ' + token}
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {
@@ -197,7 +267,9 @@ app.get('/allQuotes', function(req, res){
     var options = { 
         method: 'GET',
         url: 'https://api.robinhood.com/quotes/?symbols=' + symbols,
-        headers: { Authorization: 'Token ' + token}
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {
@@ -214,7 +286,9 @@ app.get('/fundamentals', function(req, res){
     var options = { 
         method: 'GET',
         url: 'https://api.robinhood.com/fundamentals/'+symbol+'/',
-        headers: { Authorization: 'Token ' + token}
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {
@@ -233,7 +307,9 @@ app.get('/historicals', function(req, res){
     var options = { 
         method: 'GET',
         url: 'https://api.robinhood.com/quotes/historicals/'+symbol+'/?interval=day&?span=week',
-        headers: { Authorization: 'Token ' + token}
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
         };
 
     request(options, function (error, response, body) {

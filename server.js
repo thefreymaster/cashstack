@@ -10,6 +10,9 @@ var async = require('async');
 var bodyParser = require('body-parser');
 var request = require('request-ssl');
 request.addFingerprint('api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
+request.addFingerprint('coin-canvas23.herokuapp.com', '08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30');
+
+
 
 var app = express();
 app.listen(process.env.PORT || 3000, function () { 

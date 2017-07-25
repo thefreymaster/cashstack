@@ -1,4 +1,4 @@
-var app = angular.module('stockQuotesApp', ['ui.router', 'firebase', 'ngMaterial', 'ngStorage', 'ngMessages', 'angularMoment', 'chart.js']).config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider, ChartJsProvider){
+var app = angular.module('stockQuotesApp', ['ui.router', 'firebase', 'ngMaterial', 'ngStorage', 'ngMessages', 'angularMoment', 'chart.js']).config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider, ChartJsProvider, $locationProvider){
 
 
 $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain'; 
@@ -85,7 +85,7 @@ $stateProvider.state('settings', {
             })            
 
   $urlRouterProvider.otherwise('/splash');
-
+  $locationProvider.html5Mode(true);
 }).run(function($window, $rootScope, $location){
     $window.ga('create', 'UA-40570108-2', 'auto');
 

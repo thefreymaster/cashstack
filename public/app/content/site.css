@@ -167,7 +167,7 @@ div.item-min-width{
 .ticker-metric{
     padding:5px;
     font-family:Roboto;
-    font-weight:300;
+    font-weight:400;
     font-size:14px;
     color: 1A1A1A;
 }
@@ -280,7 +280,7 @@ div.item-min-width{
 }*/
 .stock-price{
     font-family:Roboto;
-    font-weight:300;
+    font-weight:400;
     font-size:24px;
     color: rgb(172, 172, 172);
 }

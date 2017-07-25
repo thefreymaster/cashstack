@@ -104,9 +104,9 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                         k++
                                 }
 
-                                                console.log(service.symbols);
-                                                console.log(service.allInitialInvestmentsValues);
-                                                console.log(service.allCurrentInvestmentValues);
+                                                // console.log(service.symbols);
+                                                // console.log(service.allInitialInvestmentsValues);
+                                                // console.log(service.allCurrentInvestmentValues);
                                                 service.buildGraphs();
                                                 dialogService.closeDialog();
 
@@ -172,7 +172,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
                                 label: function (tooltipItem, data) {
-                                console.log(data)
+                                // console.log(data)
                                 return tooltipLabels[tooltipItem.datasetIndex] + $filter('number')(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index], 2);
                                 }
                         }
@@ -200,7 +200,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
                                 label: function (tooltipItem, data) {
-                                console.log(tooltipItem)
+                                // console.log(tooltipItem)
                                 return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' gain since purchase';
                                 }
                         }

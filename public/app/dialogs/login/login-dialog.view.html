@@ -1,23 +1,23 @@
-<md-dialog flex='25'>
+<md-dialog flex='15'>
     <md-toolbar>
         <div class='md-toolbar-tools'>
-            Login
+            <i class="material-icons">&#xE899;</i> Login using Robinhood Credentials
         </div>
     </md-toolbar>
     <md-dialog-content layout='column' layout-padding>
         <div>
             <form>
-                <md-input-container >
+                <md-input-container class='md-block animated flipInX'>
                     <label>Username</label>
                     <input ng-disabled='showMFAinput' type='text' ng-model="config.params.username">
                 </md-input-container>
 
-                <md-input-container>
+                <md-input-container class='md-block animated flipInX'>
                     <label>Password</label>
                     <input ng-disabled='showMFAinput' ng-model="config.params.password" type="password">
                 </md-input-container>
 
-                <md-input-container ng-if='showMFAinput'>
+                <md-input-container ng-if='showMFAinput' class='md-block animated flipInX'>
                     <label>MFA Code</label>
                     <input ng-model="config.params.mfa_code" type="number">
                 </md-input-container>

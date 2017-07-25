@@ -1,6 +1,6 @@
 
 
-angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', function($http, $localStorage, $state, httpService, dialogService, $filter){
+angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', '$interval', function($http, $localStorage, $state, httpService, dialogService, $filter, $interval){
 
     
     var service = this;
@@ -224,7 +224,6 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         },
                 };
             }//end function
-
 
 }])
 

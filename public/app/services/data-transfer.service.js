@@ -25,7 +25,6 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
 
-
     service.gatherRobinhoodData = function(config){
         config = {
                 params: {
@@ -107,6 +106,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                                 // console.log(service.symbols);
                                                 // console.log(service.allInitialInvestmentsValues);
                                                 // console.log(service.allCurrentInvestmentValues);
+                                                console.log(service.combinedData)
                                                 service.buildGraphs();
                                                 dialogService.closeDialog();
 
@@ -217,7 +217,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
                                 label: function (tooltipItem, data) {
-                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2);
+                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' | ' + $filter('number')((data.datasets[0].data[tooltipItem.index]/service.accountEquity)*100, 2) + "%";
                                 }
                         }
 
@@ -225,5 +225,6 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 };
             }//end function
 
+ 
 }])
 

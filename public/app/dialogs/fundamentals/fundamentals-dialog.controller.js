@@ -1,8 +1,9 @@
-angular.module('stockQuotesApp').controller('fundamentalsController', function($scope, $http, company, info, httpService, dialogService, $filter){
+angular.module('stockQuotesApp').controller('fundamentalsController', function($scope, $http, company, info, httpService, dialogService, $filter, mediaService){
     $scope.company = company;
     $scope.info = info;
     $scope.httpService = httpService;
     $scope.dialogService = dialogService;
+    $scope.mediaService = mediaService;
     
     var config = {
         params: {

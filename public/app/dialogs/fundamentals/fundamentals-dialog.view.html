@@ -13,22 +13,22 @@
             <!--{{response.results[0].previous_close}}-->
             <div layout='row' layout-wrap layout-padding>
 
-                <div flex='25'>
+                <div flex='25' flex-xs='100'>
                     <div class='fd-symbol'>{{info.instruments.symbol}}</div>
                     <div class='fd-simple-name'>{{info.instruments.name}}</div>
                     <div class='fd-price'>${{info.quotes.last_trade_price | number:2}}</div>
                     <!--<div class='fd-description'>{{fundamentals.description}}</div>-->
 
                 </div>
-                <div flex='65'>
+                <div flex='65' hide-xs>
                     <md-card class='fd-card'>
                         <md-card-content layout='row' layout-wrap>
    
-                            <div flex='33' class='fd-title'>
+                            <div flex='50' class='fd-title'>
                                 Market Cap
                                 <div class='fd-metric'>${{fundamentals.market_cap | number:0}}</div>
                             </div> 
-                            <div flex='33' class='fd-title'>
+                            <div flex='50' class='fd-title'>
                                 Total Shares
                                 <div class='fd-metric'>{{fundamentals.volume | number:0}}</div>
                             </div> 
@@ -64,7 +64,7 @@
                     </md-card>
                 </div>
 
-                <div flex='10'>
+                <div flex='10' hide-xs>
                     <div layout='column' layout-padding layout-align='center center'>
                         <div ng-if='info.quotes.last_trade_price > fundamentals.open' class='gain'>Trending Up</div>
                         <i ng-if='info.quotes.last_trade_price > fundamentals.open'  class="material-icons md-48 gain">trending_up</i>
@@ -82,10 +82,10 @@
 
                     </div>
                 </div>
-                <div flex='25'>
+                <div flex='25' hide-xs>
                     {{fundamentals.description}}
                 </div>
-                <div flex='60'>
+                <div flex='60' flex-xs='100'>
                     <canvas id="line" class="chart chart-line" chart-data="data"
                     chart-labels="labels"  chart-colors="colours" chart-series="series" chart-options="options"
                     chart-dataset-override="datasetOverride" chart-click="onClick">

@@ -1,4 +1,4 @@
-angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope', 'dataTransferService', function($scope,dataTransferService){
+angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope', 'dataTransferService', 'mediaService', function($scope, dataTransferService, mediaService){
         $scope.dataTransferService = dataTransferService;
 
 

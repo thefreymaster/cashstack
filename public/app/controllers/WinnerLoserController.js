@@ -1,7 +1,6 @@
-angular.module('stockQuotesApp').controller('WinnerLoserController', ['$scope', '$http', '$timeout', 'appDataService', 'httpService', '$localStorage', 'dataTransferService', function($scope, $http, $timeout, appDataService, httpService, $localStorage, dataTransferService){
-        $scope.service = appDataService;
-        $scope.allStockData = appDataService;
+angular.module('stockQuotesApp').controller('WinnerLoserController', ['$scope', 'dataTransferService', 'mediaService', function($scope, dataTransferService, mediaService){
         $scope.dataTransferService = dataTransferService;
+        $scope.mediaService = mediaService;
 
 
 

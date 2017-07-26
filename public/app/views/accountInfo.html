@@ -14,12 +14,18 @@
                         <div layout='row' layout-padding>
                             <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
                                 <span ng-if='value.instruments.simple_name == null'>N/A</span>
-                                {{value.instruments.simple_name}}</span>
-                            
+                                {{value.instruments.simple_name}}
+                                </span>
+                            <span flex></span>
+                            <div  flex="20" class="center table-cell  animated flipInX">
+                                    <div class='coin-quantity-title' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">Shares</div>
+                                    <div class='coin-quantity' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">{{value.positions.quantity | number:0}}</div>                                 
+                            </div> 
 
                         </div>
-                        <div layout='row' layout-padding>
-                            <span class='coin-price' ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}" class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
+                        <div layout='column' layout-padding layout-align='center center' class='border-account'>
+                            <span class='coin-price' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}" class="center ticker-metric animated flipInX">${{value.quotes.last_trade_price | number:2}}</span>
+                            <span class='coin-percert' ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}" class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
 
                             
 
@@ -28,31 +34,23 @@
 
 
 
-                    <div layout='row' layout-padding>
-                        <div flex="80" class="coin-percent animated flipInX" ng-class="{'gain': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) > 0, 'loss': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) < 0}">{{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%</div>
-
-                        
-                            <div  flex="20" class="center table-cell  animated flipInX">
-                                <div class='coin-quantity-title' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">Shares</div>
-                                <div class='coin-quantity' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">{{value.positions.quantity | number:0}}</div>
-                                
-                        </div>                        
-                    </div>
-                        <div  flex='100' class="table-cell animated flipInX" ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price) > (value.positions.quantity*value.positions.average_buy_price), 'loss': (value.positions.quantity*value.quotes.last_trade_price) < (value.positions.quantity*value.positions.average_buy_price)}">
-                            <span ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'>Total Value: ${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
-                            <span ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'>Total Value: ${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
-
-                        
+                        <div layout='row' layout-align='center center'>
+                            <div flex='33' class='center' hide-xs>
+                                <div flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"><b>Initial</b> <br>${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}</div>
+                            </div>
+                            <div flex='33' class='center' hide-xs>
+                                <span ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Gain</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
+                                <span ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Loss</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
+                            </div>
+                            <div flex='33' class='center'>
+                                <span ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</b> 
+                                <span ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
+                            </div>
+                            <div flex='100' class='center'>
+                                <div flex="50" class="coin-percent animated flipInX" ng-class="{'gain': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) > 0, 'loss': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) < 0}">{{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%</div>
+                            </div>
                         </div>
-                        <md-divider class='divider-expanded'></md-divider>
-                    <div layout='row' layout-padding>
-                        <div flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">Initial: ${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}</div>
-                        <div flex='100' class="center table-cell animated flipInX" ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0, 'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" flex="10">
-                            <span ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'>Gain: ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
-                            <span ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'>Loss: ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
-                         
-                        </div>
-                    </div>
+
 
     </div>
 </div>

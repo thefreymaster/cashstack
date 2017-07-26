@@ -23,7 +23,7 @@
                             </div> 
 
                         </div>
-                        <div layout='column' layout-padding layout-align='center center' class='border-account'>
+                        <div layout='column' layout-padding layout-align='center center' ng-class="{'border-account': service.brightTheme == false, 'border-account-bright': service.brightTheme == true}">
                             <span class='coin-price' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}" class="center ticker-metric animated flipInX">${{value.quotes.last_trade_price | number:2}}</span>
                             <span class='coin-percert' ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}" class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
 

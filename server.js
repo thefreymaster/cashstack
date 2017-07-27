@@ -94,7 +94,7 @@ app.listen(process.env.PORT || 3000, function () {
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-// app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 
 
@@ -104,13 +104,6 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 
-
-app.use(function(req, res, next) {
-  if(!req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  next();
-});
 
 app.get('/', function (request, response){
     response.sendFile(path.resolve(__dirname, '/public', 'index.html'));

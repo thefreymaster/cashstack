@@ -24,6 +24,31 @@ angular.module('stockQuotesApp').controller('AccountInfoController', ['$scope', 
                 $state.go('splash');
         }
 
-        
+        $scope.countUpOptions = {
+          useEasing : true, 
+          useGrouping : true, 
+          separator : ',', 
+          decimal : '.',
+};
+        $scope.countUpPercentGain = {
+          useEasing : true, 
+          useGrouping : true, 
+          separator : ',', 
+          decimal : '.',
+          suffix : '%', 
+
+};
+
+        $scope.countUpDollar = {
+          useEasing : true, 
+          useGrouping : true, 
+          separator : ',', 
+          decimal : '.', 
+          prefix : '$', 
+        };
+
+
+
+
 
 }]);

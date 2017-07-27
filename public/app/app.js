@@ -1,4 +1,4 @@
-var app = angular.module('stockQuotesApp', ['ui.router', 'firebase', 'ngMaterial', 'ngStorage', 'ngMessages', 'angularMoment', 'chart.js']).config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider, ChartJsProvider){
+var app = angular.module('stockQuotesApp', ['ui.router', 'firebase', 'ngMaterial', 'ngStorage', 'ngMessages', 'angularMoment', 'chart.js', 'countUpModule']).config(function($stateProvider, $urlRouterProvider, $mdThemingProvider, $httpProvider, ChartJsProvider){
 
 
 $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain'; 

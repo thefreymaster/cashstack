@@ -1,6 +1,8 @@
-angular.module('stockQuotesApp').controller('SettingsController', ['$scope', '$http', '$timeout', 'appDataService', '$firebaseObject', '$state', '$mdDialog', '$localStorage', '$mdSidenav', '$window', function($scope, $http, $timeout, appDataService, $firebaseObject, $state, $mdDialog, $localStorage, $mdSidenav, $window){
+angular.module('stockQuotesApp').controller('SettingsController', ['$scope', '$http', '$timeout', 'appDataService', '$firebaseObject', '$state', '$mdDialog', '$localStorage', '$mdSidenav', '$window', 'dataTransferService', function($scope, $http, $timeout, appDataService, $firebaseObject, $state, $mdDialog, $localStorage, $mdSidenav, $window, dataTransferService){
         $scope.service = appDataService;
         $scope.allStockData = appDataService;
+        $scope.dataTransferService = dataTransferService;
+
 
         $window.ga('send', 'pageview', 'settings');
 

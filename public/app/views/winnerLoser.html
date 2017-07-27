@@ -1,5 +1,5 @@
 
-<md-content class="winner-loser-area" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">
+<div class="winner-loser-area" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">
     <div hide-sm hide-xs layout="row" >
         <div class="center" flex="25" >
             <!--<p class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Winner</p>-->
@@ -22,10 +22,10 @@
             <div layout="column" ng-class="{'table-cell-bright': service.brightTheme == true}">
                 <div flex="100" class="investment-label center">Portfolio Value</div>
 
-                <div flex="100" ng-class="{'small-screen-text': screenIsExtraSmall == true}" class="investment-title center animated flipInX">${{dataTransferService.accountEquity | number:2}}</div>
+                <div flex="100" ng-class="{'small-screen-text': screenIsExtraSmall == true}" class="investment-title center animated flipInX" count-up options="countUpOptions" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
 
-                <span ng-class="{'gain': service.accountValueDollarChange > 0, 'loss': service.accountValueDollarChange < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': service.accountValueDollarChange == 0}"
-                    class="center win-lose-metric animated flipInX">${{service.accountValueDollarChange | number:2}} | {{service.accountValuePercentChange | number:2}}%</span>
+                <span ng-class="{'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
+                    class="center win-lose-metric animated flipInX">${{dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close | number:2}} | {{((dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close)/dataTransferService.combinedData.portfolio.equity)*100 | number:2}}%</span>
 
             </div>
         </div>
@@ -104,6 +104,6 @@
         </div>
 
     </div>
-</md-content>
+</div>
 
 

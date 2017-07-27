@@ -20,6 +20,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         service.allCurrentInvestmentValues = [];
         service.allSymbols = [];
 
+        service.build_charts = true;
 
 
 
@@ -33,6 +34,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         }
         var accountInfoPromise = httpService.getAccountInfo(config);
         accountInfoPromise.then(function (results){
+                service.portfolioInfo = results.results[0];
                 service.accountEquity = results.results[0].equity;
                 //     console.log(service.accountEquity);
 
@@ -57,63 +59,76 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
                 // console.log(service.instruments)
         }).then(function(){
-                // config.params.instrumentUrl = service.position;
-                config.params.collection = service.instruments;
-                var instrumentsPromise = httpService.getInstruments(config);
-                instrumentsPromise.then(function(result){
-                        service.instrumentData = result;
-                        service.symbols = [];
-                        service.symbolsJoined = [];
-                        service.combinedData = {};
-                        
+                var accountPromise = httpService.getAccount(config);
+                accountPromise.then(function(result){
+                        service.accountData = result;
+                
 
-                        for(g=0;g<service.positions.length;g++)
-                        {            
-                                if(service.positions[g].quantity != 0)   
-                                {
-                                        service.symbols.push(service.instrumentData[g].symbol);
-                                        service.symbolsJoined.push(service.instrumentData[g].symbol);
-                                }
+                        // config.params.instrumentUrl = service.position;
+                        config.params.collection = service.instruments;
+                        var instrumentsPromise = httpService.getInstruments(config);
+                        instrumentsPromise.then(function(result){
+                                service.instrumentData = result;
+                                service.symbols = [];
+                                service.symbolsJoined = [];
+                                service.combinedData = {};
                                 
-                        }
-                        service.symbolsJoined.join();
-                        config.params.symbols = service.symbolsJoined;
-                        var allQuotesPromise = httpService.getAllQuotes(config);
-                        allQuotesPromise.then(function(result){
-                                service.quotes = result.results;
-                                // console.log(service.quotes);
-                                k=0;
 
-                                for(symbol in service.symbols)
-                                {
-
-                                
-                                        service.combinedData[service.symbols[k]] = {
-                                                        positions: service.positions[k],
-                                                        instruments: service.instrumentData[k],
-                                                        quotes: service.quotes[k]
-                                                }
-                                        
-                                        
-                                        if(service.positions[k].quantity != 0)
+                                for(g=0;g<service.positions.length;g++)
+                                {            
+                                        if(service.positions[g].quantity != 0)   
                                         {
-                                                service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
-                                                service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
+                                                service.symbols.push(service.instrumentData[g].symbol);
+                                                service.symbolsJoined.push(service.instrumentData[g].symbol);
                                         }
-                                        k++
+                                        
                                 }
+                                service.symbolsJoined.join();
+                                config.params.symbols = service.symbolsJoined;
+                                var allQuotesPromise = httpService.getAllQuotes(config);
+                                allQuotesPromise.then(function(result){
+                                        service.quotes = result.results;
+                                        // console.log(service.quotes);
+                                        k=0;
 
-                                                // console.log(service.symbols);
-                                                // console.log(service.allInitialInvestmentsValues);
-                                                // console.log(service.allCurrentInvestmentValues);
-                                                console.log(service.combinedData)
-                                                service.buildGraphs();
-                                                dialogService.closeDialog();
+                                        for(symbol in service.symbols)
+                                        {
+
+                                        
+                                                service.combinedData[service.symbols[k]] = {
+                                                                positions: service.positions[k],
+                                                                instruments: service.instrumentData[k],
+                                                                quotes: service.quotes[k]
+                                                        }
+                                                
+                                                
+                                                if(service.positions[k].quantity != 0)
+                                                {
+                                                        service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
+                                                        service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
+                                                }
+                                                k++
+                                        }
+                                        service.combinedData.account = service.accountData.results[0];
+                                        service.combinedData.portfolio = service.portfolioInfo;
+
+                                        
+                                                        // console.log(service.symbols);
+                                                        // console.log(service.allInitialInvestmentsValues);
+                                                        // console.log(service.allCurrentInvestmentValues);
+                                                        console.log(service.combinedData);
+                                                        if(service.build_charts == true)
+                                                        {
+                                                                service.buildGraphs();
+                                                                service.build_charts = false
+                                                        }
+                                                        dialogService.closeDialog();
 
 
-                        })
+                                })
 
-                }) 
+                        }) 
+                })
         })
     }
         if(config.params.token != undefined)
@@ -125,7 +140,9 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 }
                 service.gatherRobinhoodData(config);
         }
-
+        // setInterval(function(){
+        //         service.gatherRobinhoodData(config);
+        // }, 10000)
 
         service.buildGraphs = function(){
                 service.colorsPie = ['#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#AED581', '#DCE775', '#FFF176', '#FFD54F', '#FFB74D'];
@@ -224,6 +241,9 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         },
                 };
             }//end function
+
+
+
 
  
 }])

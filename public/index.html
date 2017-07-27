@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="app/content/site.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-  <!--<link rel="icon" href="app/content/favicon.png">-->
+  <link rel="icon" href="app/content/favicon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="app/scripts/dragscroll.js"></script>
@@ -50,7 +50,8 @@
   <script src="app/services/media.service.js"></script>
 
   
-  
+  <script src="app/scripts/angular-countUp.js"></script>
+  <script src="app/scripts/countUp.js"></script>
 
   <!--<script src="app/components/winLose/winLose.component.js"></script>
     <script src="app/components/winLose/winLose.controller.js"></script>-->
@@ -106,13 +107,13 @@
           <div class="app-title">Coin</div>
         </div>
 
-
+<!--
         <div layout="row" layout-align="center center" class="align-logo">
           <div class="value-title">Portfolio Value</div>
         </div>
         <div layout="row" layout-align="center center" class="align-logo value-margin side-nav-divider">
           <div class="value-value animated flipInX">${{service.accountValue | number:0}}</div>
-        </div>
+        </div>-->
 
 
         <div layout="column" class="value-margin bt-margin" layout-align="center center">
@@ -153,8 +154,8 @@
         <div ui-view="statusBar"></div>
         <div ui-view="stockQuotes"></div>
 
-        <div ui-view="winnerLoser"></div>
-        <div ui-view="accountGraphs"></div>
+        <div ui-view="winnerLoser" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
+        <div ui-view="accountGraphs" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
         <div ui-view="accountInfo" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
       </div>
 

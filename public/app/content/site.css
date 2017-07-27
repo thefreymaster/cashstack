@@ -68,7 +68,6 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
 }
 .winner-loser-area{
     color:white;
-    background-color:#1A1A1A;
     font-family:Roboto;
     font-weight:300;
     padding:30px;
@@ -94,7 +93,8 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
 }
 .win-lose-metric{
     font-size:24px;
-    padding:5px
+    padding:5px;
+        font-weight: 400;
 }
 
 .ticker-title{
@@ -776,7 +776,7 @@ html::-webkit-scrollbar-thumb
     background-color: transparent;
 }
 .account-info{
-    background-color: #171717;
+    background-color: #171717 !important;
 }
 .account-info-bright{
         border-top: 1px solid #dedede;
@@ -789,8 +789,10 @@ html::-webkit-scrollbar-thumb
 }
 
 .grid{
-    border-bottom: 1px solid #1e1e1e;
-    border-right: 1px solid #1e1e1e;
+    border-bottom: 1px solid #353535;
+    border-top: 1px solid #353535;
+
+
 }
 .border-account{
     border-bottom: 1px solid #1e1e1e;
@@ -809,4 +811,7 @@ html::-webkit-scrollbar-thumb
 .bright{
         opacity: .25;
         color:black;
+}
+metric{
+    font-size:32px;
 }

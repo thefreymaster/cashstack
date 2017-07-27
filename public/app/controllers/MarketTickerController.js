@@ -2,11 +2,11 @@
 
 
 
-angular.module('stockQuotesApp').controller('MarketTickerController', ['$scope', '$http', '$timeout', 'appDataService', 'moment', '$mdSidenav', '$localStorage', '$state', function($scope, $http, $timeout, appDataService, moment, $mdSidenav, $localStorage, $state){
+angular.module('stockQuotesApp').controller('MarketTickerController', ['$scope', '$http', '$timeout', 'appDataService', 'moment', '$mdSidenav', '$localStorage', '$state', 'dataTransferService', function($scope, $http, $timeout, appDataService, moment, $mdSidenav, $localStorage, $state, dataTransferService){
         $scope.service = appDataService;
         $scope.marketObject = {};
         $scope.markets = ['DJI','NASDAQ', 'NYSE'];
-
+        $scope.dataTransferService = dataTransferService;
 
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');

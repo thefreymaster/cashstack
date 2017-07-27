@@ -11,7 +11,7 @@ angular.module('stockQuotesApp').service('appDataService', ['$firebaseObject', '
     service.brightTheme = $localStorage.brightTheme;
     if(service.brightTheme == undefined)
     {
-        service.brightTheme = true;
+        service.brightTheme = false;
     }
 
 

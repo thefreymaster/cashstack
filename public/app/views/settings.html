@@ -17,23 +17,33 @@
 
         
     <div class="setting-divider" layout="row" layout-align="center end" layout-padding>
-        <md-button class="md-icon-button bt-margin" ng-click="showConfirmAccountLookup()" analytics-on="click" analytics-event="AccountDeleted">
+        <!--<md-button class="md-icon-button bt-margin" ng-click="showConfirmAccountLookup()" analytics-on="click" analytics-event="AccountDeleted">
             <md-icon ng-class="{'dark-icon': service.brightTheme == true}"  class="material-icons">healing</md-icon>
             <md-tooltip md-direction="left" analytics-on="click" analytics-event="Settings">Account Recovery</md-tooltip>
-        </md-button>
+        </md-button>-->
         <md-switch ng-model="service.brightTheme" ng-change="service.saveTheme()" aria-label="Switch 1">
                    <md-icon class="material-icons white-icon" ng-class="{'dark-icon': service.brightTheme == true}">lightbulb_outline</md-icon>
         </md-switch>
-        <md-button class="md-icon-button bt-margin" ng-click="showConfirm()" analytics-on="click" analytics-event="AccountDeleted">
+        <!--<md-button class="md-icon-button bt-margin" ng-click="showConfirm()" analytics-on="click" analytics-event="AccountDeleted">
             <md-icon ng-class="{'dark-icon': service.brightTheme == true}"  class="material-icons">delete_forever</md-icon>
             <md-tooltip md-direction="right" analytics-on="click" analytics-event="Settings">Delete Account</md-tooltip>
-        </md-button>
+        </md-button>-->
 
     </div> 
 
-    <div layout="row" layout-align="center end"> 
-        <p class="value-title animated flipInX" ng-class="{'app-title-bright': service.brightTheme == true}">Account Code: {{service.accountCode}} |</p>
-        <p class="value-title animated flipInX" ng-class="{'app-title-bright': service.brightTheme == true}">| Version: {{version}}</p>   
+    <div layout="column" layout-align="center center" layout-padding> 
+        <p class="value-title center animated flipInX" flex='50' ng-class="{'app-title-bright': service.brightTheme == true}">
+            <b>Robinhood Account</b><br> 
+            <metric>{{dataTransferService.combinedData.account.account_number}}<metric>
+        </p>
+        <p class="value-title center animated flipInX" flex='50' ng-class="{'app-title-bright': service.brightTheme == true}"> 
+            <b>Coin Version</b><br> 
+            <metric>{{version}}</metric>
+        </p>   
+        <p class="value-title center animated flipInX" flex='50' ng-class="{'app-title-bright': service.brightTheme == true}"> 
+            <b>Account Open Date</b><br> 
+            <metric>{{dataTransferService.combinedData.portfolio.start_date | date:}}</metric>
+        </p>      
     </div> 
     <!--<div layout="row" layout-align="center end" layout-padding>
         <img class="freyteklogo-width" src="app/content/freyteklogo.png" alt="">

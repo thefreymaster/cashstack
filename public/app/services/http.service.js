@@ -88,12 +88,11 @@ angular.module('stockQuotesApp').service('httpService', ['$firebaseObject', '$ht
         });
     }
 
-    service.getCompanyLogoURLs = function (config) {
-        return $http.get('/companyLogoData', config).then(function (response) {
+    service.getAccount = function (config) {
+        return $http.get('/account', config).then(function (response) {
             return response.data;
 
         });
     }
-
 
 }])

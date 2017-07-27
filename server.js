@@ -318,3 +318,24 @@ app.get('/historicals', function(req, res){
         res.json(JSON.parse(body));
     });
 });
+app.get('/account', function(req, res){
+
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = { 
+        method: 'GET',
+        url: 'https://api.robinhood.com/accounts/',
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
+        };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+        res.json(JSON.parse(body));
+    });
+});
+
+
+

@@ -1,18 +1,24 @@
 <div layout='row' layout-xs='column' layout-wrap layout-padding layout-align='center center'>
-    <div >
+    <md-card ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+        <md-card-content>
         <canvas id="doughnut" class="chart chart-doughnut"
         chart-data="dataTransferService.pieData" chart-labels="dataTransferService.pielabels"  chart-options="dataTransferService.optionsDoughnut"  chart-colors="dataTransferService.colorsPie">
         </canvas> 
-    </div>
-    <div flex-xs='100' >
+        </md-card-content>
+    </md-card>
+    <md-card flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+        <md-card-content>
         <canvas id="radar" class="chart chart-radar"
             chart-data="dataTransferService.dataRadar" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsRadar" chart-colors="dataTransferService.colorsRadar">
         </canvas> 
-    </div>
-    <div flex-xs='100'>
+        </md-card-content>
+    </md-card>
+    <md-card flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+        <md-card-content>
         <canvas id="polar-area" class="chart chart-polar-area"
         chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
         </canvas> 
-    </div>
+        </md-card-content>
+    </md-card>
 
 </div>

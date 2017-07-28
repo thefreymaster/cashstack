@@ -1,8 +1,8 @@
 
-<div layout='row' layout-wrap layout-padding>
+<div layout='row' layout-wrap flex-offset-xl="15" flex-offset-xs="0">
     
-    <div ng-repeat="(key, value) in dataTransferService.combinedData" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-class="{'grid': service.brightTheme == false, 'grid-bright': service.brightTheme == true}">
-               
+    <md-card ng-repeat="(key, value) in dataTransferService.combinedData" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+               <md-card-content>
                         <div layout='row' layout-padding>
                             <span class="" ng-class="{'coin-symbol': service.brightTheme == false, 'coin-symbol-bright': service.brightTheme == true}">{{key}}</span>
 
@@ -51,8 +51,8 @@
                             </div>
                         </div>
 
-
-    </div>
+</md-card-content>
+    </md-card>
         <div ng-if="dataTransferService.combinedData.account != undefined" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-class="{'grid': service.brightTheme == false, 'grid-bright': service.brightTheme == true}">
                
                         <div layout='row' layout-padding>

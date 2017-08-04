@@ -1,8 +1,18 @@
 
 <div class="winner-loser-area" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">
-    <div hide-sm hide-xs layout="row" >
-        <div class="center" flex="25" >
-            <!--<p class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Winner</p>-->
+                <div layout="column" layout-align='center center' layout-padding ng-class="{'table-cell-bright': service.brightTheme == true}">
+                <div class="investment-label center">Portfolio Value</div>
+
+                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true}" class="investment-title center animated flipInX" count-up options="countUpOptions" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
+
+                <span ng-class="{'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
+                    class="center win-lose-metric animated flipInX">${{dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close | number:2}} | {{((dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close)/dataTransferService.combinedData.portfolio.equity)*100 | number:2}}%</span>
+
+            </div>
+    <!--<md-card hide-sm hide-xs layout="row" ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+        <md-card-content>
+        <div flex="25" >
+            <p class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Winner</p>
                 <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
                     <div class="gain center win-lose-title animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{key}}</div>
                     <div class="gain center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.winnerrDollar && service.winnerNegative == false">{{value.CompanyName}}</div>
@@ -18,11 +28,11 @@
 
 
         </div>
-        <div class='center' flex='50'>
-            <div layout="column" ng-class="{'table-cell-bright': service.brightTheme == true}">
-                <div flex="100" class="investment-label center">Portfolio Value</div>
+        <div flex='50'>
+            <div layout="column" layout-align='center center' ng-class="{'table-cell-bright': service.brightTheme == true}">
+                <div class="investment-label center">Portfolio Value</div>
 
-                <div flex="100" ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true}" class="investment-title center animated flipInX" count-up options="countUpOptions" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
+                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true}" class="investment-title center animated flipInX" count-up options="countUpOptions" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
 
                 <span ng-class="{'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
                     class="center win-lose-metric animated flipInX">${{dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close | number:2}} | {{((dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close)/dataTransferService.combinedData.portfolio.equity)*100 | number:2}}%</span>
@@ -30,7 +40,7 @@
             </div>
         </div>
         <div class="center" flex="25">
-            <!--<p  class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Loser</p>-->
+            <p  class="winlose-title" ng-class="{'winner-loser-area-bright': service.brightTheme == true}">Today's Loser</p>
              <div ng-repeat="(key, value) in service.data[service.accountCode].StockInfo" layout="column" layout-align="center center" ng-hide="service.marketsOpen == false">
                 <div class="loss center win-lose-title animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{key}}</div>
                 <div class="loss center win-lose-subtitle animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">{{value.CompanyName}}</div>
@@ -42,12 +52,12 @@
                 <div class="loss center win-lose-metric animated flipInX" ng-if="value.DollarGainLossToday == service.loserDollar && service.loserPositive == false">(${{value.DollarGainLossToday | number:2}}) | (${{value.PercentGainLossToday | number:2}})</div>
 
 
-                                <!--DollarGainLossToday: {{value.DollarGainLossToday}} | loserDollar: {{service.loserDollar}} | loserPositive?: {{service.loserPositive}} | dollar loss: {{value.DollarGainLossToday }} | percent loss: {{value.PercentGainLossToday}}-->
 
             </div>
             
         </div>
-    </div>
+        </md-card-content>
+    </md-card>-->
     <div hide-md hide-lg hide-xl layout="column" layout-wrap>
         <div class='center' flex='100'>
             <div layout="column" ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">

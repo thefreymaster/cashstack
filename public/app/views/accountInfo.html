@@ -35,19 +35,20 @@
 
 
                         <div layout='row' layout-align='center center'>
-                            <div flex='33' class='center' hide-xs>
+                            <div flex='25' class='center' hide-xs>
                                 <div  flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"><b>Initial</b> <br>${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}</div>
                             </div>
-                            <div flex='33' class='center' hide-xs>
+                            <div flex='25' class='center' hide-xs>
                                 <span  ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Gain</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
                                 <span  ng-class="{'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Loss</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
                             </div>
-                            <div flex='33' class='center'>
+                            <div flex='25' class='center'>
                                 <span  ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</b> 
+                                {{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price)}}
                                 <span  ng-class="{'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
                             </div>
-                            <div flex='100' class='center'>
-                                <div count-up options="countUpPercentGain" decimals="2" end-val="(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100" flex="50" class="coin-percent animated flipInX" ng-class="{'gain': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) > 0, 'loss': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) < 0}">{{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%</div>
+                            <div flex='25' class='center'>
+                                <div flex="50" class="coin-percent animated flipInX" ng-class="{'gain': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) > 0, 'loss': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) < 0}"><b>Return</b> <br>{{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%</div>
                             </div>
                         </div>
 

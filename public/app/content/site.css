@@ -689,14 +689,12 @@ html::-webkit-scrollbar-thumb
 
 }
 .coin-simple-name{
-    font-size: 24px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: Roboto;
         opacity: .25;
 }
 .coin-simple-name-bright{
-    font-size: 24px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: Roboto;
         opacity: .25;
     color:black;
@@ -723,9 +721,8 @@ html::-webkit-scrollbar-thumb
     background-color: rgb(243, 243, 243);
 }
 
-.coin-percent{
-    font-size: 48px;
-}
+
+
 .coin-quantity{
     font-family: Roboto;
     font-weight: 300;
@@ -748,6 +745,12 @@ html::-webkit-scrollbar-thumb
         font-size: 25px;
     font-family: Roboto;
     font-weight: 300;
+        opacity: .8;
+}
+.coin-percert-portfolio{
+        font-size: 54px;
+    font-family: Roboto;
+    font-weight: 100;
         opacity: .8;
 }
 .coin-percert{

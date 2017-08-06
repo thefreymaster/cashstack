@@ -1,7 +1,7 @@
 
 <div layout='row' layout-wrap layout-padding flex-offset-xs="0">
     
-    <md-card ng-repeat="(key, value) in dataTransferService.combinedData" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+    <md-card ng-repeat="(key, value) in dataTransferService.combinedData" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio"' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
                <md-card-content>
                         <div layout='row' layout-padding>
                             <span class="" ng-class="{'coin-symbol': service.brightTheme == false, 'coin-symbol-bright': service.brightTheme == true}">{{key}}</span>

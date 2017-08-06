@@ -1,5 +1,17 @@
-<div layout='row' layout-xs='column' layout-wrap layout-padding layout-align='center center'>
-    <md-card ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+<div layout='row' layout-xs='column' layout-wrap layout-padding>
+    <md-card flex='40' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+        <md-card-content>
+            <div layout="column" layout-align='center center' layout-padding ng-class="{'table-cell-bright': service.brightTheme == true}">
+                <div class="investment-label center">Portfolio Value</div>
+                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true}" class="investment-title center animated flipInX" count-up options="countUpOptions" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
+
+                <span ng-class="{'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
+                    class="center win-lose-metric animated flipInX">${{dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close | number:2}} | {{((dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close)/dataTransferService.combinedData.portfolio.equity)*100 | number:2}}%</span>
+
+            </div>
+        </md-card-content>
+    </md-card>
+    <md-card flex='20' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
         <md-card-title>
             <md-card-title-text>
                 Percentage Breakdown
@@ -11,7 +23,7 @@
         </canvas> 
         </md-card-content>
     </md-card>
-    <md-card flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+    <md-card flex='20' flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
         <md-card-title>
             <md-card-title-text>
                 Invested compared to Current Value
@@ -23,17 +35,18 @@
         </canvas> 
         </md-card-content>
     </md-card>
-    <md-card flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+    <md-card flex='20' flex-xs='100' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
         <md-card-title>
             <md-card-title-text>
                 Highest Gainers
             </md-card-title-text>
         </md-card-title>
-        <md-card-content>
-        <canvas id="polar-area" class="chart chart-polar-area"
-        chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
-        </canvas> 
+            <md-card-content>
+            <canvas id="polar-area" class="chart chart-polar-area"
+            chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
+            </canvas>         
         </md-card-content>
     </md-card>
+
 
 </div>

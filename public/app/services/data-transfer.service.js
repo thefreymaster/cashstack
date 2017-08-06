@@ -145,7 +145,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         // }, 10000)
 
         service.buildGraphs = function(){
-                service.colorsPie = ['#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#AED581', '#DCE775', '#FFF176', '#FFD54F', '#FFB74D'];
+                service.colorsPie = ['#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#AED581', '#DCE775', '#FFF176', '#FFD54F', '#FFB74D', '#B71C1C', '#311B92', '#880E4F', '#311B92', '#311B92', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#BF360C'];
 
                 // //Radar Graph
 
@@ -183,7 +183,9 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         animation: {
                         duration: 3000,
                         easing: 'easeInOutQuint'
-                        },
+                },
+                                        maintainAspectRatio: true,
+
                         tooltips: {
 
                         callbacks: { // HERE YOU CUSTOMIZE THE LABELS
@@ -211,7 +213,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                 }
                         ]
                         },
-                        maintainAspectRatio: false,
+                        maintainAspectRatio: true,
                         tooltips: {
 
                         callbacks: { // HERE YOU CUSTOMIZE THE LABELS

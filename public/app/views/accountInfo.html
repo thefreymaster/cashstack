@@ -44,7 +44,6 @@
                             </div>
                             <div flex='25' class='center'>
                                 <span  ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</b> 
-                                {{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price)}}
                                 <span  ng-class="{'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
                             </div>
                             <div flex='25' class='center'>

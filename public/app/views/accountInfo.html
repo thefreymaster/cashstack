@@ -16,7 +16,7 @@
                                 <span ng-if='value.instruments.simple_name == null' >N/A</span>
                                 {{value.instruments.simple_name}}
                                 </span>
-                            <span flex></span>
+                            <span flex></span> 
                             <div  flex="20" class="center table-cell  animated flipInX">
                                     <div class='coin-quantity-title' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">Shares</div>
                                     <div class='coin-quantity' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" count-up options="countUpOptions" decimals="0" end-val="value.positions.quantity">{{value.positions.quantity | number:0}}</div>                                 

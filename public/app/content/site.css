@@ -819,10 +819,13 @@ metric{
 .card{
     background-color:rgb(28, 28, 28);
     margin:0px !important;
+            border-radius:0px;
+
 }
 .card-bright{
     background-color:rgb(253, 253, 253);
         margin:0px !important;
+        border-radius:0px;
 
 }
 .xl-text{
@@ -832,11 +835,21 @@ metric{
 }
 .lg-text {
     font-weight: 700;
-    font-size: 81px;
+    font-size: 100px;
     font-family: Roboto;
 }
 .md-text {
     font-weight: 700;
     font-size: 72px;
+    font-family: Roboto;
+}
+.lg-text-metric {
+    font-weight: 100;
+    font-size: 36px;
+    font-family: Roboto;
+}
+.md-text-metric {
+    font-weight: 100;
+    font-size: 24px;
     font-family: Roboto;
 }

@@ -116,7 +116,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                                         // console.log(service.symbols);
                                                         // console.log(service.allInitialInvestmentsValues);
                                                         // console.log(service.allCurrentInvestmentValues);
-                                                        console.log(service.combinedData);
+                                                        // console.log(service.combinedData);
                                                         if(service.build_charts == true)
                                                         {
                                                                 service.buildGraphs();

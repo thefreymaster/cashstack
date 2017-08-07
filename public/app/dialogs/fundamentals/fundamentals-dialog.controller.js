@@ -1,9 +1,11 @@
-angular.module('stockQuotesApp').controller('fundamentalsController', function($scope, $http, company, info, httpService, dialogService, $filter, mediaService){
+angular.module('stockQuotesApp').controller('fundamentalsController', function($scope, $http, company, info, httpService, dialogService, $filter, mediaService, dataTransferService){
     $scope.company = company;
     $scope.info = info;
     $scope.httpService = httpService;
     $scope.dialogService = dialogService;
     $scope.mediaService = mediaService;
+    $scope.dataTransferService = dataTransferService;
+
     
     var config = {
         params: {
@@ -13,6 +15,7 @@ angular.module('stockQuotesApp').controller('fundamentalsController', function($
 
     var quotePromise = $scope.httpService.getFundamentals(config);
     quotePromise.then(function(response){
+        // console.log(response);
         $scope.fundamentals = response;
     });
 
@@ -30,11 +33,14 @@ angular.module('stockQuotesApp').controller('fundamentalsController', function($
         {
             $scope.data.push($scope.historicalData.historicals[d].close_price);
             $scope.labels.push($filter('date')($scope.historicalData.historicals[d].begins_at, "dd-MM-yyyy"));
+            $scope.historicalData.historicals[d].close_price = Number($scope.historicalData.historicals[d].close_price);
+            $scope.max = Number($scope.max);
             if($scope.historicalData.historicals[d].close_price > $scope.max)
             {
                 $scope.max = $scope.historicalData.historicals[d].close_price;
             }
         }
+        console.log($scope.max)
         $scope.maxNum = Number($scope.max);
         $scope.maxNum = $scope.maxNum+60;
         $scope.maxNum = $filter('number')($scope.maxNum, 0);
@@ -58,7 +64,12 @@ angular.module('stockQuotesApp').controller('fundamentalsController', function($
                     }
                 ]
             },
-                    animation: {
+            elements: {
+                point: {
+                    radius: 0
+                }
+            },
+            animation: {
                 duration: 3000,
                 easing: 'easeInOutCubic'
             },

@@ -99,7 +99,7 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
 .ticker-title{
     font-family:Roboto;
     font-weight:900;
-    font-size:56px ;
+    font-size:14px ;
     color: rgb(172, 172, 172);
 }
 .content-area{
@@ -278,8 +278,8 @@ div.item-min-width{
 }*/
 .stock-price{
     font-family:Roboto;
-    font-weight:400;
-    font-size:24px;
+    font-weight:900;
+    font-size:26px;
     color: rgb(172, 172, 172);
 }
 .splash-top{

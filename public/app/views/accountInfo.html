@@ -1,4 +1,77 @@
 
+<md-grid-list md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+    <md-grid-tile ng-if='$index % 5 == 0' ng-repeat-start="(key, value) in dataTransferService.combinedData"md-rowspan="3" md-colspan="1" md-colspan-sm="1" md-colspan-xs="1">
+    </md-grid-tile>
+    <md-grid-tile ng-repeat-end ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio"' 
+        md-rowspan="3" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+        <md-content ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
+            <div layout='row' layout-padding>
+                <span class="" ng-class="{'coin-symbol': service.brightTheme == false, 'coin-symbol-bright': service.brightTheme == true}">{{key}}</span>
+
+                <div flex></div>
+                <md-button class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">info_outline</md-icon>
+                        <md-tooltip md-direction="bottom">Details</md-tooltip>       
+                </md-button>
+            </div>
+            <div layout='row' layout-padding>
+                <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
+                    <span ng-if='value.instruments.simple_name == null' >N/A</span>
+                    {{value.instruments.simple_name}}
+                    </span>
+                <span flex></span> 
+                <div  flex="20" class="center table-cell  animated flipInX">
+                        <div class='coin-quantity-title' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">Shares</div>
+                        <div class='coin-quantity' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" count-up options="countUpOptions" decimals="0" end-val="value.positions.quantity">{{value.positions.quantity | number:0}}</div>                                 
+                </div> 
+
+            </div>
+            <div layout='column' layout-padding layout-align='center center' ng-class="{'border-account': service.brightTheme == false, 'border-account-bright': service.brightTheme == true}">
+                <span count-up options="countUpDollar" decimals="2" end-val="value.quotes.last_trade_price" class='coin-price' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}" class="center ticker-metric animated flipInX">${{value.quotes.last_trade_price | number:2}}</span>
+                <span count-up options="countUpPercentGain" decimals="2" end-val="((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100" class='coin-percert' ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}" class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
+
+                
+
+            </div>                                                    
+
+
+
+
+            <div layout='row' layout-align='center center' class='border-padding'>
+                <div flex='25' class='center' hide-xs>
+                    <div  flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"><b>Initial</b> <br>${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}</div>
+                </div>
+                <div flex='25' class='center' hide-xs>
+                    <span  ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Gain</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
+                    <span  ng-class="{'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Loss</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}</span> 
+                </div>
+                <div flex='25' class='center'>
+                    <span  ng-class="{'gain': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</b> 
+                    <span  ng-class="{'loss': (value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'><b>Total</b> <br>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}</span> 
+                </div>
+                <div flex='25' class='center'>
+                    <div flex="50" class="coin-percent animated flipInX" ng-class="{'gain': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) > 0, 'loss': (((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price)) < 0}"><b>Return</b> <br>{{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%</div>
+                </div>
+            </div>
+            </md-content>
+
+    </md-grid-tile >
+</md-grid-list>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
 <div layout='row' layout-wrap layout-padding flex-offset-xs="0">
     
     <md-card ng-repeat="(key, value) in dataTransferService.combinedData" flex='20' flex-md='50' flex-lg='33' flex-sm='100' flex-xs='100' ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio"' ng-class="{'card': service.brightTheme == false, 'card-bright': service.brightTheme == true}">
@@ -59,9 +132,7 @@
                             <span class="" ng-class="{'coin-symbol': service.brightTheme == false, 'coin-symbol-bright': service.brightTheme == true}">CASH</span>
 
                             <div flex></div>
-                            <!--<md-button class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">info_outline</md-icon>
-                                    <md-tooltip md-direction="bottom">Details</md-tooltip>       
-                            </md-button>-->
+
                         </div>
                         <div layout='row' layout-padding>
                             <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
@@ -87,7 +158,7 @@
 
 
     </div>
-</div>
+</div>-->
 <!--<br>
 <md-grid-list md-cols="12" md-cols-xs="2" md-cols-sm="4" md-cols-md="6" md-gutter="1em" md-row-height="1:1">
   <md-grid-tile ng-repeat="(key, value) in dataTransferService.combinedData" md-whiteframe="5" md-colspan="3" md-rowspan="2">

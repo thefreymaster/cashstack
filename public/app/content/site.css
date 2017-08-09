@@ -853,3 +853,27 @@ metric{
     font-size: 24px;
     font-family: Roboto;
 }
+.coin-card{
+    margin: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    background-color: #1A1A1A;
+    border-radius: 0px;
+}
+.coin-card-bright{
+    margin: 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    background-color: rgb(253, 253, 253);
+    border-radius: 0px;
+}
+.report-gutter{
+    padding-top:20px;
+}
+.border-padding{
+        padding-top: 10px;
+}
+.title-bright{
+    color:#3a3a3a;
+}
+.title-dark{
+    color:white;
+}

@@ -272,10 +272,41 @@ app.get('/allQuotes', function(req, res){
 
     request(options, function (error, response, body) {
     if (error) throw new Error(error);
-
         res.json(JSON.parse(body));
     });
 });
+
+app.get('/getHistoricalsDay', function(req, res){
+
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var options = { 
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/historicals/?symbols=' + symbols + '&interval=day',
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
+        };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+        console.log(response)
+        res.json(JSON.parse(body));
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.get('/fundamentals', function(req, res){
 
@@ -316,6 +347,13 @@ app.get('/historicals', function(req, res){
         res.json(JSON.parse(body));
     });
 });
+
+
+
+
+
+
+
 app.get('/account', function(req, res){
 
     var token = req.query.token;

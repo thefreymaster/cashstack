@@ -74,6 +74,17 @@ angular.module('stockQuotesApp').service('httpService', ['$firebaseObject', '$ht
         });
     }
 
+    service.getHistoricalsDay = function (config) {
+        return $http.get('/getHistoricalsDay', config).then(function (response) {
+            return response.data;
+
+        });
+    }
+
+
+
+
+
     service.getFundamentals = function (config) {
         return $http.get('/fundamentals', config).then(function (response) {
            return response.data;

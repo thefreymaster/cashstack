@@ -85,47 +85,60 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                 }
                                 service.symbolsJoined.join();
                                 config.params.symbols = service.symbolsJoined;
-                                var allQuotesPromise = httpService.getAllQuotes(config);
-                                allQuotesPromise.then(function(result){
-                                        service.quotes = result.results;
-                                        // console.log(service.quotes);
-                                        k=0;
 
-                                        for(symbol in service.symbols)
-                                        {
+                                var historicalsTodayPromise = httpService.getHistoricalsDay(config);
+                                historicalsTodayPromise.then(function(result){
+                                        service.historicalsDay = result.results;
+                                        console.log(service.historicalsDay);
 
-                                        
-                                                service.combinedData[service.symbols[k]] = {
-                                                                positions: service.positions[k],
-                                                                instruments: service.instrumentData[k],
-                                                                quotes: service.quotes[k]
-                                                        }
-                                                
-                                                
-                                                if(service.positions[k].quantity != 0)
+
+                                        var allQuotesPromise = httpService.getAllQuotes(config);
+                                        allQuotesPromise.then(function(result){
+                                                service.quotes = result.results;
+                                                // console.log(service.quotes);
+                                                k=0;
+
+                                                for(symbol in service.symbols)
                                                 {
-                                                        service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
-                                                        service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
-                                                }
-                                                k++
-                                        }
-                                        service.combinedData.account = service.accountData.results[0];
-                                        service.combinedData.portfolio = service.portfolioInfo;
 
-                                        
-                                                        // console.log(service.symbols);
-                                                        // console.log(service.allInitialInvestmentsValues);
-                                                        // console.log(service.allCurrentInvestmentValues);
-                                                        // console.log(service.combinedData);
-                                                        if(service.build_charts == true)
+                                                
+                                                        service.combinedData[service.symbols[k]] = {
+                                                                        positions: service.positions[k],
+                                                                        instruments: service.instrumentData[k],
+                                                                        quotes: service.quotes[k],
+                                                                        historicals:{
+                                                                                fiveMinuteDay: service.historicalsDay[symbol].historicals
+                                                                        }
+                                                                }
+                                                        
+                                                        
+                                                        if(service.positions[k].quantity != 0)
                                                         {
-                                                                service.buildGraphs();
-                                                                service.build_charts = false
+                                                                service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
+                                                                service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
                                                         }
-                                                        dialogService.closeDialog();
+                                                        k++
+                                                }
+                                                service.combinedData.account = service.accountData.results[0];
+                                                service.combinedData.portfolio = service.portfolioInfo;
+
+                                                
+                                                                // console.log(service.symbols);
+                                                                // console.log(service.allInitialInvestmentsValues);
+                                                                // console.log(service.allCurrentInvestmentValues);
+                                                                console.log(service.combinedData);
+                                                                if(service.build_charts == true)
+                                                                {
+                                                                        service.buildGraphs();
+                                                                        service.build_charts = false
+                                                                }
+                                                                dialogService.closeDialog();
 
 
+                                                })
                                 })
+
+                                
 
                         }) 
                 })
@@ -161,7 +174,8 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 // service.labelsRadar = service.dataTransferService.symbols;
                 service.pielabels = service.symbols;
                 service.pieData = service.allCurrentInvestmentValues;
-                service.polarData=[]
+                service.polarData=[];
+                service.lineData = [];
 
                 service.colorsRadar = [{
                 backgroundColor: "rgba(33, 33, 33, .4)"
@@ -177,6 +191,25 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 {
                         service.polarData.push(service.allCurrentInvestmentValues[z]-service.allInitialInvestmentsValues[z]);
                 }
+                service.lineLabels = [];
+                service.lineSeries = [];
+                for(symbol in service.symbols)
+                {
+                        service.lineSeries.push(service.symbols[symbol])
+                        service.lineData.push([]);
+                        for(v=0;v<service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length;v++)
+                        {
+                                service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
+                                if(symbol === '1')
+                                {       
+                                        var date  = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                                        service.lineLabels.push(date);
+                                }
+                        }
+                }
+                console.log(service.lineData);
+
+
 
                 var tooltipLabels = ['Initial Value: $', 'Current Value: $']
                 service.optionsRadar = {
@@ -216,13 +249,13 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         maintainAspectRatio: true,
                         tooltips: {
 
-                        callbacks: { // HERE YOU CUSTOMIZE THE LABELS
+                                callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
-                                label: function (tooltipItem, data) {
-                                // console.log(tooltipItem)
-                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' gain since purchase';
+                                        label: function (tooltipItem, data) {
+                                        // console.log(tooltipItem)
+                                        return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' gain since purchase';
+                                        }
                                 }
-                        }
 
                         }
                 };
@@ -241,6 +274,23 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         }
 
                         },
+                };
+                service.optionsLine = {
+                                animation: {
+                                duration: 3000,
+                                easing: 'easeInOutSine'
+                        },
+                        legend: {display: true},
+                        elements: {
+                                point: {
+                                        radius: 0
+                                }
+                        },
+                        animation: {
+                                duration: 1000,
+                                easing: 'easeInOutCubic'
+                        },
+
                 };
             }//end function
 

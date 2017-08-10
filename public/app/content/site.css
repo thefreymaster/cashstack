@@ -202,7 +202,7 @@ div.item-min-width{
 }
 
 .market-header{
-    color:#525252;
+    color:#929292;
     font-family:Roboto;
     font-weight:400;
     font-size:14px;
@@ -746,10 +746,10 @@ html::-webkit-scrollbar-thumb
         opacity: .8;
 }
 .coin-percert-portfolio{
-        font-size: 54px;
+    font-size: 24px;
     font-family: Roboto;
-    font-weight: 100;
-        opacity: .8;
+    font-weight: 700;
+    opacity: .8;
 }
 .coin-percert{
         font-size: 100px;
@@ -799,7 +799,7 @@ html::-webkit-scrollbar-thumb
     border-bottom: 1px solid #1e1e1e;
 }
 .border-account-bright{
-    border-bottom: 1px solid #c7c7c7;
+    border-bottom: 1px solid #eaeaea;
 }
 /*.grid-bright{
     border-bottom: 1px solid #c7c7c7;
@@ -829,19 +829,23 @@ metric{
 
 }
 .xl-text{
-    font-weight:700;
-    font-size:150px;
+    font-weight:900;
+    font-size:124px;
     font-family:Roboto;
 }
 .lg-text {
-    font-weight: 700;
+    font-weight: 900;
     font-size: 100px;
     font-family: Roboto;
 }
 .md-text {
-    font-weight: 700;
-    font-size: 72px;
+    font-weight: 900;
+    font-size: 100px;
     font-family: Roboto;
+}
+.sm-text{
+        font-size: 72px;
+    font-weight: 900;
 }
 .lg-text-metric {
     font-weight: 100;
@@ -854,13 +858,13 @@ metric{
     font-family: Roboto;
 }
 .coin-card{
-    margin: 8px;
+    /*margin: 8px;*/
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
-    background-color: #1A1A1A;
+    background-color: #202020;
     border-radius: 0px;
 }
 .coin-card-bright{
-    margin: 8px;
+    /*margin: 8px;*/
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     background-color: rgb(253, 253, 253);
     border-radius: 0px;
@@ -869,11 +873,41 @@ metric{
     padding-top:20px;
 }
 .border-padding{
-        padding-top: 10px;
+        padding-top: 24px;
 }
 .title-bright{
     color:#3a3a3a;
 }
 .title-dark{
     color:white;
+}
+.border-right{
+    border-right: 1px solid #e2e2e2;
+}
+.name{
+    color:#e2e2e2;
+}
+.name-bright{
+    color:#929292;
+}
+.win_lose_title{
+    font-size: 100px;
+    font-weight: 900;
+}
+.win_lose_title-xl{
+    font-size: 132px;
+    font-weight: 900;
+}
+.win_lose_simple_name{
+    font-size:32px;
+}
+.win_lose_metric{
+    font-size:48px;
+    font-weight:100;
+}
+
+.for_robinhood{
+    font-family: Roboto;
+    font-weight:300;
+    font-size:14px
 }

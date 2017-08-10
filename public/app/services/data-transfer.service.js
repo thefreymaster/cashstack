@@ -95,48 +95,89 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                         var allQuotesPromise = httpService.getAllQuotes(config);
                                         allQuotesPromise.then(function(result){
                                                 service.quotes = result.results;
-                                                // console.log(service.quotes);
-                                                k=0;
 
-                                                for(symbol in service.symbols)
-                                                {
+                                                var userDataPromise = httpService.getUserData(config)
+                                                userDataPromise.then(function(result){
+                                                        service.user = result;
+                                                        // console.log(service.quotes);
+                                                        k=0;
 
-                                                
-                                                        service.combinedData[service.symbols[k]] = {
-                                                                        positions: service.positions[k],
-                                                                        instruments: service.instrumentData[k],
-                                                                        quotes: service.quotes[k],
-                                                                        historicals:{
-                                                                                fiveMinuteDay: service.historicalsDay[symbol].historicals
-                                                                        }
-                                                                }
-                                                        
-                                                        
-                                                        if(service.positions[k].quantity != 0)
+                                                        for(symbol in service.symbols)
                                                         {
-                                                                service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
-                                                                service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
-                                                        }
-                                                        k++
-                                                }
-                                                service.combinedData.account = service.accountData.results[0];
-                                                service.combinedData.portfolio = service.portfolioInfo;
 
-                                                
-                                                                // console.log(service.symbols);
-                                                                // console.log(service.allInitialInvestmentsValues);
-                                                                // console.log(service.allCurrentInvestmentValues);
-                                                                console.log(service.combinedData);
-                                                                if(service.build_charts == true)
+                                                        
+                                                                service.combinedData[service.symbols[k]] = {
+                                                                                positions: service.positions[k],
+                                                                                instruments: service.instrumentData[k],
+                                                                                quotes: service.quotes[k],
+                                                                                historicals:{
+                                                                                        fiveMinuteDay: service.historicalsDay[symbol].historicals
+                                                                                }
+                                                                                
+                                                                        }
+                                                                
+                                                                
+                                                                if(service.positions[k].quantity != 0)
                                                                 {
-                                                                        service.buildGraphs();
-                                                                        service.build_charts = false
+                                                                        service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
+                                                                        service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
                                                                 }
-                                                                dialogService.closeDialog();
+                                                                k++
+                                                        }
+                                                        service.combinedData.account = service.accountData.results[0];
+                                                        service.combinedData.portfolio = service.portfolioInfo;
+                                                        service.combinedData.user = service.user;
+
+                                                        
+                                                                        // console.log(service.symbols);
+                                                                        // console.log(service.allInitialInvestmentsValues);
+                                                                        // console.log(service.allCurrentInvestmentValues);
+                                                                        console.log(service.combinedData);
+                                                                        if(service.build_charts == true)
+                                                                        {
+                                                                                service.buildGraphs();
+                                                                                service.build_charts = false
+                                                                        }
+                                                                        dialogService.closeDialog();
 
 
+                                                        }).then(function(){
+                                                                console.log('done');
+                                                                service.currentGainer;
+                                                                service.currentLoser;
+                                                                var change;
+                                                                var tempGain = 0;
+                                                                var tempLoss = 0
+                                                                for(symbol in service.symbols)
+                                                                {
+
+                                                                        
+                                                                        change = 0;
+                                                                        change = service.combinedData[service.symbols[symbol]].quotes.last_trade_price-service.combinedData[service.symbols[symbol]].quotes.previous_close;
+                                                                        if(change > tempGain)
+                                                                        {
+                                                                                service.currentGainer = service.combinedData[service.symbols[symbol]];
+                                                                                service.currentGainer.dollar_gain = change;
+                                                                                service.currentGainer.percent_gain = (change/service.combinedData[service.symbols[symbol]].quotes.last_trade_price)*100;
+                                                                                service.currentGainer.company = service.symbols[symbol];
+                                                                                tempGain = change;
+                                                                        }
+                                                                        if(change < tempLoss)
+                                                                        {
+                                                                                service.currentLoser = service.combinedData[service.symbols[symbol]];
+                                                                                service.currentLoser.dollar_loss = change;
+                                                                                service.currentLoser.percent_loss = (change/service.combinedData[service.symbols[symbol]].quotes.last_trade_price)*100;
+                                                                                service.currentLoser.company = service.symbols[symbol];
+                                                                                tempLoss = change;
+                                                                        }
+                                                                        
+                                                                }
+                                                                console.log(service.currentGainer)
+                                                                console.log(service.currentLoser)
+                                                        })
                                                 })
-                                })
+                                        })
+                                                
 
                                 
 
@@ -144,6 +185,19 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 })
         })
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
         if(config.params.token != undefined)
         {
                 config = {
@@ -275,23 +329,8 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
                         },
                 };
-                service.optionsLine = {
-                                animation: {
-                                duration: 3000,
-                                easing: 'easeInOutSine'
-                        },
-                        legend: {display: true},
-                        elements: {
-                                point: {
-                                        radius: 0
-                                }
-                        },
-                        animation: {
-                                duration: 1000,
-                                easing: 'easeInOutCubic'
-                        },
 
-                };
+
             }//end function
 
 

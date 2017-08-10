@@ -1,6 +1,7 @@
-angular.module('stockQuotesApp').controller('AccountInfoController', ['$scope', '$http', '$timeout', '$mdDialog', 'httpService', 'dataTransferService', '$localStorage', '$state', 'dialogService', function($scope, $http, $mdMedia, $mdDialog, httpService, dataTransferService, $localStorage, $state, dialogService){
+angular.module('stockQuotesApp').controller('AccountInfoController', ['$scope', '$http', '$timeout', '$mdDialog', 'httpService', 'dataTransferService', '$localStorage', '$state', 'dialogService', 'mediaService', function($scope, $http, $mdMedia, $mdDialog, httpService, dataTransferService, $localStorage, $state, dialogService, mediaService){
         $scope.httpService = httpService;
 
+        $scope.mediaService = mediaService;
         $scope.dataTransferService = dataTransferService;
         $scope.dialogService = dialogService;
 

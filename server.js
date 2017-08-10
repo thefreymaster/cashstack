@@ -347,7 +347,24 @@ app.get('/historicals', function(req, res){
     });
 });
 
+app.get('/getUserData', function(req, res){
 
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = { 
+        method: 'GET',
+        url: 'https://api.robinhood.com/user/',
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
+        };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+        res.json(JSON.parse(body));
+    });
+});
 
 
 

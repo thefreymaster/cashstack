@@ -7,7 +7,7 @@
 
 
     </div> 
-        <div class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}">Coin</div>
+        <span class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}">Coin <span class='for_robinhood' hide-xs hide-sm hide-md>For Robinhood</span></span>
 
         <div flex></div>
 
@@ -25,6 +25,9 @@
       <!--<md-button class="md-icon-button"><i class="material-icons" ng-click="dataTransferService.gatherRobinhoodData()">&#xE5D5;</i></md-button>-->
     </span>
     <div flex></div>
+    <div flex='15' hide-xs hide-sm hide-md>
+        <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">{{dataTransferService.combinedData.user.first_name}} {{dataTransferService.combinedData.user.last_name}}</div>
+    </div>   
     <div flex='5'>
         <md-button ng-click='logout()' class='md-primary'>Logout</md-button>
     </div>

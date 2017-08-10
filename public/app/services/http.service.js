@@ -81,7 +81,12 @@ angular.module('stockQuotesApp').service('httpService', ['$firebaseObject', '$ht
         });
     }
 
+    service.getUserData = function (config) {
+        return $http.get('/getUserData', config).then(function (response) {
+            return response.data;
 
+        });
+    }
 
 
 

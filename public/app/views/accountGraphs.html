@@ -1,6 +1,6 @@
-<div layout='row' layout-wrap flex-offset='10' flex-offset-lg='0' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
+<div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
 
-    <md-grid-list flex='90' flex-lg='100' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
 
         <md-grid-tile 
             md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="8" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
@@ -29,11 +29,19 @@
 
     <md-grid-tile 
             md-rowspan="4" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-            <div layout='column' layout-align='center center'>
+            <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentGainer == undefined'>
                                 <div flex='100' class='gain win_lose_metric'>${{dataTransferService.currentGainer.dollar_gain | number:2}} | {{dataTransferService.currentGainer.percent_gain | number:2}}%</div>
 
                 <div class='gain win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">{{dataTransferService.currentGainer.company}}</div>
                 <div class='gain win_lose_simple_name' >{{dataTransferService.currentGainer.instruments.simple_name}}</div>  
+                <!--Medium: {{mediaService.screenIsMedium}}
+                Small: {{mediaService.screenIsSmall}}
+                XSmall: {{mediaService.screenIsExtraSmall}}-->
+            </div>
+            <div layout='column' layout-align='center center' ng-if='dataTransferService.currentGainer == undefined'>
+
+                <div class='loss win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">NONE</div>
+                <div class='loss win_lose_simple_name' >No Winners Today</div>  
                 <!--Medium: {{mediaService.screenIsMedium}}
                 Small: {{mediaService.screenIsSmall}}
                 XSmall: {{mediaService.screenIsExtraSmall}}-->
@@ -46,12 +54,20 @@
 
     <md-grid-tile 
             md-rowspan="4" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12" md-colspan-xs="12"  ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-            <div layout='column' layout-align='center center'>
+            <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentLoser == undefined'>
                                 <div flex='100' class='loss win_lose_metric'>${{dataTransferService.currentLoser.dollar_loss | number:2}} | {{dataTransferService.currentLoser.percent_loss | number:2}}%</div>
 
                 <div class='loss win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">{{dataTransferService.currentLoser.company}}</div>
                 <div class='loss win_lose_simple_name'>{{dataTransferService.currentLoser.instruments.simple_name}}</div>
 
+            </div>
+            <div layout='column' layout-align='center center' ng-if='dataTransferService.currentLoser == undefined'>
+
+                <div class='gain win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">NONE</div>
+                <div class='gain win_lose_simple_name' >No Losers Today</div>  
+                <!--Medium: {{mediaService.screenIsMedium}}
+                Small: {{mediaService.screenIsSmall}}
+                XSmall: {{mediaService.screenIsExtraSmall}}-->
             </div>
 
         <md-grid-tile-footer>

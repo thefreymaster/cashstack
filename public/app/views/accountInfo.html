@@ -1,5 +1,5 @@
-<div layout='row' flex-offset='10' flex-offset-lg='0' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
-    <md-grid-list flex='90' flex-lg='100' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+<div layout='row' flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
+    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
 
         <md-grid-tile ng-repeat="(key, value) in dataTransferService.combinedData" ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio" || key == "user"' 
             md-rowspan="5" md-colspan="3" md-rowspan-lg="6" md-colspan-lg="4" md-rowspan-md="8" md-colspan-md="6" md-colspan-sm="1" md-colspan-xs="1" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">

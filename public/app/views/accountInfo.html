@@ -1,4 +1,4 @@
-<div layout='row' flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
+<!--<div layout='row' flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
     <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
 
         <md-grid-tile ng-repeat="(key, value) in dataTransferService.combinedData" ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio" || key == "user"' 
@@ -55,6 +55,77 @@
             </div>
 
         </md-grid-tile >
+    </md-grid-list>
+
+</div>-->
+<!--<div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0' layout-padding>
+
+    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+        <md-grid-tile md-rowspan="1" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12"
+            md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}" >
+            
+            <md-input-container flex='90' >
+                <label>Search</label>
+                <input type="text" ng-model='searchObject'>
+            </md-input-container>
+
+            <md-grid-tile-footer>
+                <h3>Search For a Company</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+    </md-grid-list>
+</div>-->
+
+<!--XL: {{mediaService.screenIsExtraLarge == true}} | LG: {{mediaService.screenIsLarge == true}} | MD: {{mediaService.screenIsMedium ==  true}} | SM: {{mediaService.screenIsSmall == true}} | XS: {{mediaService.screenIsExtraSmall == true}}-->
+<div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
+
+    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+        <md-grid-tile md-rowspan="4" md-colspan="3" md-rowspan-md="7" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12"
+            md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}" ng-repeat="(key, value) in dataTransferService.combinedData" ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio" || key == "user"'>
+            <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentGainer == undefined'>
+                <div flex='100' class='win_lose_metric' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}">${{(value.quotes.last_trade_price-value.quotes.previous_close) | number:2}} | {{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</div>
+
+                <div class='win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true, 'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}">{{key}}</div>
+                <div class='gain win_lose_simple_name' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}">{{value.quotes.last_trade_price | number:2}}</div>
+                <!--Medium: {{mediaService.screenIsMedium}}
+                Small: {{mediaService.screenIsSmall}}
+                XSmall: {{mediaService.screenIsExtraSmall}}-->
+                <div layout='row' layout-align='center center' layout-padding>
+                    <div flex='25' class='center border-right border' hide-xs>
+                        <div  flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Initial</b> </div>
+                    </div>
+                    
+                    <div flex='25' class='center border-right border' hide-xs>
+                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Gain</b></span> 
+                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Loss</b></span> 
+                    </div>
+                    <div flex='25' class='center border-right border'>
+                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
+                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
+                    </div>
+                    <div flex='25' class='center border'>
+                        <div class="coin-percent animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"> {{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%<br><b>Return</b></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <md-grid-tile-footer>
+                <div layout='row'>
+                    <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
+                        <h3 class='stock-title' ng-if='value.instruments.simple_name == null' >N/A</h3>
+                        <h3 class='stock-title'>{{value.instruments.simple_name}}</h3>
+                    </span>
+                    <div flex></div>
+                    <md-button class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">info_outline</md-icon>
+                            <md-tooltip md-direction="bottom">Details</md-tooltip>       
+                    </md-button>
+                </div>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
     </md-grid-list>
 </div>
 

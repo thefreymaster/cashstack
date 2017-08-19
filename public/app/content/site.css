@@ -830,7 +830,7 @@ metric{
 }
 .xl-text{
     font-weight:900;
-    font-size:148px;
+    font-size:136px;
     font-family:Roboto;
 }
 .lg-text {
@@ -882,7 +882,7 @@ metric{
     color:white;
 }
 .border-right{
-    border-right: 1px solid #e2e2e2;
+    border-right: 2px solid rgba(116, 116, 116, 0.25);;
 }
 .name{
     color:#e2e2e2;
@@ -910,4 +910,13 @@ metric{
     font-family: Roboto;
     font-weight:300;
     font-size:14px
+}
+.border{
+    padding:30px;
+}
+md-grid-tile-footer figcaption  {
+  width:100%;
+}
+.stock-title{
+        margin-top: 12px;
 }

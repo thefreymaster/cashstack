@@ -3,7 +3,7 @@
     <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
 
         <md-grid-tile 
-            md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="8" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+            md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
                 <div layout="column" layout-align='center center' layout-padding ng-class="{'table-cell-bright': service.brightTheme == true}">
                     <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true, 'sm-text': mediaService.screenIsSmall == true, 'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0,}" class="investment-title center animated flipInX" count-up options="countUpDollar" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
 
@@ -30,9 +30,9 @@
     <md-grid-tile 
             md-rowspan="4" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentGainer == undefined'>
-                                <div flex='100' class='gain win_lose_metric'>${{dataTransferService.currentGainer.dollar_gain | number:2}} | {{dataTransferService.currentGainer.percent_gain | number:2}}%</div>
+                <div flex='100' class='gain change-metric' ng-class="{'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true}">${{dataTransferService.currentGainer.dollar_gain | number:2}} | {{dataTransferService.currentGainer.percent_gain | number:2}}%</div>
 
-                <div class='gain win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">{{dataTransferService.currentGainer.company}}</div>
+                <div class='gain change-title' ng-class="{'change-title-xl': mediaService.screenIsExtraLarge == true, 'change-title-lg': mediaService.screenIsLarge == true, 'change-title-md': mediaService.screenIsMedium == true, 'change-title-sm': mediaService.screenIsSmall == true, 'change-title-xs': mediaService.screenIsExtraSmall == true}">{{dataTransferService.currentGainer.company}}</div>
                 <div class='gain win_lose_simple_name' >{{dataTransferService.currentGainer.instruments.simple_name}}</div>  
                 <!--Medium: {{mediaService.screenIsMedium}}
                 Small: {{mediaService.screenIsSmall}}
@@ -52,55 +52,54 @@
         </md-grid-tile-footer>
         </md-grid-tile>
 
-    <md-grid-tile 
-            md-rowspan="4" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12" md-colspan-xs="12"  ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-            <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentLoser == undefined'>
-                                <div flex='100' class='loss win_lose_metric'>${{dataTransferService.currentLoser.dollar_loss | number:2}} | {{dataTransferService.currentLoser.percent_loss | number:2}}%</div>
+        <md-grid-tile 
+                md-rowspan="4" md-colspan="3" md-rowspan-md="5" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12" md-colspan-xs="12"  ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+                <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentLoser == undefined'>
+                                    <div flex='100' class='loss change-metric' ng-class="{'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true}">${{dataTransferService.currentLoser.dollar_loss | number:2}} | {{dataTransferService.currentLoser.percent_loss | number:2}}%</div>
 
-                <div class='loss win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">{{dataTransferService.currentLoser.company}}</div>
-                <div class='loss win_lose_simple_name'>{{dataTransferService.currentLoser.instruments.simple_name}}</div>
+                    <div class='loss change-title' ng-class="{'change-title-xl': mediaService.screenIsExtraLarge == true, 'change-title-lg': mediaService.screenIsLarge == true, 'change-title-md': mediaService.screenIsMedium == true, 'change-title-sm': mediaService.screenIsSmall == true, 'change-title-xs': mediaService.screenIsExtraSmall == true}">{{dataTransferService.currentLoser.company}}</div>
+                    <div class='loss win_lose_simple_name'>{{dataTransferService.currentLoser.instruments.simple_name}}</div>
 
-            </div>
-            <div layout='column' layout-align='center center' ng-if='dataTransferService.currentLoser == undefined'>
+                </div>
+                <div layout='column' layout-align='center center' ng-if='dataTransferService.currentLoser == undefined'>
 
-                <div class='gain win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">NONE</div>
-                <div class='gain win_lose_simple_name' >No Losers Today</div>  
-                <!--Medium: {{mediaService.screenIsMedium}}
-                Small: {{mediaService.screenIsSmall}}
-                XSmall: {{mediaService.screenIsExtraSmall}}-->
-            </div>
+                    <div class='gain win_lose_title' ng-class="{'win_lose_title-xl': mediaService.screenIsExtraLarge == true}">NONE</div>
+                    <div class='gain win_lose_simple_name' >No Losers Today</div>  
+                    <!--Medium: {{mediaService.screenIsMedium}}
+                    Small: {{mediaService.screenIsSmall}}
+                    XSmall: {{mediaService.screenIsExtraSmall}}-->
+                </div>
 
-        <md-grid-tile-footer>
-            <h3>Loser</h3>
-        </md-grid-tile-footer>
-        </md-grid-tile>
-
-
-        <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-colspan-sm="1" md-colspan-xs="1" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-                <canvas id="doughnut" class="chart chart-doughnut"
-                chart-data="dataTransferService.pieData" chart-labels="dataTransferService.pielabels"  chart-options="dataTransferService.optionsDoughnut"  chart-colors="dataTransferService.colorsPie">
-                </canvas> 
             <md-grid-tile-footer>
-                <h3>Percentage Breakdown</h3>
+                <h3>Loser</h3>
             </md-grid-tile-footer>
-            </md-grid-tile>
         </md-grid-tile>
-        <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-colspan-sm="1" md-colspan-xs="1" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-                <canvas id="radar" class="chart chart-radar"
-                    chart-data="dataTransferService.dataRadar" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsRadar" chart-colors="dataTransferService.colorsRadar">
-                </canvas> 
-        <md-grid-tile-footer>
-            <h3>Invested compared to Current Value</h3>
-        </md-grid-tile-footer>
+
+
+        <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+                    <canvas id="doughnut" class="chart chart-doughnut"
+                    chart-data="dataTransferService.pieData" chart-labels="dataTransferService.pielabels"  chart-options="dataTransferService.optionsDoughnut"  chart-colors="dataTransferService.colorsPie">
+                    </canvas> 
+                <md-grid-tile-footer>
+                    <h3>Percentage Breakdown</h3>
+                </md-grid-tile-footer>
+                </md-grid-tile>
         </md-grid-tile>
-            </md-grid-tile>
-            <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-colspan-sm="1" md-colspan-xs="1" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-                <canvas id="polar-area" class="chart chart-polar-area"
-                chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
-                </canvas>  
-        <md-grid-tile-footer>
-            <h3>Highest Gainers</h3>
-        </md-grid-tile-footer>
+        <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+                    <canvas id="radar" class="chart chart-radar"
+                        chart-data="dataTransferService.dataRadar" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsRadar" chart-colors="dataTransferService.colorsRadar">
+                    </canvas> 
+            <md-grid-tile-footer>
+                <h3>Invested compared to Current Value</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+        <md-grid-tile md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+                    <canvas id="polar-area" class="chart chart-polar-area"
+                    chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels" chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
+                    </canvas>  
+            <md-grid-tile-footer>
+                <h3>Highest Gainers</h3>
+            </md-grid-tile-footer>
         </md-grid-tile>
     </md-grid-list>
 </div>

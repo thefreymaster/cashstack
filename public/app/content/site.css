@@ -90,11 +90,8 @@ md-sidenav, md-sidenav.md-locked-open, md-sidenav.md-closed.md-locked-open-add-a
     font-weight:300;
     font-size:16px;
 }
-.win-lose-metric{
-    font-size:36px;
-    padding:5px;
-        font-weight: 500;
-}
+
+
 
 .ticker-title{
     font-family:Roboto;
@@ -901,10 +898,7 @@ metric{
 .win_lose_simple_name{
     font-size:32px;
 }
-.win_lose_metric{
-    font-size:48px;
-    font-weight:100;
-}
+
 
 .for_robinhood{
     font-family: Roboto;
@@ -912,11 +906,54 @@ metric{
     font-size:14px
 }
 .border{
-    padding:30px;
+    padding:12px;
 }
 md-grid-tile-footer figcaption  {
   width:100%;
 }
 .stock-title{
         margin-top: 12px;
+}
+.change-metric{
+    font-weight:100;
+}
+
+.change-metric-xl{
+    font-size:48px;
+}
+.change-metric-lg{
+    font-size:36px;
+}
+.change-metric-md{
+    font-size:24px;
+}
+.change-metric-sm{
+    font-size:24px;
+    font-weight:300 !important;
+
+}
+.change-metric-xs{
+    font-size:24px;
+    font-weight:300 !important;
+
+}
+
+.change-title{
+    font-weight:900;
+}
+
+.change-title-xl{
+    font-size:112px;
+}
+.change-title-lg{
+    font-size:81px;
+}
+.change-title-md{
+    font-size:72px;
+}
+.change-title-sm{
+    font-size:64px;
+}
+.change-title-xs{
+    font-size:64px;
 }

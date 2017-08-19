@@ -77,11 +77,11 @@
     </md-grid-list>
 </div>-->
 
-<!--XL: {{mediaService.screenIsExtraLarge == true}} | LG: {{mediaService.screenIsLarge == true}} | MD: {{mediaService.screenIsMedium ==  true}} | SM: {{mediaService.screenIsSmall == true}} | XS: {{mediaService.screenIsExtraSmall == true}}-->
+XL: {{mediaService.screenIsExtraLarge == true}} | LG: {{mediaService.screenIsLarge == true}} | MD: {{mediaService.screenIsMedium ==  true}} | SM: {{mediaService.screenIsSmall == true}} | XS: {{mediaService.screenIsExtraSmall == true}}
 <div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
 
     <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
-        <md-grid-tile md-rowspan="4" md-colspan="3" md-rowspan-md="7" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="12"
+        <md-grid-tile md-rowspan="4" md-colspan="3" md-rowspan-md="7" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="15"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}" ng-repeat="(key, value) in dataTransferService.combinedData" ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio" || key == "user"'>
             <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentGainer == undefined'>
                 <div flex='100' class='win_lose_metric' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0}">${{(value.quotes.last_trade_price-value.quotes.previous_close) | number:2}} | {{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</div>
@@ -91,7 +91,7 @@
                 <!--Medium: {{mediaService.screenIsMedium}}
                 Small: {{mediaService.screenIsSmall}}
                 XSmall: {{mediaService.screenIsExtraSmall}}-->
-                <div layout='row' layout-align='center center' layout-padding>
+                <div layout='row' layout-align='center center' layout-padding hide-sm hide-xs>
                     <div flex='25' class='center border-right border' hide-xs>
                         <div  flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Initial</b> </div>
                     </div>

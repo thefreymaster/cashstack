@@ -82,7 +82,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                         service.symbolsJoined.join();
                                         config.params.symbols = service.symbolsJoined;
 
-                                        var historicalsTodayPromise = httpService.getHistoricalsWeek(config);
+                                        var historicalsTodayPromise = httpService.getHistoricalsYear(config);
                                         historicalsTodayPromise.then(function (result) {
                                                 service.historicalsDay = result.results;
                                                 console.log(service.historicalsDay);

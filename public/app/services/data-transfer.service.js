@@ -1,20 +1,20 @@
 
 
-angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', '$interval', function($http, $localStorage, $state, httpService, dialogService, $filter, $interval){
+angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', '$interval', function ($http, $localStorage, $state, httpService, dialogService, $filter, $interval) {
 
-    
-    var service = this;
-    var httpService = httpService;
-    var dialogService = dialogService;
-    console.log('In Data Transfer Service');
-    service.combinedData;
+
+        var service = this;
+        var httpService = httpService;
+        var dialogService = dialogService;
+        console.log('In Data Transfer Service');
+        service.combinedData;
         dialogService.showLoadingDialog();
 
-    var config = {
-            params: {
-                    token: $localStorage.token
-            }
-    }
+        var config = {
+                params: {
+                        token: $localStorage.token
+                }
+        }
 
         service.allInitialInvestmentsValues = [];
         service.allCurrentInvestmentValues = [];
@@ -26,165 +26,155 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
 
-    service.gatherRobinhoodData = function(config){
-        config = {
-                params: {
-                        token: $localStorage.token
-                }
-        }
-        var accountInfoPromise = httpService.getAccountInfo(config);
-        accountInfoPromise.then(function (results){
-                service.portfolioInfo = results.results[0];
-                service.accountEquity = results.results[0].equity;
-                //     console.log(service.accountEquity);
-
-        })
-
-        
-        var positionPromise = httpService.getPositions(config);
-        positionPromise.then(function (results){
-                // service.positions = results.results;
-                //     console.log(service.positions);
-                service.instruments = [];
-                service.positions = [];
-                for(j=0;j<results.results.length;j++)
-                {
-                        if(results.results[j].quantity != 0)   
-                        {
-                                service.positions.push(results.results[j])
-                                service.instruments.push(results.results[j].instrument);
+        service.gatherRobinhoodData = function (config) {
+                config = {
+                        params: {
+                                token: $localStorage.token
                         }
                 }
+                var accountInfoPromise = httpService.getAccountInfo(config);
+                accountInfoPromise.then(function (results) {
+                        service.portfolioInfo = results.results[0];
+                        service.accountEquity = results.results[0].equity;
+                        //     console.log(service.accountEquity);
+
+                })
 
 
-                // console.log(service.instruments)
-        }).then(function(){
-                var accountPromise = httpService.getAccount(config);
-                accountPromise.then(function(result){
-                        service.accountData = result;
-                
-
-                        // config.params.instrumentUrl = service.position;
-                        config.params.collection = service.instruments;
-                        var instrumentsPromise = httpService.getInstruments(config);
-                        instrumentsPromise.then(function(result){
-                                service.instrumentData = result;
-                                service.symbols = [];
-                                service.symbolsJoined = [];
-                                service.combinedData = {};
-                                
-
-                                for(g=0;g<service.positions.length;g++)
-                                {            
-                                        if(service.positions[g].quantity != 0)   
-                                        {
-                                                service.symbols.push(service.instrumentData[g].symbol);
-                                                service.symbolsJoined.push(service.instrumentData[g].symbol);
-                                        }
-                                        
+                var positionPromise = httpService.getPositions(config);
+                positionPromise.then(function (results) {
+                        // service.positions = results.results;
+                        //     console.log(service.positions);
+                        service.instruments = [];
+                        service.positions = [];
+                        for (j = 0; j < results.results.length; j++) {
+                                if (results.results[j].quantity != 0) {
+                                        service.positions.push(results.results[j])
+                                        service.instruments.push(results.results[j].instrument);
                                 }
-                                service.symbolsJoined.join();
-                                config.params.symbols = service.symbolsJoined;
-
-                                var historicalsTodayPromise = httpService.getHistoricalsDay(config);
-                                historicalsTodayPromise.then(function(result){
-                                        service.historicalsDay = result.results;
-                                        console.log(service.historicalsDay);
+                        }
 
 
-                                        var allQuotesPromise = httpService.getAllQuotes(config);
-                                        allQuotesPromise.then(function(result){
-                                                service.quotes = result.results;
+                        // console.log(service.instruments)
+                }).then(function () {
+                        var accountPromise = httpService.getAccount(config);
+                        accountPromise.then(function (result) {
+                                service.accountData = result;
 
-                                                var userDataPromise = httpService.getUserData(config)
-                                                userDataPromise.then(function(result){
-                                                        service.user = result;
-                                                        // console.log(service.quotes);
-                                                        k=0;
 
-                                                        for(symbol in service.symbols)
-                                                        {
+                                // config.params.instrumentUrl = service.position;
+                                config.params.collection = service.instruments;
+                                var instrumentsPromise = httpService.getInstruments(config);
+                                instrumentsPromise.then(function (result) {
+                                        service.instrumentData = result;
+                                        service.symbols = [];
+                                        service.symbolsJoined = [];
+                                        service.combinedData = {};
 
-                                                        
-                                                                service.combinedData[service.symbols[k]] = {
+
+                                        for (g = 0; g < service.positions.length; g++) {
+                                                if (service.positions[g].quantity != 0) {
+                                                        service.symbols.push(service.instrumentData[g].symbol);
+                                                        service.symbolsJoined.push(service.instrumentData[g].symbol);
+                                                }
+
+                                        }
+                                        service.symbolsJoined.join();
+                                        config.params.symbols = service.symbolsJoined;
+
+                                        var historicalsTodayPromise = httpService.getHistoricalsWeek(config);
+                                        historicalsTodayPromise.then(function (result) {
+                                                service.historicalsDay = result.results;
+                                                console.log(service.historicalsDay);
+
+
+                                                var allQuotesPromise = httpService.getAllQuotes(config);
+                                                allQuotesPromise.then(function (result) {
+                                                        service.quotes = result.results;
+
+                                                        var userDataPromise = httpService.getUserData(config)
+                                                        userDataPromise.then(function (result) {
+                                                                service.user = result;
+                                                                // console.log(service.quotes);
+                                                                k = 0;
+
+                                                                for (symbol in service.symbols) {
+
+
+                                                                        service.combinedData[service.symbols[k]] = {
                                                                                 positions: service.positions[k],
                                                                                 instruments: service.instrumentData[k],
                                                                                 quotes: service.quotes[k],
-                                                                                historicals:{
+                                                                                historicals: {
                                                                                         fiveMinuteDay: service.historicalsDay[symbol].historicals
                                                                                 }
-                                                                                
+
                                                                         }
-                                                                
-                                                                
-                                                                if(service.positions[k].quantity != 0)
-                                                                {
-                                                                        service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price*service.positions[k].quantity)
-                                                                        service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price*service.positions[k].quantity)
+
+
+                                                                        if (service.positions[k].quantity != 0) {
+                                                                                service.allInitialInvestmentsValues.push(service.positions[k].average_buy_price * service.positions[k].quantity)
+                                                                                service.allCurrentInvestmentValues.push(service.quotes[k].last_trade_price * service.positions[k].quantity)
+                                                                        }
+                                                                        k++
                                                                 }
-                                                                k++
-                                                        }
-                                                        service.combinedData.account = service.accountData.results[0];
-                                                        service.combinedData.portfolio = service.portfolioInfo;
-                                                        service.combinedData.user = service.user;
-
-                                                        
-                                                                        // console.log(service.symbols);
-                                                                        // console.log(service.allInitialInvestmentsValues);
-                                                                        // console.log(service.allCurrentInvestmentValues);
-                                                                        console.log(service.combinedData);
-                                                                        if(service.build_charts == true)
-                                                                        {
-                                                                                service.buildGraphs();
-                                                                                service.build_charts = false
-                                                                        }
-                                                                        dialogService.closeDialog();
+                                                                service.combinedData.account = service.accountData.results[0];
+                                                                service.combinedData.portfolio = service.portfolioInfo;
+                                                                service.combinedData.user = service.user;
 
 
-                                                        }).then(function(){
+                                                                // console.log(service.symbols);
+                                                                // console.log(service.allInitialInvestmentsValues);
+                                                                // console.log(service.allCurrentInvestmentValues);
+                                                                console.log(service.combinedData);
+                                                                if (service.build_charts == true) {
+                                                                        service.buildGraphs();
+                                                                        service.build_charts = false
+                                                                }
+                                                                dialogService.closeDialog();
+
+
+                                                        }).then(function () {
                                                                 console.log('done');
                                                                 service.currentGainer;
                                                                 service.currentLoser;
                                                                 var change;
                                                                 var tempGain = 0;
                                                                 var tempLoss = 0
-                                                                for(symbol in service.symbols)
-                                                                {
+                                                                for (symbol in service.symbols) {
 
-                                                                        
+
                                                                         change = 0;
-                                                                        change = service.combinedData[service.symbols[symbol]].quotes.last_trade_price-service.combinedData[service.symbols[symbol]].quotes.previous_close;
-                                                                        if(change > tempGain)
-                                                                        {
+                                                                        change = service.combinedData[service.symbols[symbol]].quotes.last_trade_price - service.combinedData[service.symbols[symbol]].quotes.previous_close;
+                                                                        if (change > tempGain) {
                                                                                 service.currentGainer = service.combinedData[service.symbols[symbol]];
                                                                                 service.currentGainer.dollar_gain = change;
-                                                                                service.currentGainer.percent_gain = (change/service.combinedData[service.symbols[symbol]].quotes.last_trade_price)*100;
+                                                                                service.currentGainer.percent_gain = (change / service.combinedData[service.symbols[symbol]].quotes.last_trade_price) * 100;
                                                                                 service.currentGainer.company = service.symbols[symbol];
                                                                                 tempGain = change;
                                                                         }
-                                                                        if(change < tempLoss)
-                                                                        {
+                                                                        if (change < tempLoss) {
                                                                                 service.currentLoser = service.combinedData[service.symbols[symbol]];
                                                                                 service.currentLoser.dollar_loss = change;
-                                                                                service.currentLoser.percent_loss = (change/service.combinedData[service.symbols[symbol]].quotes.last_trade_price)*100;
+                                                                                service.currentLoser.percent_loss = (change / service.combinedData[service.symbols[symbol]].quotes.last_trade_price) * 100;
                                                                                 service.currentLoser.company = service.symbols[symbol];
                                                                                 tempLoss = change;
                                                                         }
-                                                                        
+
                                                                 }
                                                                 console.log(service.currentGainer)
                                                                 console.log(service.currentLoser)
                                                         })
                                                 })
                                         })
-                                                
 
-                                
 
-                        }) 
+
+
+                                })
+                        })
                 })
-        })
-    }
+        }
 
 
 
@@ -198,8 +188,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
 
-        if(config.params.token != undefined)
-        {
+        if (config.params.token != undefined) {
                 config = {
                         params: {
                                 token: $localStorage.token
@@ -211,16 +200,16 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         //         service.gatherRobinhoodData(config);
         // }, 10000)
 
-        service.buildGraphs = function(){
+        service.buildGraphs = function () {
                 service.colorsPie = ['#E57373', '#F06292', '#BA68C8', '#9575CD', '#7986CB', '#64B5F6', '#4FC3F7', '#4DD0E1', '#4DB6AC', '#81C784', '#AED581', '#DCE775', '#FFF176', '#FFD54F', '#FFB74D', '#B71C1C', '#311B92', '#880E4F', '#311B92', '#311B92', '#0D47A1', '#01579B', '#006064', '#004D40', '#1B5E20', '#33691E', '#827717', '#F57F17', '#FF6F00', '#E65100', '#BF360C'];
 
                 // //Radar Graph
 
-                service.radarlabels =["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
+                service.radarlabels = ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
 
                 service.radarData = [
-                [65, 59, 90, 81, 56, 55, 40],
-                [28, 48, 40, 19, 96, 27, 100]
+                        [65, 59, 90, 81, 56, 55, 40],
+                        [28, 48, 40, 19, 96, 27, 100]
                 ];
 
 
@@ -228,35 +217,31 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 // service.labelsRadar = service.dataTransferService.symbols;
                 service.pielabels = service.symbols;
                 service.pieData = service.allCurrentInvestmentValues;
-                service.polarData=[];
+                service.polarData = [];
                 service.lineData = [];
 
                 service.colorsRadar = [{
-                backgroundColor: "rgba(33, 33, 33, .4)"
+                        backgroundColor: "rgba(33, 33, 33, .4)"
                 },
                 {
-                backgroundColor: "rgba(94, 236, 167, .4)"
+                        backgroundColor: "rgba(94, 236, 167, .4)"
                 }]
                 service.dataRadar = [
                         service.allInitialInvestmentsValues,
                         service.allCurrentInvestmentValues
                 ];
-                for(z=0;z<service.pielabels.length;z++)
-                {
-                        service.polarData.push(service.allCurrentInvestmentValues[z]-service.allInitialInvestmentsValues[z]);
+                for (z = 0; z < service.pielabels.length; z++) {
+                        service.polarData.push(service.allCurrentInvestmentValues[z] - service.allInitialInvestmentsValues[z]);
                 }
                 service.lineLabels = [];
                 service.lineSeries = [];
-                for(symbol in service.symbols)
-                {
+                for (symbol in service.symbols) {
                         service.lineSeries.push(service.symbols[symbol])
                         service.lineData.push([]);
-                        for(v=0;v<service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length;v++)
-                        {
+                        for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
                                 service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
-                                if(symbol === '1')
-                                {       
-                                        var date  = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                                if (symbol === '1') {
+                                        var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
                                         service.lineLabels.push(date);
                                 }
                         }
@@ -268,37 +253,37 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 var tooltipLabels = ['Initial Value: $', 'Current Value: $']
                 service.optionsRadar = {
                         animation: {
-                        duration: 3000,
-                        easing: 'easeInOutQuint'
-                },
-                                        maintainAspectRatio: true,
+                                duration: 3000,
+                                easing: 'easeInOutQuint'
+                        },
+                        maintainAspectRatio: true,
 
                         tooltips: {
 
-                        callbacks: { // HERE YOU CUSTOMIZE THE LABELS
+                                callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
-                                label: function (tooltipItem, data) {
-                                // console.log(data)
-                                return tooltipLabels[tooltipItem.datasetIndex] + $filter('number')(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index], 2);
+                                        label: function (tooltipItem, data) {
+                                                // console.log(data)
+                                                return tooltipLabels[tooltipItem.datasetIndex] + $filter('number')(data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index], 2);
+                                        }
                                 }
-                        }
 
                         },
                 };
                 service.optionsPolar = {
                         animation: {
-                        duration: 3000,
-                        easing: 'easeInOutQuart'
+                                duration: 3000,
+                                easing: 'easeInOutQuart'
                         },
                         scales: {
-                        yAxes: [
-                                {
-                                id: 'y-axis-1',
-                                type: 'linear',
-                                display: false,
-                                position: 'left'
-                                }
-                        ]
+                                yAxes: [
+                                        {
+                                                id: 'y-axis-1',
+                                                type: 'linear',
+                                                display: false,
+                                                position: 'left'
+                                        }
+                                ]
                         },
                         maintainAspectRatio: true,
                         tooltips: {
@@ -306,8 +291,8 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                 callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
                                         label: function (tooltipItem, data) {
-                                        // console.log(tooltipItem)
-                                        return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' gain since purchase';
+                                                // console.log(tooltipItem)
+                                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' gain since purchase';
                                         }
                                 }
 
@@ -315,27 +300,94 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 };
                 service.optionsDoughnut = {
                         animation: {
-                        duration: 3000,
-                        easing: 'easeInOutSine'
+                                duration: 3000,
+                                easing: 'easeInOutSine'
                         },
                         tooltips: {
 
-                        callbacks: { // HERE YOU CUSTOMIZE THE LABELS
+                                callbacks: { // HERE YOU CUSTOMIZE THE LABELS
 
-                                label: function (tooltipItem, data) {
-                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' | ' + $filter('number')((data.datasets[0].data[tooltipItem.index]/service.accountEquity)*100, 2) + "%";
+                                        label: function (tooltipItem, data) {
+                                                return data.labels[tooltipItem.index] + ': $' + $filter('number')(data.datasets[0].data[tooltipItem.index], 2) + ' | ' + $filter('number')((data.datasets[0].data[tooltipItem.index] / service.accountEquity) * 100, 2) + "%";
+                                        }
                                 }
-                        }
 
                         },
                 };
 
 
-            }//end function
+        }//end function
 
 
 
 
- 
+        service.getDayData = function () {
+                var historicalsPromise = httpService.getHistoricalsDay(config);
+                historicalsPromise.then(function (result) {
+                        service.lineData = [];
+                        service.lineLabels = [];
+                        service.lineSeries = [];
+                        for (symbol in service.symbols) {
+                                service.lineSeries.push(service.symbols[symbol])
+                                service.lineData.push([]);
+                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
+                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
+                                        if (symbol === '1') {
+                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                                                service.lineLabels.push(date);
+                                        }
+                                }
+                        }
+
+
+
+                });
+        }
+
+
+        service.getWeekData = function () {
+                var historicalsPromise = httpService.getHistoricalsWeek(config);
+                historicalsPromise.then(function (result) {
+                        service.lineData = [];
+
+                        service.lineLabels = [];
+                        service.lineSeries = [];
+                        for (symbol in service.symbols) {
+                                service.lineSeries.push(service.symbols[symbol])
+                                service.lineData.push([]);
+                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
+                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
+                                        if (symbol === '1') {
+                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                                                service.lineLabels.push(date);
+                                        }
+                                }
+                        }
+                });
+        }
+
+        service.getYearData = function () {
+                var historicalsPromise = httpService.getHistoricalsYear(config);
+                historicalsPromise.then(function (result) {
+                        service.lineData = [];
+
+                        service.lineLabels = [];
+                        service.lineSeries = [];
+                        for (symbol in service.symbols) {
+                                service.lineSeries.push(service.symbols[symbol])
+                                service.lineData.push([]);
+                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
+                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
+                                        if (symbol === '1') {
+                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                                                service.lineLabels.push(date);
+                                        }
+                                }
+                        }
+                });
+        }
+
+
+
 }])
 

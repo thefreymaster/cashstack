@@ -282,7 +282,7 @@ app.get('/getHistoricalsDay', function(req, res){
     var symbols = req.query.symbols;
     var options = { 
         method: 'GET',
-        url: 'https://api.robinhood.com/quotes/historicals/?symbols=' + symbols + '&interval=day',
+        url: 'https://api.robinhood.com/quotes/historicals/?symbols=' + symbols + '&interval=5minute&span=day',
         headers: { Authorization: 'Token ' + token},
                 strictSSL: true
 
@@ -293,6 +293,44 @@ app.get('/getHistoricalsDay', function(req, res){
         res.json(JSON.parse(body));
     });
 });
+
+app.get('/getHistoricalsWeek', function(req, res){
+
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var options = { 
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/historicals/?symbols=' + symbols + '&interval=5minute&span=week',
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
+        };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
+});
+
+app.get('/getHistoricalsYear', function(req, res){
+
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var options = { 
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/historicals/?symbols=' + symbols + '&interval=day&span=year',
+        headers: { Authorization: 'Token ' + token},
+                strictSSL: true
+
+        };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
+});
+
+
 
 
 

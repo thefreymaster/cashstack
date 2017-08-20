@@ -1,0 +1,22 @@
+<md-dialog flex='30'>
+    <md-toolbar>
+        <div class='md-toolbar-tools'>
+            Welcome!
+        </div>
+    </md-toolbar>
+    <md-dialog-content layout='column' layout-padding>
+        <div layout="column" layout-align="center center" layout-margin layout-padding layout-fill>
+            <img hide-xs class="logo-splash" src="app/content/coin-logo-white.svg">
+            <div class="app-title-splash animated flipInX" ng-class="{'app-title-splash-bright': service.brightTheme == true}">Coinstack</div>
+            <div class="app-subtitle-splash animated flipInX" ng-class="{'app-title-splash-bright': service.brightTheme == true}">For Robinhood</div>
+            <!--<md-button class="md-raised bt-margin" analytics-on="click" analytics-event="ReturningToApp" ng-click='dialogService.showLoginDialog()'>Begin</md-button>-->
+        </div>
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <md-button ng-disabled='loading' ng-click='dialogService.showLoginDialog()'>
+            <div ng-if='!loading'>Let's Begin</div>
+            <md-progress class="md-accent" ng-if='loading' md-diameter="15"></md-progress>
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

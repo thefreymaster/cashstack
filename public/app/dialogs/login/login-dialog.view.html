@@ -1,10 +1,13 @@
-<md-dialog flex='15'>
+<md-dialog flex='25'>
     <md-toolbar>
         <div class='md-toolbar-tools'>
             <i class="material-icons">&#xE899;</i> Robinhood Login
         </div>
     </md-toolbar>
     <md-dialog-content layout='column' layout-padding>
+        <p>We need some info before we can proceed, don't worry we're secure.</p>
+        <p>Enter your Robinhood username and password below, then click Login</p>
+
         <div>
             <form>
                 <md-input-container class='md-block animated flipInX'>
@@ -18,7 +21,7 @@
                 </md-input-container>
 
                 <md-input-container ng-if='showMFAinput' class='md-block animated flipInX'>
-                    <label>MFA Code</label>
+                    <label>Two Step Authentication Code</label>
                     <input ng-model="config.params.mfa_code" type="number">
                 </md-input-container>
             </form>

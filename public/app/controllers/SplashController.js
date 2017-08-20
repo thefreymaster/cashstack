@@ -8,7 +8,7 @@ angular.module('stockQuotesApp').controller('SplashController', ['$scope', '$htt
 
         if($localStorage.token == undefined)
         {
-                $scope.dialogService.showLoginDialog();
+                $scope.dialogService.showWelcomeDialog();
         }
         else{
                 $state.go('report');

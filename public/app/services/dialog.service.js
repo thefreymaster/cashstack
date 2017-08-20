@@ -11,6 +11,22 @@ angular.module('stockQuotesApp').service('dialogService', ['$http', '$localStora
             clickOutsideToClose: false
         })
     }
+    service.showWelcomeDialog = function(){
+        return $mdDialog.show({
+            controller: 'welcomeController',
+            templateUrl: 'app/dialogs/welcome/welcome-dialog.view.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: false
+        })
+    }
+
+
+
+
+
+
+
+    
     service.showLoadingDialog = function(){
         return $mdDialog.show({
             controller: 'loadingController',

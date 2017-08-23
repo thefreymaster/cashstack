@@ -93,19 +93,19 @@
                 XSmall: {{mediaService.screenIsExtraSmall}}-->
                 <div layout='row' layout-align='center center' layout-padding hide-sm hide-xs>
                     <div flex='25' class='center border-right border' hide-xs>
-                        <div  flex='100' class="center table-cell coin-initial animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Initial</b> </div>
+                        <span  flex='100' class="center table-cell coin-investment-metric animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}">${{(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Initial</b> </span>
                     </div>
                     
                     <div flex='25' class='center border-right border' hide-xs>
-                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Gain</b></span> 
-                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Loss</b></span> 
+                        <span class='coin-investment-metric' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Gain</b></span> 
+                        <span class='coin-investment-metric' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'> ${{(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) | number:2}}<br><b>Loss</b></span> 
                     </div>
                     <div flex='25' class='center border-right border'>
-                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
-                        <span ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
+                        <span class='coin-investment-metric' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) > 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
+                        <span class='coin-investment-metric' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}" ng-if='(value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price) < 0'>${{(value.positions.quantity*value.quotes.last_trade_price) | number:2}}<br><b>Total</b></span> 
                     </div>
                     <div flex='25' class='center border'>
-                        <div class="coin-percent animated flipInX" ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"> {{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%<br><b>Return</b></div>
+                        <span class='coin-investment-metric animated flipInX' ng-class="{'dark': service.brightTheme == false, 'bright': service.brightTheme == true}"> {{(((value.positions.quantity*value.quotes.last_trade_price)-(value.positions.quantity*value.positions.average_buy_price))/(value.positions.quantity*value.positions.average_buy_price))*100 | number:2}}%<br><b>Return</b></span>
                     </div>
                 </div>
             </div>

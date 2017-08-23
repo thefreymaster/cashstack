@@ -116,7 +116,7 @@
                 <div layout='row'>
                     <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
                         <h3 class='stock-title' ng-if='value.instruments.simple_name == null' >N/A</h3>
-                        <h3 class='stock-title'>{{value.instruments.simple_name}}</h3>
+                        <h3 class='stock-title'>{{value.instruments.simple_name}} • {{value.positions.quantity | number:0}} Shares</h3>
                     </span>
                     <div flex></div>
                     <md-button class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">info_outline</md-icon>

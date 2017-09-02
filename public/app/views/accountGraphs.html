@@ -6,11 +6,11 @@
         <md-grid-tile md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <div layout="column" layout-align='center center' layout-padding ng-class="{'table-cell-bright': service.brightTheme == true}">
-                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true, 'sm-text': mediaService.screenIsSmall == true, 'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0,}"
+                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true, 'sm-text': mediaService.screenIsSmall == true, 'gain': dataTransferService.changeDollar > 0, 'loss': dataTransferService.changeDollar < 0,}"
                     class="investment-title center animated flipInX" count-up options="countUpDollar" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
 
-                <span ng-class="{'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true, 'gain': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close > 0, 'loss': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
-                    class="center change-metric animated flipInX">${{dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close | number:2}} • {{((dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close)/dataTransferService.combinedData.portfolio.equity)*100 | number:2}}%</span>
+                <span ng-class="{'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true, 'gain': dataTransferService.changeDollar > 0, 'loss': dataTransferService.changeDollar < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
+                    class="center change-metric animated flipInX">${{dataTransferService.changeDollar | number:2}} • {{dataTransferService.changePercent | number:2}}%</span>
 
             </div>
             <md-grid-tile-footer>
@@ -21,27 +21,29 @@
         <md-grid-tile md-rowspan="5" md-colspan="6" md-rowspan-md="9" md-colspan-md="12" md-rowspan-sm="9" md-colspan-sm="12" md-rowspan-xs="12"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <canvas id="doughnut" class="chart chart-line" chart-data="dataTransferService.lineData" chart-labels="dataTransferService.lineLabels"
-                chart-series="dataTransferService.lineSeries" chart-options="dataTransferService.optionsLine" chart-colors="dataTransferService.colorsPie">
+                chart-series="dataTransferService.lineSeries" chart-options="dataTransferService.optionsLine" chart-colors="dataTransferService.colorsLine">
             </canvas>
             <md-grid-tile-footer>
                 <div layout='row'>
                     <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
-                        <h3 class='stock-title'>Percentage Breakdown</h3>
+                        <h3 class='stock-title'>Portfolio</h3>
                     </span>
                     <div flex></div>
 
-                    <!--<md-button ng-click='dataTransferService.getYearData()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">skip_previous</md-icon>
-                            <md-tooltip md-direction="bottom">This Year</md-tooltip>       
+                    <md-button ng-click='dataTransferService.getPortfolioToday()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)">1D
+                            <md-tooltip md-direction="bottom">Today</md-tooltip>       
                     </md-button>
 
-                    <md-button ng-click='dataTransferService.getWeekData()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">fast_rewind</md-icon>
+                    <md-button ng-click='dataTransferService.getPortfolioWeek()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)">1W
                             <md-tooltip md-direction="bottom">This Week</md-tooltip>       
                     </md-button>
                     
-                    <md-button ng-click='dataTransferService.getDayData()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)"><md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">play_arrow</md-icon>
-                            <md-tooltip md-direction="bottom">Today</md-tooltip>       
-                    </md-button>-->
-
+                    <md-button ng-click='dataTransferService.getPortfolioYear()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)">1Y
+                            <md-tooltip md-direction="bottom">This Year</md-tooltip>       
+                    </md-button>
+                    <md-button ng-click='dataTransferService.getPortfolioAll()' class="md-icon-button md-primary fab-correction" ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="getFundamentals(key, value)">All
+                            <md-tooltip md-direction="bottom">All</md-tooltip>       
+                    </md-button>
 
                 </div>
             </md-grid-tile-footer>

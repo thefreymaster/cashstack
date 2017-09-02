@@ -22,6 +22,11 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
         service.build_charts = true;
 
+        service.historicalPortfolio;
+        service.historicalPortfolioLabels;
+
+        service.changePercent;
+        service.changeDollar;
 
 
 
@@ -81,12 +86,32 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                         }
                                         service.symbolsJoined.join();
                                         config.params.symbols = service.symbolsJoined;
+                                        config.params.userID = service.accountData.results[0].account_number;
 
-                                        var historicalsTodayPromise = httpService.getHistoricalsYear(config);
+
+                                        var historicalsTodayPromise = httpService.getPortfolioToday(config);
                                         historicalsTodayPromise.then(function (result) {
-                                                service.historicalsDay = result.results;
-                                                console.log(service.historicalsDay);
-
+                                                service.historicalsDay = result.equity_historicals;
+                                                service.historicalPortfolio = [];
+                                                service.historicalPortfolioLabels = [];
+                                                for (j = 0; j < result.equity_historicals.length; j++) {
+                                                        service.historicalPortfolio.push(result.equity_historicals[j].adjusted_close_equity);
+                                                        service.historicalPortfolioLabels.push(result.equity_historicals[j].begins_at);
+                                                }
+                                                var begin = parseInt(result.equity_historicals[0].adjusted_close_equity, 10);
+                                                var end = parseInt(result.equity_historicals[result.equity_historicals.length - 1].adjusted_close_equity, 10);
+                                                if (begin < end) {
+                                                        service.colorsLine = [
+                                                                "#5bda90"
+                                                        ]
+                                                }
+                                                else {
+                                                        service.colorsLine = [
+                                                                "#ff766c"
+                                                        ]
+                                                }
+                                                service.changePercent = ((end - begin) / begin) * 100;
+                                                service.changeDollar = (end - begin)
 
                                                 var allQuotesPromise = httpService.getAllQuotes(config);
                                                 allQuotesPromise.then(function (result) {
@@ -104,10 +129,10 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                                                         service.combinedData[service.symbols[k]] = {
                                                                                 positions: service.positions[k],
                                                                                 instruments: service.instrumentData[k],
-                                                                                quotes: service.quotes[k],
-                                                                                historicals: {
-                                                                                        fiveMinuteDay: service.historicalsDay[symbol].historicals
-                                                                                }
+                                                                                quotes: service.quotes[k]
+                                                                                // historicals: {
+                                                                                //         fiveMinuteDay: service.historicalsDay[symbol].historicals
+                                                                                // }
 
                                                                         }
 
@@ -205,12 +230,6 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
                 // //Radar Graph
 
-                service.radarlabels = ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
-
-                service.radarData = [
-                        [65, 59, 90, 81, 56, 55, 40],
-                        [28, 48, 40, 19, 96, 27, 100]
-                ];
 
 
 
@@ -219,6 +238,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 service.pieData = service.allCurrentInvestmentValues;
                 service.polarData = [];
                 service.lineData = [];
+
 
                 service.colorsRadar = [{
                         backgroundColor: "rgba(33, 33, 33, .4)"
@@ -234,19 +254,28 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                         service.polarData.push(service.allCurrentInvestmentValues[z] - service.allInitialInvestmentsValues[z]);
                 }
                 service.lineLabels = [];
-                service.lineSeries = [];
-                for (symbol in service.symbols) {
-                        service.lineSeries.push(service.symbols[symbol])
-                        service.lineData.push([]);
-                        for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
-                                service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
-                                if (symbol === '1') {
-                                        var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
-                                        service.lineLabels.push(date);
-                                }
-                        }
+                service.lineSeries = ['Portfolio'];
+                for (n = 0; n < service.historicalPortfolio.length; n++) {
+                        service.lineData.push(service.historicalPortfolio[n]);
+                        var date = $filter('date')(service.historicalPortfolioLabels[n], 'shortTime')
+                        service.lineLabels.push(date);
                 }
-                console.log(service.lineData);
+
+
+
+
+
+                // for (symbol in service.symbols) {
+                //         service.lineSeries.push(service.symbols[symbol])
+                //         service.lineData.push([]);
+                //         for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
+                //                 service.lineData[symbol].push(service.historicalPortfolio[v]);
+                //                 if (symbol === '1') {
+                //                         var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
+                //                         service.lineLabels.push(date);
+                //                 }
+                //         }
+                // }
 
 
 
@@ -318,75 +347,72 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
         }//end function
 
+        service.getPortfolioToday = function () {
+                config.params.userID = service.accountData.results[0].account_number;
+                var portfolioPromise = httpService.getPortfolioToday(config);
+                portfolioPromise.then(function (result) {
+                        console.log(result);
+                        service.createLineData(result, 'shortTime')
 
+                })
+        }
+        service.getPortfolioWeek = function () {
+                config.params.userID = service.accountData.results[0].account_number;
+                var portfolioPromise = httpService.getPortfolioWeek(config);
+                portfolioPromise.then(function (result) {
+                        service.createLineData(result, 'short')
 
+                })
+        }
+        service.getPortfolioYear = function () {
+                config.params.userID = service.accountData.results[0].account_number;
+                var portfolioPromise = httpService.getPortfolioYear(config);
+                portfolioPromise.then(function (result) {
+                        console.log(result);
+                        service.createLineData(result, 'shortDate')
 
-        service.getDayData = function () {
-                var historicalsPromise = httpService.getHistoricalsDay(config);
-                historicalsPromise.then(function (result) {
-                        service.lineData = [];
-                        service.lineLabels = [];
-                        service.lineSeries = [];
-                        for (symbol in service.symbols) {
-                                service.lineSeries.push(service.symbols[symbol])
-                                service.lineData.push([]);
-                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
-                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
-                                        if (symbol === '1') {
-                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
-                                                service.lineLabels.push(date);
-                                        }
-                                }
-                        }
-
-
-
-                });
+                })
+        }
+        service.getPortfolioAll = function () {
+                config.params.userID = service.accountData.results[0].account_number;
+                var portfolioPromise = httpService.getPortfolioAll(config);
+                portfolioPromise.then(function (result) {
+                        console.log(result);
+                        service.createLineData(result, 'shortDate')
+                })
         }
 
+        service.createLineData = function (result, timeFormat) {
+                service.historicalPortfolio = [];
+                service.historicalPortfolioLabels = [];
+                for (j = 0; j < result.equity_historicals.length; j++) {
+                        service.historicalPortfolio.push(result.equity_historicals[j].adjusted_close_equity);
+                        service.historicalPortfolioLabels.push(result.equity_historicals[j].begins_at);
+                }
+                service.lineLabels = [];
+                service.lineData = [];
+                service.lineSeries = ['Portfolio'];
+                for (n = 0; n < service.historicalPortfolio.length; n++) {
+                        service.lineData.push(service.historicalPortfolio[n]);
+                        var date = $filter('date')(service.historicalPortfolioLabels[n], timeFormat)
+                        service.lineLabels.push(date);
+                }
+                var begin = parseInt(result.equity_historicals[0].adjusted_close_equity, 10);
+                var end = parseInt(result.equity_historicals[result.equity_historicals.length - 1].adjusted_close_equity, 10);
+                if (begin < end) {
+                        service.colorsLine = [
+                                "#5bda90"
+                        ]
+                }
+                else {
+                        service.colorsLine = [
+                                "#ff766c"
+                        ]
+                }
+                service.changePercent = ((end - begin) / begin) * 100;
+                service.changeDollar = (end - begin)
 
-        service.getWeekData = function () {
-                var historicalsPromise = httpService.getHistoricalsWeek(config);
-                historicalsPromise.then(function (result) {
-                        service.lineData = [];
-
-                        service.lineLabels = [];
-                        service.lineSeries = [];
-                        for (symbol in service.symbols) {
-                                service.lineSeries.push(service.symbols[symbol])
-                                service.lineData.push([]);
-                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
-                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
-                                        if (symbol === '1') {
-                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
-                                                service.lineLabels.push(date);
-                                        }
-                                }
-                        }
-                });
         }
-
-        service.getYearData = function () {
-                var historicalsPromise = httpService.getHistoricalsYear(config);
-                historicalsPromise.then(function (result) {
-                        service.lineData = [];
-
-                        service.lineLabels = [];
-                        service.lineSeries = [];
-                        for (symbol in service.symbols) {
-                                service.lineSeries.push(service.symbols[symbol])
-                                service.lineData.push([]);
-                                for (v = 0; v < service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay.length; v++) {
-                                        service.lineData[symbol].push(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].close_price);
-                                        if (symbol === '1') {
-                                                var date = $filter('date')(service.combinedData[service.symbols[symbol]].historicals.fiveMinuteDay[v].begins_at, 'mediumDate')
-                                                service.lineLabels.push(date);
-                                        }
-                                }
-                        }
-                });
-        }
-
 
 
 }])

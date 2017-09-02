@@ -12,12 +12,10 @@ angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope'
                         elements: {
                                 point: {
                                         radius: 0
-                                }
-                        },
-                        animation: {
-                                duration: 1000,
-                                easing: 'easeInOutCubic'
-                        },
+                                },
+                                line : { tension : 0 }
+                        }
+
 
                 };
         }
@@ -28,16 +26,13 @@ angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope'
                                 duration: 3000,
                                 easing: 'easeInOutSine'
                         },
-                        legend: {display: true},
+                        legend: {display: false},
                         elements: {
                                 point: {
                                         radius: 0
-                                }
-                        },
-                        animation: {
-                                duration: 1000,
-                                easing: 'easeInOutCubic'
-                        },
+                                },
+                                line : { tension : 0 }
+                        }
 
                 };
         }
@@ -48,9 +43,9 @@ angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope'
           separator : ',', 
           decimal : '.', 
           prefix : '$', 
-};
+        };
 
-
+        
 
 
 
@@ -89,6 +84,5 @@ angular.module('stockQuotesApp').controller('AccountGraphsController', ['$scope'
         // ];
 
 
-        console.log($scope.pielabels)
 
 }]);

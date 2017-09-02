@@ -104,23 +104,30 @@ angular.module('stockQuotesApp').service('httpService', ['$firebaseObject', '$ht
         });
     }
 
-    service.getHistoricalsDay = function (config) {
-        return $http.get('/getHistoricalsDay', config).then(function (response) {
+    service.getPortfolioToday = function (config) {
+        return $http.get('/getPortfolioToday', config).then(function (response) {
             return response.data;
 
         });
     }
 
-    service.getHistoricalsWeek = function (config) {
-        return $http.get('/getHistoricalsWeek', config).then(function (response) {
+    service.getPortfolioWeek = function (config) {
+        return $http.get('/getPortfolioWeek', config).then(function (response) {
             return response.data;
 
         });
     }
-    service.getHistoricalsYear = function (config) {
-        return $http.get('/getHistoricalsYear', config).then(function (response) {
+    service.getPortfolioYear = function (config) {
+        return $http.get('/getPortfolioYear', config).then(function (response) {
             return response.data;
 
         });
     }
+    service.getPortfolioAll = function (config) {
+        return $http.get('/getPortfolioAll', config).then(function (response) {
+            return response.data;
+
+        });
+    }
+    
 }])

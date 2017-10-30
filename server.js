@@ -1,4 +1,5 @@
 var http = require("http");
+var sslRedirect = require('heroku-ssl-redirect');
 var https = require("https");
 var express = require('express');
 
@@ -93,9 +94,9 @@ app.listen(process.env.PORT || 3004, function () {
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
 app.use(express.static(__dirname + '/public'));
-
+// enable ssl redirect
+app.use(sslRedirect());
 
 
 // http.createServer(options, app).listen(process.env.PORT || 3000, function () { 

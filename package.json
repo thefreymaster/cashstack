@@ -8,6 +8,7 @@
     "body-parser": "^1.17.2",
     "countup": "^1.8.2",
     "express": "^4.15.3",
+    "heroku-ssl-redirect": "0.0.4",
     "openssl": "^1.1.0",
     "package.json": "^2.0.1",
     "request": "^2.81.0"

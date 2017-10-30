@@ -7,10 +7,14 @@
             <div ng-class="{'small-ticker': screenIsExtraSmall == true}" class="center ticker-title animated flipInX">{{key}}</div>
             <div ng-class="{'small-ticker-price': screenIsExtraSmall == true}" class="center stock-price animated flipInX">${{value.quotes.last_trade_price | number:2}}</div>
             <div layout="row" layout-align="center center">
+                <i class="material-icons md-10" ng-class="{'loss-icon': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0, 'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0}">change_history</i>
+
                 <span ng-class="{'gain': (value.quotes.last_trade_price-value.quotes.previous_close) > 0, 'loss': (value.quotes.last_trade_price-value.quotes.previous_close) < 0, 'small-ticker-dollar': screenIsExtraSmall == true}"
                     class="center ticker-metric animated flipInX">${{(value.quotes.last_trade_price-value.quotes.previous_close) | number:2}}</span>
                 <span hide-xs ng-class="{'gain': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) > 0, 'loss': ((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price) < 0}"
-                    class="center ticker-metric animated flipInX">{{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
+                    class="center ticker-metric animated flipInX">
+
+                    {{((value.quotes.last_trade_price-value.quotes.previous_close)/value.quotes.last_trade_price)*100 | number:2}}%</span>
             </div>
         </div>
     </div>

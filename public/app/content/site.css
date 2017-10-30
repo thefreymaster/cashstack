@@ -35,6 +35,10 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
         transition:250ms;
 
 }
+.footer-bright{
+    color: #a4a4a4;
+    background: rgba(0, 0, 0, 0.03);
+}
 .no-change{
     color: rgba(174, 174, 174, 0.87) !important;
 }
@@ -434,11 +438,15 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
     transition:background-color 250ms;
 }
 .nav-button-icon-bright{
-    color:white !important;
         transition:color 250ms;
 
 }
-
+.username{
+    color: #595959;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: Roboto;
+}
 
 
 .side-nav-divider{
@@ -515,7 +523,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 }
 
 
-
+.material-icons.md-10 { font-size: 10px; }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -715,7 +723,9 @@ html::-webkit-scrollbar-thumb
     min-height: 380px;
     background-color: rgb(243, 243, 243);
 }
-
+.loss-icon{
+    transform: rotate(180deg);
+}
 
 
 .coin-quantity{
@@ -731,7 +741,7 @@ html::-webkit-scrollbar-thumb
 }
 .coin-investment-metric{
     font-family: Roboto;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 14px;
     color: white;
         opacity: .25;

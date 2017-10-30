@@ -8,19 +8,18 @@
 
     <div flex></div>
 
-    <span hide-xs hide-sm hide-md hide-lg ng-class="{'right-divider-bright': service.brightTheme == true}" class="market-header right-divider animated flipInX">
+    <!--<span hide-xs hide-sm hide-md hide-lg ng-class="{'right-divider-bright': service.brightTheme == true}" class="market-header right-divider animated flipInX">
         Markets Open at 9:30AM EST
     </span>
     <div hide-xs ng-repeat="market in marketObject">
             <div  class="market-header animated flipInX" >{{markets[$index]}} | {{market.l}} | <span ng-class="{'gain': market.c > 0, 'loss': market.cp < 0}">{{market.c}}</span> | <span ng-class="{'gain': market.c > 0, 'loss': market.cp < 0}">{{market.cp | number:2}}%</span></div>
-    </div>
+    </div>-->
     <!--<span hide-xs ng-class="{'left-divider-bright': service.brightTheme == true}" class="market-header left-divider animated flipInX">
       Updated <span am-time-ago="message.time | amDateFormat:'YYYY.MM.DD HH:mm:ss'"></span>
     </span>-->
-    <span hide-xs hide-sm hide-md hide-lg ng-class="{'left-divider-bright': service.brightTheme == true}" class="market-header left-divider animated flipInX">
+    <!--<span hide-xs hide-sm hide-md hide-lg ng-class="{'left-divider-bright': service.brightTheme == true}" class="market-header left-divider animated flipInX">
       Data last updated <span am-time-ago="message.time | amDateFormat:'YYYY.MM.DD HH:mm:ss'"></span>
-      <!--<md-button class="md-icon-button"><i class="material-icons" ng-click="dataTransferService.gatherRobinhoodData()">&#xE5D5;</i></md-button>-->
-    </span>
+    </span>-->
     <div flex></div>
     <div  hide-xs hide-sm hide-md>
         <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">{{dataTransferService.combinedData.user.first_name}} {{dataTransferService.combinedData.user.last_name}}</div>

@@ -120,26 +120,26 @@
         </div>-->
 
 
-        <div layout="column" class="value-margin bt-margin" layout-align="center center">
-          <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ui-sref="quickQuote" class="md-fab md-mini md-primary"
+        <div layout="column" class="value-margin bt-margin" layout-align="center center" layout-padding>
+          <!--<md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ui-sref="quickQuote" class="md-fab md-mini md-primary"
             ng-click="toggleLeft()">
             <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">search</md-icon>
             <md-tooltip md-direction="bottom">Quick Quote</md-tooltip>
 
-          </md-button>
+          </md-button>-->
           <!--<md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ui-sref="graphs" class="md-fab md-mini md-primary"
             ng-click="toggleLeft()">
             <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">multiline_chart</md-icon>
             <md-tooltip md-direction="bottom">Graphs and Charts</md-tooltip>
 
           </md-button>-->
-          <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ng-click="refreshApp()" class="md-fab md-mini md-primary">
+          <md-button ng-click="refreshApp()" class="md-icon-button md-primary">
             <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">refresh</md-icon>
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
 
           </md-button>
 
-          <md-button ng-class="{'nav-button-bright': service.brightTheme == true}" ui-sref="settings" class="md-fab md-mini md-primary"
+          <md-button ui-sref="settings" class="md-icon-button md-primary"
             ng-click="toggleLeft()">
             <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">settings</md-icon>
             <md-tooltip md-direction="bottom" analytics-on="click" analytics-event="Settings">Settings</md-tooltip>

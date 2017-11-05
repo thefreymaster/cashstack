@@ -1,0 +1,37 @@
+
+
+<div layout='column' layout-align='center center' flex='100'>
+    <div class='side-nav-divider sidenav-border-top' flex='100'>
+        <div class='settings-title'>Robinhood Account</div>
+        <div class='center settings-data'>{{dataTransferService.combinedData.account.account_number}}</div>
+    </div>
+        <div class='side-nav-divider' flex='100'>
+        <div class='settings-title'>Open Date</div>
+        <div class='center settings-data'>{{dataTransferService.combinedData.account.created_at | date: 'longDate'}}</div>
+    </div>
+    <div class='side-nav-divider' flex='100'>
+        <div class='settings-title'>Coin Version</div>
+        <div class='center settings-data'>{{version}}</div>
+    </div>
+</div>
+
+<!--<md-list>
+    <md-list-item class='no-padding' layout-align='center center'>
+        <div class="md-list-item-text center" layout="column">
+            <div class='settings-title center'>Robinhood Account</div>
+            <div class='center'>{{dataTransferService.combinedData.account.account_number}}</div>
+        </div>
+    </md-list-item>
+    <md-list-item class='no-padding'>
+        <div class="md-list-item-text center" layout="column">
+            <div class='settings-title center'>Open Date</div>
+            <div class='center'>{{dataTransferService.combinedData.account.created_at | date: 'longDate'}}</div>
+        </div>
+    </md-list-item>
+    <md-list-item class='no-padding'>
+        <div class="md-list-item-text center" layout="column">
+            <div class='settings-title center'>Coin Version</div>
+            <div class='center'>{{version}}</div>
+        </div>
+    </md-list-item>
+</md-list>-->

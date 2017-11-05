@@ -6,7 +6,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         var service = this;
         var httpService = httpService;
         var dialogService = dialogService;
-        console.log('In Data Transfer Service');
+        console.log('Data Transfer Service Loaded');
         service.combinedData;
         dialogService.showLoadingDialog();
 
@@ -151,7 +151,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                                                 // console.log(service.symbols);
                                                                 // console.log(service.allInitialInvestmentsValues);
                                                                 // console.log(service.allCurrentInvestmentValues);
-                                                                console.log(service.combinedData);
+                                                                // console.log(service.combinedData);
                                                                 if (service.build_charts == true) {
                                                                         service.buildGraphs();
                                                                         service.build_charts = false
@@ -160,7 +160,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
                                                         }).then(function () {
-                                                                console.log('done');
+                                                                // console.log('done');
                                                                 service.currentGainer;
                                                                 service.currentLoser;
                                                                 var change;
@@ -187,8 +187,8 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                                                                         }
 
                                                                 }
-                                                                console.log(service.currentGainer)
-                                                                console.log(service.currentLoser)
+                                                                // console.log(service.currentGainer)
+                                                                // console.log(service.currentLoser)
                                                         })
                                                 })
                                         })
@@ -351,7 +351,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 config.params.userID = service.accountData.results[0].account_number;
                 var portfolioPromise = httpService.getPortfolioToday(config);
                 portfolioPromise.then(function (result) {
-                        console.log(result);
+                        // console.log(result);
                         service.createLineData(result, 'shortTime')
 
                 })
@@ -368,7 +368,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 config.params.userID = service.accountData.results[0].account_number;
                 var portfolioPromise = httpService.getPortfolioYear(config);
                 portfolioPromise.then(function (result) {
-                        console.log(result);
+                        // console.log(result);
                         service.createLineData(result, 'shortDate')
 
                 })
@@ -377,7 +377,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 config.params.userID = service.accountData.results[0].account_number;
                 var portfolioPromise = httpService.getPortfolioAll(config);
                 portfolioPromise.then(function (result) {
-                        console.log(result);
+                        // console.log(result);
                         service.createLineData(result, 'shortDate')
                 })
         }

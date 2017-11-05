@@ -13,6 +13,9 @@
     padding: 30px;
     transition: 250ms;
 }
+header{
+    z-index: 1;
+}
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
     background-color: #CCCCCC;
 }
@@ -257,9 +260,9 @@ div.item-min-width{
 }
 .app-title{
     color:white;
-    font-family:Great Vibes;
+font-family: 'Lilita One', cursive;
     font-weight:200;
-    font-size:36px;
+    font-size:24px;
 }
 .value-title{
     font-family:Roboto;
@@ -307,14 +310,14 @@ div.item-min-width{
 
 
 .app-title-splash{
-    font-family:Great Vibes;
+    font-family: 'Lilita One', cursive;
     font-weight:100;
     font-size:72px;
     color: white;
     margin-top: 30px;
 }
 .app-title-splash-bright{
-    font-family:Great Vibes;
+    font-family: 'Lilita One', cursive;
     font-weight:100;
     font-size:72px;
     color: #1A1A1A;
@@ -437,11 +440,15 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
     transition:250ms;
 }
 .nav-bright div{
-    color:#3c3c3c;
+    color:#676767;
     transition:250ms;
     border-color:#e9e9e9;
         transition:250ms;
 
+}
+.canvas{
+    background-color: rgba(233, 233, 233, 1) !important;
+    color: #666666 !important;
 }
 .nav-button-bright{
     background-color:rgb(53, 53, 53) !important;
@@ -450,6 +457,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 }
 .nav-button-icon-bright{
         transition:color 250ms;
+        color: #7b7b7b;
 
 }
 .username{
@@ -472,7 +480,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
     background-color: #101010;
 }
 .market-ticker-bright{
-    background-color: #f6f6f6;
+    background-color: #ffffff;
     transition:250ms;
 }
 
@@ -709,12 +717,12 @@ html::-webkit-scrollbar-thumb
 .coin-simple-name{
     font-weight: 400;
     font-family: Roboto;
-        opacity: .25;
+        opacity: .45;
 }
 .coin-simple-name-bright{
     font-weight: 400;
     font-family: Roboto;
-        opacity: .25;
+        opacity: .45;
     color:black;
 }
 .coin-symbol{
@@ -879,18 +887,16 @@ metric{
     font-size: 24px;
     font-family: Roboto;
 }
-.coin-card{
-    /*margin: 8px;*/
+/*.coin-card{
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     background-color: #202020;
     border-radius: 0px;
 }
 .coin-card-bright{
-    /*margin: 8px;*/
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     background-color: rgb(253, 253, 253);
     border-radius: 0px;
-}
+}*/
 .report-gutter{
     padding-top:20px;
 }
@@ -940,7 +946,7 @@ md-grid-tile-footer figcaption  {
         margin-top: 12px;
 }
 .change-metric{
-    font-weight:100;
+    font-weight:300;
 }
 
 .change-metric-xl{

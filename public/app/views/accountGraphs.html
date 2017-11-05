@@ -1,26 +1,8 @@
 <div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
 
-    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3"
-        class='report-gutter'>
-
-        <md-grid-tile md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10"
-            md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
-            <div layout="column" layout-align='center center' layout-padding ng-class="{'table-cell-bright': service.brightTheme == true}">
-                                <span ng-class="{'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true, 'gain': dataTransferService.changeDollar > 0, 'loss': dataTransferService.changeDollar < 0, 'small-ticker-dollar': screenIsExtraSmall == true, 'no-change': dataTransferService.combinedData.portfolio.equity-dataTransferService.combinedData.portfolio.adjusted_equity_previous_close == 0}"
-                    class="center change-metric animated flipInX">
-                    <md-icon><i class="material-icons" ng-class="{'loss-icon': dataTransferService.changeDollar < 0, 'loss': dataTransferService.changeDollar < 0, 'gain': dataTransferService.changeDollar > 0}">change_history</i></md-icon>
-                    ${{dataTransferService.changeDollar | number:2}} • {{dataTransferService.changePercent | number:2}}%
-                </span>
-                <div ng-class="{'small-screen-text': mediaService.screenIsExtraSmall == true, 'xl-text': mediaService.screenIsExtraLarge == true, 'lg-text': mediaService.screenIsLarge == true, 'md-text': mediaService.screenIsMedium == true, 'sm-text': mediaService.screenIsSmall == true, 'gain': dataTransferService.changeDollar > 0, 'loss': dataTransferService.changeDollar < 0,}"
-                    class="investment-title center animated flipInX" count-up options="countUpDollar" decimals="2" end-val="dataTransferService.accountEquity">${{dataTransferService.accountEquity | number:2}}</div>
-                <div class='username'>{{dataTransferService.combinedData.user.first_name}} {{dataTransferService.combinedData.user.last_name}}</div>
-
-
-
-            </div>
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
-                <h3>Account Value</h3>
-            </md-grid-tile-footer>
+    <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
+        <md-grid-tile md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+                <account-value></account-value>
         </md-grid-tile>
 
         <md-grid-tile md-rowspan="5" md-colspan="6" md-rowspan-md="9" md-colspan-md="12" md-rowspan-sm="9" md-colspan-sm="12" md-rowspan-xs="12"
@@ -28,7 +10,7 @@
             <canvas id="doughnut" class="chart chart-line" chart-data="dataTransferService.lineData" chart-labels="dataTransferService.lineLabels"
                 chart-series="dataTransferService.lineSeries" chart-options="dataTransferService.optionsLine" chart-colors="dataTransferService.colorsLine">
             </canvas>
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <div layout='row'>
                     <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
                         <h3 class='stock-title'>Portfolio</h3>
@@ -78,7 +60,7 @@
                 XSmall: {{mediaService.screenIsExtraSmall}}-->
             </div>
 
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <h3>Winner</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
@@ -103,7 +85,7 @@
                     XSmall: {{mediaService.screenIsExtraSmall}}-->
             </div>
 
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <h3>Loser</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
@@ -114,7 +96,7 @@
             <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataTransferService.pieData" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsDoughnut" chart-colors="dataTransferService.colorsPie">
             </canvas>
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <h3>Percentage Breakdown</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
@@ -124,7 +106,7 @@
             <canvas id="radar" class="chart chart-radar" chart-data="dataTransferService.dataRadar" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsRadar" chart-colors="dataTransferService.colorsRadar">
             </canvas>
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <h3>Invested compared to Current Value</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
@@ -133,7 +115,7 @@
             <canvas id="polar-area" class="chart chart-polar-area" chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">
             </canvas>
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <h3>Highest Gainers</h3>
             </md-grid-tile-footer>
         </md-grid-tile>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="app/content/site.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,500,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One" rel="stylesheet">
     <link rel="icon" href="app/content/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -48,6 +49,7 @@
     <script src="app/services/dialog.service.js"></script>
     <script src="app/services/data-transfer.service.js"></script>
     <script src="app/services/media.service.js"></script>
+    <script src="app/services/firebase.service.js"></script>
 
     
     <script src="app/scripts/angular-countUp.js"></script>
@@ -56,6 +58,8 @@
     <script src="app/components/settings/settings.component.js"></script>
     <script src="app/components/settings/settings.controller.js"></script>
 
+    <script src="app/components/account-value/account-value.component.js"></script>
+    <script src="app/components/account-value/account-value.controller.js"></script>
 
 
 
@@ -83,7 +87,7 @@
 
 
 
-    <title>Coinstack</title>
+    <title>Cashstack</title>
 
     <script>
       (function (i, s, o, g, r, a, m) {
@@ -99,15 +103,21 @@
   </head>
   <win-lose type='win'></win-lose>
 
-  <body  ng-cloak ng-controller="AppController" ng-class="{'body-bright': service.brightTheme == true}" layout='row'>
-        <md-sidenav ng-class="{'nav-bright': service.brightTheme == true}" ng-hide="service.currentState == 'splash'" class="md-sidenav-left md-whiteframe-4dp full-height" md-component-id="left" >
+  <body  ng-cloak ng-controller="AppController" ng-class="{'body-bright': service.brightTheme == true}" layout="column" layout-fill>
+
+        
+        <header md-whiteframe="1">
+          <div ui-view="statusBar"></div>
+        </header>
+        <main>
+          <md-sidenav ng-class="{'nav-bright': service.brightTheme == true}" ng-hide="service.currentState == 'splash'" class="md-sidenav-left md-whiteframe-4dp full-height" md-component-id="left" >
 
           <div layout="row" layout-align="center center" class="align-logo">
             <img class="logo" src="app/content/logoSideNav.png" ng-click="backToReport()">
 
           </div>
-          <div layout="row" layout-align="center center" class="align-logo side-nav-divider">
-            <div class="app-title">Coinstack</div> 
+          <div layout="row" layout-align="center center" class="align-logo side-nav-divider sidenav-border-top">
+            <div class="app-title">Cashstack</div> 
           </div>
 
 
@@ -133,39 +143,28 @@
 
 
           </div>
-        </md-sidenav>
-        <div layout='row'>
-          <md-sidenav ng-class="{'nav-bright': service.brightTheme == true}" ng-hide="service.currentState == 'splash'" class="md-sidenav-right md-whiteframe-4dp full-height" md-component-id="right" flex='25'>
-
-
-            <div layout="row" layout-align="center center" class="align-logo side-nav-divider">
-              <div>Settings</div> 
-            </div>
-
-
-
-            <div layout="column" class="value-margin bt-margin" layout-align="center center" layout-padding>
-              
-              <md-switch ng-model="service.brightTheme" ng-change="service.saveTheme()" aria-label="Switch 1">
-                        <md-icon class="material-icons white-icon" ng-class="{'dark-icon': service.brightTheme == true}">lightbulb_outline</md-icon>
-              </md-switch>
-
-
-
-            </div>
           </md-sidenav>
-        </div>
-
-        <div class="content-area" flex="100" ng-class="{'content-area-bright': service.brightTheme == true}">
-          <md-content ng-class="{'content-area-bright': service.brightTheme == true}">
-            <div ui-view="statusBar"></div>
+          
+          <md-content class="content-area" flex="100"  ng-class="{'content-area-bright': service.brightTheme == true}">
+            
             <div ui-view="stockQuotes"></div>
             
             <div ui-view="accountGraphs" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
             <div ui-view="accountInfo" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
           </md-content>
 
-        </div>
+          
+        </main>
+        <footer md-whiteframe="1">
+            <md-toolbar class="md-scroll-shrink canvas">
+                <div layout="row" layout-align="center center" flex>
+                Canvas 23 Studios <i class="material-icons md-18">copyright</i> 
+                </div>
+            </md-toolbar>
+
+        </footer>
+
+
 
 
   </body>

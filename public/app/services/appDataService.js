@@ -1,4 +1,4 @@
-angular.module('stockQuotesApp').service('appDataService', ['$firebaseObject', '$http', '$localStorage', '$state', function($firebaseObject, $http, $localStorage, $state){
+angular.module('stockQuotesApp').service('appDataService', ['$firebaseObject', '$http', '$localStorage', '$state', 'mediaService', function($firebaseObject, $http, $localStorage, $state, mediaService){
 
     
     var service = this;
@@ -6,6 +6,7 @@ angular.module('stockQuotesApp').service('appDataService', ['$firebaseObject', '
 
 
     service.version;
+    service.mediaService = mediaService;
     service.accountCode;
     service.loading = false;
     service.brightTheme = $localStorage.brightTheme;
@@ -72,17 +73,29 @@ angular.module('stockQuotesApp').service('appDataService', ['$firebaseObject', '
 
     service.accountCode = $localStorage.accountCode;
 
+
     if(service.accountCode == undefined)
     {
-        service.accountCode = Math.floor(Math.random()*90000) + 10000;
+        service.accountCode = Math.floor(Math.random()*9000000) + 1000000;
         $localStorage.accountCode = service.accountCode;
         // console.log("Account Code: " + service.accountCode);
         // console.log(service.returningUser);
         // console.log(service.submittedFirstStock);
+        // Object.assign(service.data[service.accountCode])
+        
+        // service.data[service.accountCode].name = 'Evan';
+        // service.data[service.accountCode].screen_size.xs = service.mediaService.screenIsExtraSmall;
+        // service.data[service.accountCode].screen_size.sm = service.mediaService.screenIsSmall;
+        // service.data[service.accountCode].screen_size.md = service.mediaService.screenIsMedium;
+        // service.data[service.accountCode].screen_size.lg = service.mediaService.screenIsLarge;
+        // service.data[service.accountCode].screen_size.xl = service.mediaService.screenIsExtraLarge;
+        // service.data[service.accountCode].last_visited_date = new Date();
+
+
 
         $state.go('splash');
     }
-    else{
+    else{ 
         service.returningUser = true;
         $localStorage.returningUser = service.returningUser;
 

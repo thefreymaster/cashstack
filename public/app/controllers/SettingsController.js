@@ -24,7 +24,7 @@ angular.module('stockQuotesApp').controller('SettingsController', ['$scope', '$h
         syncObject.$bindTo($scope, "data");
 
         $scope.data.$loaded().then(function(){
-                $scope.data.Cash = 2300;
+                // $scope.data.Cash = 2300;
                 $scope.version = appDataService.data.currentVersion;
 
         })  

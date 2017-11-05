@@ -1,4 +1,4 @@
-angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http', '$timeout', 'appDataService', '$state', '$window', '$mdDialog', '$mdMedia', '$mdSidenav', '$location', 'dataTransferService', function($scope, $http, $timeout, appDataService, $state, $window, $mdDialog, $mdMedia, $mdSidenav, $location, dataTransferService){
+angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http', '$timeout', 'appDataService', '$state', '$window', '$mdDialog', '$mdMedia', '$mdSidenav', '$location', 'dataTransferService', 'firebaseService', function($scope, $http, $timeout, appDataService, $state, $window, $mdDialog, $mdMedia, $mdSidenav, $location, dataTransferService, firebaseService){
         $scope.service = appDataService;
 
 

@@ -7,6 +7,7 @@
         <md-grid-tile md-rowspan="4" md-colspan="3" md-rowspan-md="8" md-colspan-md="6" md-rowspan-sm="8" md-colspan-sm="6" md-rowspan-xs="15"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}" ng-repeat="(key, value) in dataTransferService.combinedData" ng-if='value.positions.quantity != 0' ng-hide='key == "account" || key == "portfolio" || key == "user"'>
             <div layout='column' layout-align='center center' ng-hide='dataTransferService.currentGainer == undefined'>
+                
                 <div flex='100' class='change-metric' ng-class="{'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0, 'change-metric-xl': mediaService.screenIsExtraLarge == true, 'change-metric-lg': mediaService.screenIsLarge == true, 'change-metric-md': mediaService.screenIsMedium == true, 'change-metric-sm': mediaService.screenIsSmall == true, 'change-metric-xs': mediaService.screenIsExtraSmall == true}">
                     <md-icon><i class="material-icons" ng-class="{'loss-icon': value.quotes.previous_close-value.quotes.last_trade_price > 0, 'loss': value.quotes.previous_close-value.quotes.last_trade_price > 0, 'gain': value.quotes.previous_close-value.quotes.last_trade_price < 0}">change_history</i></md-icon>
 
@@ -38,7 +39,7 @@
 
 
 
-            <md-grid-tile-footer ng-class="{'footer-bright': service.brightTheme == true}">
+            <md-grid-tile-footer md-whiteframe="1" ng-class="{'footer-bright': service.brightTheme == true}">
                 <div layout='row'>
                     <span ng-class="{'coin-simple-name': service.brightTheme == false, 'coin-simple-name-bright': service.brightTheme == true}">
                         <!--<h3 class='stock-title' ng-if='value.instruments.simple_name == null' >N/A</h3>-->

@@ -25,12 +25,23 @@ angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http',
         $scope.screenIsLarge = $mdMedia('lg');
 
         $scope.toggleLeft = buildToggler('left');
-        $scope.toggleRight = buildToggler('right');
+
+        $scope.toggleRight = buildTogglerSettings('right');
 
         function buildToggler(componentId) {
-        return function() {
-                $mdSidenav(componentId).toggle();
-        };
+                return function() {
+                        $mdSidenav(componentId).toggle();
+                };
+        }
+        function buildTogglerSettings(componentId) {
+                $mdSidenav('left').close();
+                return function() {
+                        $mdSidenav(componentId).toggle();
+                };
+        }
+        $scope.openSettings = function(){
+                $mdSidenav('left').close();
+                $mdSidenav('right').open();
         }
 
 

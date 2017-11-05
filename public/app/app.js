@@ -5,7 +5,7 @@ $httpProvider.defaults.headers.post['Content-Type'] = 'text/plain';
 
 $mdThemingProvider.theme('default')
     .primaryPalette('grey')
-    .accentPalette('blue-grey')
+    .accentPalette('blue')
     .dark();
 
     

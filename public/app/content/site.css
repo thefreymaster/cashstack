@@ -1,7 +1,4 @@
-html.md-default-theme, html, body.md-default-theme, body {
-    background-color: #1A1A1A;
-    color:white;
-}
+
 .card-margin-correction{
     margin-top:-10px;
 }
@@ -41,6 +38,20 @@ md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolb
 }
 .no-change{
     color: rgba(174, 174, 174, 0.87) !important;
+}
+.no-padding{
+    padding:0px !important;
+}
+.settings-title{
+    text-align: center;
+    font-weight: 800;
+    font-size: 12px;
+    color:#a5a5a5;
+}
+
+.settings-data{
+    font-weight:300;
+    font-size:18px;
 }
 
 .logo{
@@ -447,11 +458,15 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
     font-weight: 400;
     font-family: Roboto;
 }
-
+.sidenav-border-top{
+    border-top:1px solid #262626;
+}
 
 .side-nav-divider{
+    padding-top:20px;
     padding-bottom:20px;
     border-bottom:1px solid #262626;
+    min-width: 100%;
 }
 .market-ticker{
     background-color: #101010;

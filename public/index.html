@@ -105,7 +105,7 @@
 
   <body  ng-cloak ng-controller="AppController" ng-class="{'body-bright': service.brightTheme == true}" layout="column" layout-fill>
 
-        <div ng-if='$window.location.protocol == "https:" || dataTransferService.running_locally == true'>
+        <div ng-if='dataTransferService.protocol == "https:" || dataTransferService.running_locally == true'>
 
         
         

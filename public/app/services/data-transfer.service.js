@@ -9,6 +9,8 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
         var dialogService = dialogService;
         console.log('Data Transfer Service Loaded');
         service.combinedData;
+
+        service.protocol = $window.location.protocol;
         
 
         var config = {

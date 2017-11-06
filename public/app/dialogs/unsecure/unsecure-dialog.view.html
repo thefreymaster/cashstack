@@ -1,0 +1,22 @@
+<md-dialog flex='30' flex-xs='90' flex-sm='90'>
+    <md-toolbar>
+            <div class='md-toolbar-tools'>
+                Unsecure Connection Detected
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout='column' layout-padding>
+            <div layout="column" layout-align="center center" layout-margin layout-padding layout-fill>
+                <i class="material-icons md-110">warning</i>
+                <!--<div class="app-title-splash animated flipInX" ng-class="{'app-title-splash-bright': service.brightTheme == true}">Cashstack</div>-->
+                <div class="app-subtitle-splash animated flipInX center" ng-class="{'app-title-splash-bright': service.brightTheme == true}">Please access Cashstack from a secure HTTPS connection.</div>
+                <!--<md-button class="md-raised bt-margin" analytics-on="click" analytics-event="ReturningToApp" ng-click='dialogService.showLoginDialog()'>Begin</md-button>-->
+            </div>
+
+        </md-dialog-content>
+        <!--<md-dialog-actions layout="row">
+            <md-button ng-disabled='loading' ng-click='dialogService.showLoginDialog()'>
+                <div ng-if='!loading'>Abort</div>
+                <md-progress class="md-accent" ng-if='loading' md-diameter="15"></md-progress>
+            </md-button>
+        </md-dialog-actions>-->
+</md-dialog>

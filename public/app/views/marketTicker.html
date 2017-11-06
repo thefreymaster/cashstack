@@ -21,8 +21,20 @@
       Data last updated <span am-time-ago="message.time | amDateFormat:'YYYY.MM.DD HH:mm:ss'"></span>
     </span>-->
     <div flex></div>
-    <div  hide-xs hide-sm hide-md>
-        <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">{{dataTransferService.combinedData.user.first_name}} {{dataTransferService.combinedData.user.last_name}}</div>
+    <div hide-xs hide-sm hide-md>
+        <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">
+            
+            <i class="material-icons" ng-if='protocol == "https:"'>lock_outline<md-tooltip>Secured</md-tooltip></i>
+            
+            <i class="material-icons" ng-if='protocol == "http:"'>lock_open<md-tooltip>Unsecured</md-tooltip></i>
+            
+
+        </div>
+    </div> 
+
+    
+    <div hide-xs hide-sm hide-md>
+        <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}"> {{dataTransferService.combinedData.user.first_name}} {{dataTransferService.combinedData.user.last_name}}</div>
     </div>   
     <div>
         <md-button ng-click='logout()' class='md-primary'>Logout</md-button>

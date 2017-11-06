@@ -2,7 +2,7 @@
 
 
 
-angular.module('stockQuotesApp').controller('MarketTickerController', ['$scope', '$http', '$timeout', 'appDataService', 'moment', '$mdSidenav', '$localStorage', '$state', 'dataTransferService', function($scope, $http, $timeout, appDataService, moment, $mdSidenav, $localStorage, $state, dataTransferService){
+angular.module('stockQuotesApp').controller('MarketTickerController', ['$scope', '$http', '$timeout', 'appDataService', 'moment', '$mdSidenav', '$localStorage', '$state', 'dataTransferService', '$window', function($scope, $http, $timeout, appDataService, moment, $mdSidenav, $localStorage, $state, dataTransferService, $window){
         $scope.service = appDataService;
         $scope.marketObject = {};
         $scope.markets = ['DJI','NASDAQ', 'NYSE'];
@@ -10,6 +10,8 @@ angular.module('stockQuotesApp').controller('MarketTickerController', ['$scope',
 
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
+        
+        $scope.protocol = $window.location.protocol;
 
         function buildToggler(componentId) {
         return function() {

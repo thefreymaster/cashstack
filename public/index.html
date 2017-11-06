@@ -105,65 +105,62 @@
 
   <body  ng-cloak ng-controller="AppController" ng-class="{'body-bright': service.brightTheme == true}" layout="column" layout-fill>
 
+        <div ng-if='$window.location.protocol == "https:" || dataTransferService.running_locally == true'>
+
         
-        <header md-whiteframe="1">
-          <div ui-view="statusBar"></div>
-        </header>
-        <main>
-          <md-sidenav ng-class="{'nav-bright': service.brightTheme == true}" ng-hide="service.currentState == 'splash'" class="md-sidenav-left md-whiteframe-4dp full-height" md-component-id="left" >
+        
+          <header md-whiteframe="1">
+            <div ui-view="statusBar"></div>
+          </header>
+          <main>
+            <md-sidenav ng-class="{'nav-bright': service.brightTheme == true}" ng-hide="service.currentState == 'splash'" class="md-sidenav-left md-whiteframe-4dp full-height" md-component-id="left" >
 
-          <div layout="row" layout-align="center center" class="align-logo">
-            <img class="logo" src="app/content/logoSideNav.png" ng-click="backToReport()">
+            <div layout="row" layout-align="center center" class="align-logo">
+              <img class="logo" src="app/content/logoSideNav.png" ng-click="backToReport()">
 
-          </div>
-          <div layout="row" layout-align="center center" class="align-logo side-nav-divider sidenav-border-top">
-            <div class="app-title">Cashstack</div> 
-          </div>
-
-
-
-          <div layout="column" class="value-margin bt-margin" layout-align="center center">
-            <md-button ng-click="refreshApp()" class="md-icon-button md-primary">
-              <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">refresh</md-icon>
-              <md-tooltip md-direction="bottom">Refresh</md-tooltip>
-
-            </md-button>
-<!--ui-sref="settings"-->
-            <!--<md-button  class="md-icon-button md-primary"
-              ng-click="openSettings()">
-              <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons md-primary">settings</md-icon>
-              <md-tooltip md-direction="bottom" analytics-on="click" analytics-event="Settings">Settings</md-tooltip>
-
-            </md-button>-->
-            <md-switch ng-model="service.brightTheme" ng-change="service.saveTheme()" aria-label="Switch 1">
-                      <md-icon class="material-icons white-icon" ng-class="{'dark-icon': service.brightTheme == true}">lightbulb_outline</md-icon>
-            </md-switch>
-            <settings class='no-padding'></settings>
+            </div>
+            <div layout="row" layout-align="center center" class="align-logo side-nav-divider sidenav-border-top">
+              <div class="app-title">Cashstack</div> 
+            </div>
 
 
 
-          </div>
-          </md-sidenav>
-          
-          <md-content class="content-area" flex="100"  ng-class="{'content-area-bright': service.brightTheme == true}">
+            <div layout="column" class="value-margin bt-margin" layout-align="center center">
+              <md-button ng-click="refreshApp()" class="md-icon-button md-primary">
+                <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == true}" class="material-icons">refresh</md-icon>
+                <md-tooltip md-direction="bottom">Refresh</md-tooltip>
+
+              </md-button>
+
+              <md-switch ng-model="service.brightTheme" ng-change="service.saveTheme()" aria-label="Switch 1">
+                        <md-icon class="material-icons white-icon" ng-class="{'dark-icon': service.brightTheme == true}">lightbulb_outline</md-icon>
+              </md-switch>
+              <settings class='no-padding'></settings>
+
+
+
+            </div>
+            </md-sidenav>
             
-            <div ui-view="stockQuotes"></div>
+            <md-content class="content-area" flex="100"  ng-class="{'content-area-bright': service.brightTheme == true}">
+              
+              <div ui-view="stockQuotes"></div>
+              
+              <div ui-view="accountGraphs" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
+              <div ui-view="accountInfo" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
+            </md-content>
+
             
-            <div ui-view="accountGraphs" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
-            <div ui-view="accountInfo" ng-class="{'account-info': service.brightTheme == false, 'account-info-bright': service.brightTheme == true}"></div>
-          </md-content>
+          </main>
+          <footer md-whiteframe="1">
+              <md-toolbar class="md-scroll-shrink canvas">
+                  <div layout="row" layout-align="center center" flex>
+                  Canvas 23 Studios <i class="material-icons md-18">copyright</i> 
+                  </div>
+              </md-toolbar>
 
-          
-        </main>
-        <footer md-whiteframe="1">
-            <md-toolbar class="md-scroll-shrink canvas">
-                <div layout="row" layout-align="center center" flex>
-                Canvas 23 Studios <i class="material-icons md-18">copyright</i> 
-                </div>
-            </md-toolbar>
-
-        </footer>
-
+          </footer>
+        </div>
 
 
 

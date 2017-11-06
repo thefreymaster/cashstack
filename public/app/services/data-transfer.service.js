@@ -1,14 +1,15 @@
 
 
-angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', '$interval', function ($http, $localStorage, $state, httpService, dialogService, $filter, $interval) {
+angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$localStorage', '$state', 'httpService', 'dialogService', '$filter', '$interval', '$window', function ($http, $localStorage, $state, httpService, dialogService, $filter, $interval, $window) {
 
 
         var service = this;
+        service.running_locally = false;
         var httpService = httpService;
         var dialogService = dialogService;
         console.log('Data Transfer Service Loaded');
         service.combinedData;
-        dialogService.showLoadingDialog();
+        
 
         var config = {
                 params: {
@@ -214,12 +215,25 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
         if (config.params.token != undefined) {
-                config = {
-                        params: {
-                                token: $localStorage.token
-                        }
+
+                if($window.location.protocol == 'http:' || service.running_locally == true)
+                {
+                        console.log("WARNING: Service detected HTTP");
+                        dialogService.showUnsecureDialog();
+
                 }
-                service.gatherRobinhoodData(config);
+                if($window.location.protocol == 'https:' || service.running_locally == true)
+                {
+                        dialogService.showLoadingDialog();
+                        config = {
+                                params: {
+                                        token: $localStorage.token
+                                }
+                        }
+                        console.log("Connection Secure, HTTPS TLS enabled");
+                        service.gatherRobinhoodData(config);
+                }
+                
         }
         // setInterval(function(){
         //         service.gatherRobinhoodData(config);

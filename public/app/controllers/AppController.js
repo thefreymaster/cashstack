@@ -1,7 +1,7 @@
-angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http', '$timeout', 'appDataService', '$state', '$window', '$mdDialog', '$mdMedia', '$mdSidenav', '$location', 'dataTransferService', function($scope, $http, $timeout, appDataService, $state, $window, $mdDialog, $mdMedia, $mdSidenav, $location, dataTransferService){
+angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http', '$timeout', 'appDataService', '$state', '$window', '$mdDialog', '$mdMedia', '$mdSidenav', '$location', 'dataTransferService', '$window', function($scope, $http, $timeout, appDataService, $state, $window, $mdDialog, $mdMedia, $mdSidenav, $location, dataTransferService, $window){
         $scope.service = appDataService;
 
-
+        $scope.dataTransferService = dataTransferService;
 
 
 

@@ -35,6 +35,13 @@ angular.module('stockQuotesApp').service('dialogService', ['$http', '$localStora
             clickOutsideToClose: false
         })
     }
+    service.showUnsecureDialog = function(){
+        return $mdDialog.show({
+            templateUrl: 'app/dialogs/unsecure/unsecure-dialog.view.html',
+            parent: angular.element(document.body),
+            clickOutsideToClose: false
+        })
+    }
     service.closeDialog = function(){
         return $mdDialog.hide();
     }

@@ -218,13 +218,13 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
         if (config.params.token != undefined) {
 
-                if($window.location.protocol == 'http:' || service.running_locally == true)
+                if(service.protocol == 'http:' || service.running_locally == true)
                 {
                         console.log("WARNING: Service detected HTTP");
                         dialogService.showUnsecureDialog();
 
                 }
-                if($window.location.protocol == 'https:' || service.running_locally == true)
+                if(service.protocol == 'https:' || service.running_locally == true)
                 {
                         dialogService.showLoadingDialog();
                         config = {

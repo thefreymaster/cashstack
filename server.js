@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 var path = require("path");
 var helmet = require('helmet');
 
-var running_locally = false;
+var running_locally = true;
 // var request = require('request-ssl');
 // request.addFingerprint('api.robinhood.com', '8F:C1:46:FB:19:0A:16:FF:F7:D1:E6:48:5C:74:54:0E:00:FF:36:A6');
 // request.addFingerprint('coin-canvas23.herokuapp.com', '08:3B:71:72:02:43:6E:CA:ED:42:86:93:BA:7E:DF:81:C4:BC:62:30');
@@ -65,11 +65,11 @@ req.on('socket', socket => {
 });
 
 
-// app.get('/check_connection', function (request, response) {
+// app.get('/', function (request, response) {
 //     console.log('Using HTTPS status: '+request.secure)
 //     if(request.secure == false)
 //     {
-
+        
 //     }
 //     else{
 //         response.sendFile(path.join(__dirname + '/public/index.html'));
@@ -100,7 +100,7 @@ app.listen(process.env.PORT || 3004, function () {
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-//
+// 
 // enable ssl redirect
 app.use(sslRedirect());
 app.use(helmet());
@@ -115,7 +115,7 @@ app.use(express.static(__dirname + '/public'));
 //     console.log('Using HTTPS status: '+request.secure)
 //     if(request.secure == false)
 //     {
-
+        
 //     }
 //     else{
 //         response.sendFile(path.join(__dirname + '/public/index.html'));
@@ -126,176 +126,160 @@ app.use(express.static(__dirname + '/public'));
 
 app.post('/token', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
 
-        var username = req.body.username;
-        var password = req.body.password;
+    var username = req.body.username;
+    var password = req.body.password;
 
 
-        var options = {
-            method: 'POST',
-            url: 'https://api.robinhood.com/api-token-auth/',
-            form: { username: username, password: password },
-            headers:
-            {
-                'content-type': 'application/x-www-form-urlencoded'
-            }
-        };
+    var options = {
+        method: 'POST',
+        url: 'https://api.robinhood.com/api-token-auth/',
+        form: { username: username, password: password },
+        headers:
+        {
+            'content-type': 'application/x-www-form-urlencoded'
+        }
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 app.get('/tokenWithMFA', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var username = req.query.username;
+    var password = req.query.password;
+    var mfa_code = req.query.mfa_code;
 
-        var username = req.query.username;
-        var password = req.query.password;
-        var mfa_code = req.query.mfa_code;
+    var options = {
+        method: 'POST',
+        url: 'https://api.robinhood.com/api-token-auth/',
+        form: { username: username, password: password, mfa_code: mfa_code },
+        headers:
+        { 'content-type': 'application/x-www-form-urlencoded' },
+        strictSSL: true
+    };
 
-        var options = {
-            method: 'POST',
-            url: 'https://api.robinhood.com/api-token-auth/',
-            form: { username: username, password: password, mfa_code: mfa_code },
-            headers:
-            { 'content-type': 'application/x-www-form-urlencoded' },
-            strictSSL: true
-        };
-
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
 
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/quote', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    
 
+    var ticker = req.query.ticker;
 
-        var ticker = req.query.ticker;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/',
+        qs: { symbols: ticker },
+        headers:
+        { 'cache-control': 'no-cache' },
+        strictSSL: true
+    };
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/quotes/',
-            qs: { symbols: ticker },
-            headers:
-            { 'cache-control': 'no-cache' },
-            strictSSL: true
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 app.get('/instruments', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var ticker = req.query.ticker;
 
-        var ticker = req.query.ticker;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/',
+        qs: { symbols: ticker },
+        headers:
+        { 'cache-control': 'no-cache' },
+        strictSSL: true
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/quotes/',
-            qs: { symbols: ticker },
-            headers:
-            { 'cache-control': 'no-cache' },
-            strictSSL: true
+    };
 
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 
 app.get('/accountInfo', function (req, res) {
-    if(req.secure == true || running_locally == true){
 
-        var token = req.query.token;
+    var token = req.query.token;
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/portfolios/',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/portfolios/',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        };
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/positions', function (req, res) {
-    if(req.secure == true || running_locally == true){
 
-        var token = req.query.token;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/positions/',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    var token = req.query.token;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/positions/',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        };
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-            // console.log(body);
-            res.json(JSON.parse(body));
-        });
-    }
+        // console.log(body);
+        res.json(JSON.parse(body));
+    });
 });
 
 
 app.get('/instrumentsData', function (req, res) {
-    if(req.secure == true || running_locally == true){
-        var token = req.query.token;
-        // var instrumentUrl = req.query.instrumentUrl;
-        var collection = req.query.collection;
-        var url;
+    var token = req.query.token;
+    // var instrumentUrl = req.query.instrumentUrl;
+    var collection = req.query.collection;
+    var url;
 
 
-        function httpGet(url, callback) {
-            const options = {
-                url: url,
-                json: true
-            };
-            request(options,
-                function (err, res, body) {
-                    callback(err, body);
-                }
-            );
-        }
-        async.map(collection, httpGet, function (err, response) {
-            if (err) return console.log(err);
-            res.send(response);
-        });
+    function httpGet(url, callback) {
+        const options = {
+            url: url,
+            json: true
+        };
+        request(options,
+            function (err, res, body) {
+                callback(err, body);
+            }
+        );
     }
+    async.map(collection, httpGet, function (err, response) {
+        if (err) return console.log(err);
+        res.send(response);
+    });
 
 });
 
 app.get('/allQuotes', function (req, res) {
 
-    // console.log(req.secure);
+    console.log(req.secure);
 
     if(req.secure == true || running_locally == true)
     {
@@ -320,92 +304,81 @@ app.get('/allQuotes', function (req, res) {
 
 app.get('/getPortfolioToday', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
-        var token = req.query.token;
-        var symbols = req.query.symbols;
-        var userID = req.query.userID;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=day&interval=5minute',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var userID = req.query.userID;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=day&interval=5minute',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        };
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            res.json(JSON.parse(body));
-        });
-    }
-
-
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/getPortfolioWeek', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
-        var token = req.query.token;
-        var symbols = req.query.symbols;
-        var userID = req.query.userID;
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var userID = req.query.userID;
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '?span=week&interval=10minute',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '?span=week&interval=10minute',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        };
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            res.json(JSON.parse(body));
-        });
-    }
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/getPortfolioYear', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
-        var token = req.query.token;
-        var symbols = req.query.symbols;
-        var userID = req.query.userID;
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var userID = req.query.userID;
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=year&interval=day',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=year&interval=day',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        };
+    };
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            res.json(JSON.parse(body));
-        });
-    }
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/getPortfolioAll', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var token = req.query.token;
+    var symbols = req.query.symbols;
+    var userID = req.query.userID;
 
-        var token = req.query.token;
-        var symbols = req.query.symbols;
-        var userID = req.query.userID;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=all',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/portfolios/historicals/' + userID + '/?span=all',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    };
 
-        };
-
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            res.json(JSON.parse(body));
-        });
-    }
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        res.json(JSON.parse(body));
+    });
 });
 
 
@@ -423,70 +396,61 @@ app.get('/getPortfolioAll', function (req, res) {
 
 app.get('/fundamentals', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/fundamentals/' + symbol + '/',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        var token = req.query.token;
-        var symbol = req.query.symbol;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/fundamentals/' + symbol + '/',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    };
 
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            // console.log(body);
-            res.json(JSON.parse(body));
-        });
-    }
+        // console.log(body);
+        res.json(JSON.parse(body));
+    });
 });
 
 
 app.get('/historicals', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/quotes/historicals/' + symbol + '/?interval=day&?span=week',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        var token = req.query.token;
-        var symbol = req.query.symbol;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/quotes/historicals/' + symbol + '/?interval=day&?span=week',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    };
 
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 app.get('/getUserData', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/user/',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        var token = req.query.token;
-        var symbol = req.query.symbol;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/user/',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    };
 
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 
@@ -495,24 +459,21 @@ app.get('/getUserData', function (req, res) {
 
 app.get('/account', function (req, res) {
 
-    if(req.secure == true || running_locally == true){
+    var token = req.query.token;
+    var symbol = req.query.symbol;
+    var options = {
+        method: 'GET',
+        url: 'https://api.robinhood.com/accounts/',
+        headers: { Authorization: 'Token ' + token },
+        strictSSL: true
 
-        var token = req.query.token;
-        var symbol = req.query.symbol;
-        var options = {
-            method: 'GET',
-            url: 'https://api.robinhood.com/accounts/',
-            headers: { Authorization: 'Token ' + token },
-            strictSSL: true
+    };
 
-        };
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            res.json(JSON.parse(body));
-        });
-    }
+        res.json(JSON.parse(body));
+    });
 });
 
 

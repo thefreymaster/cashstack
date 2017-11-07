@@ -281,8 +281,7 @@ app.get('/allQuotes', function (req, res) {
 
     console.log(req.secure);
 
-    if(req.secure == true || running_locally == true)
-    {
+
         var token = req.query.token;
         var symbols = req.query.symbols;
         var options = {
@@ -297,7 +296,7 @@ app.get('/allQuotes', function (req, res) {
             if (error) throw new Error(error);
             res.json(JSON.parse(body));
         });
-    }
+    
 
 
 });

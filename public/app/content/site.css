@@ -1,3 +1,9 @@
+.cash-card{
+    border: 1px solid #dfdfdf;
+    border-radius: 3px;
+}
+
+
 
 .card-margin-correction{
     margin-top:-10px;
@@ -17,7 +23,7 @@ header{
     z-index: 1;
 }
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-    background-color: #CCCCCC;
+    background-color: #eaeaea;
 }
 .right-divider{
     border-right: 1px solid #383838;
@@ -259,7 +265,7 @@ div.item-min-width{
     color: white;
 }
 .app-title{
-    color:white;
+    color:#4c4c4c;
 font-family: 'Lilita One', cursive;
     font-weight:200;
     font-size:24px;
@@ -923,7 +929,7 @@ metric{
     font-weight: 900;
 }
 .win_lose_title-xl{
-    font-size: 132px;
+    font-size: 100px;
     font-weight: 900;
 }
 .win_lose_simple_name{
@@ -950,7 +956,7 @@ md-grid-tile-footer figcaption  {
 }
 
 .change-metric-xl{
-    font-size:48px;
+    font-size:28px;
 }
 .change-metric-lg{
     font-size:36px;

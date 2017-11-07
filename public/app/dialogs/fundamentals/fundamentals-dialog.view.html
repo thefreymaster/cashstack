@@ -78,8 +78,8 @@
                         <div class='fd-divider'>Trading</div>
                         <i ng-if='!info.quotes.trading_halted' class="material-icons md-36 gain">check_circle</i>
                         <i ng-if='info.quotes.trading_halted' class="material-icons md-36 loss">cancel</i>
-                        <div class='fd-divider'>Percent</div>
-                        {{dataTransferService.combinedData.quotes.last_trade_price}}
+                        <!--<div class='fd-divider'>Percent</div>
+                        {{dataTransferService.combinedData.quotes.last_trade_price}}-->
                         <!--<div>{{((dataTransferService.combinedData.quotes.last_trade_price-dataTransferService.combinedData.quotes.previous_close)/dataTransferService.combinedData.quotes.last_trade_price)*100 }}</div>-->
 
                     </div>
@@ -91,7 +91,7 @@
                     <canvas id="line" class="chart chart-line" chart-data="data"
                     chart-labels="labels"  chart-colors="colours" chart-series="series" chart-options="options"
                     chart-dataset-override="datasetOverride" chart-click="onClick">
-                    </canvas
+                    </canvas>
                 </div>
 
 

@@ -467,7 +467,7 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
 
 }
 .username{
-    color: #595959;
+    color: #c5c5c5;
     font-size: 24px;
     font-weight: 400;
     font-family: Roboto;
@@ -865,23 +865,23 @@ metric{
 
 }
 .xl-text{
-    font-weight:900;
+    font-weight:100;
     font-size:136px;
     font-family:Roboto;
 }
 .lg-text {
-    font-weight: 900;
+    font-weight: 100;
     font-size: 100px;
     font-family: Roboto;
 }
 .md-text {
-    font-weight: 900;
+    font-weight: 100;
     font-size: 100px;
     font-family: Roboto;
 }
 .sm-text{
         font-size: 72px;
-    font-weight: 900;
+    font-weight: 100;
 }
 .lg-text-metric {
     font-weight: 100;
@@ -926,11 +926,11 @@ metric{
 }
 .win_lose_title{
     font-size: 100px;
-    font-weight: 900;
+    font-weight:100;
 }
 .win_lose_title-xl{
     font-size: 100px;
-    font-weight: 900;
+    font-weight: 100;
 }
 .win_lose_simple_name{
     font-size:32px;
@@ -976,7 +976,7 @@ md-grid-tile-footer figcaption  {
 }
 
 .change-title{
-    font-weight:900;
+    font-weight:100;
 }
 
 .change-title-xl{

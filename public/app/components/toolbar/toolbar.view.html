@@ -1,0 +1,31 @@
+<md-toolbar md-whiteframe="2">
+    <div class="md-toolbar-tools">
+        <div layout="row" layout-align="center end">
+            <md-button class="md-primary show-nav-button fab-color" ng-class="{'nav-button-icon-bright': service.brightTheme == true}"
+                ng-click="$ctrl.toggleLeft()" aria-label="More">
+                <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == false}" class="material-icons">menu</md-icon>
+            </md-button>
+        </div>
+        <span class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}" hide-xs hide-sm>Cashstack <span class='for_robinhood' hide-xs hide-sm hide-md>For Robinhood</span></span>
+
+        <div flex></div>
+        <div hide-xs hide-sm hide-md>
+            <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">
+
+                <i class="material-icons" ng-if='$ctrl.protocol == "https:"'>lock_outline<md-tooltip>Secured</md-tooltip></i>
+
+                <i class="material-icons" ng-if='$ctrl.protocol == "http:"'>lock_open<md-tooltip>Unsecured</md-tooltip></i>
+
+
+            </div>
+        </div>
+        <div flex></div>
+
+        <div hide-xs hide-sm hide-md>
+            <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}"> {{$ctrl.dataTransferService.combinedData.user.first_name}} {{$ctrl.dataTransferService.combinedData.user.last_name}}</div>
+        </div>
+        <div>
+            <md-button ng-click='$ctrl.logout()' class='md-primary'>Logout</md-button>
+        </div>
+    </div>
+</md-toolbar>

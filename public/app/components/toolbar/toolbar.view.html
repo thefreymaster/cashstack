@@ -1,12 +1,12 @@
 <md-toolbar md-whiteframe="2">
     <div class="md-toolbar-tools">
         <div layout="row" layout-align="center end">
-            <md-button class="md-primary show-nav-button fab-color" ng-class="{'nav-button-icon-bright': service.brightTheme == true}"
+            <md-button class="md-primary show-nav-button fab-color menu-button" ng-class="{'nav-button-icon-bright': service.brightTheme == true, 'menu-button-xs': $ctrl.mediaService.screenIsExtraSmall == true, 'menu-button-sm': $ctrl.mediaService.screenIsSmall == true}"
                 ng-click="$ctrl.toggleLeft()" aria-label="More">
                 <md-icon ng-class="{'nav-button-icon-bright': service.brightTheme == false}" class="material-icons">menu</md-icon>
             </md-button>
         </div>
-        <span class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}" hide-xs hide-sm>Cashstack <span class='for_robinhood' hide-xs hide-sm hide-md>For Robinhood</span></span>
+        <span class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}">Cashstack <span class='for_robinhood' hide-xs hide-sm hide-md>For Robinhood</span></span>
 
         <div flex></div>
         <div hide-xs hide-sm hide-md>

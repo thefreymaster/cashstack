@@ -1,7 +1,7 @@
 <div layout='row' layout-wrap flex-offset='10' flex-offset-lg='10' flex-offset-md='0' flex-offset-sm='0' flex-offset-xs='0'>
 
     <md-grid-list flex='90' flex-lg='90' flex-md='100' flex-sm='100' flex-xs='100' md-cols="12" md-gutter="1em" md-row-height="4:3" class='report-gutter'>
-        <md-grid-tile  class='cash-card' md-rowspan="4" md-colspan="6" md-rowspan-md="4" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
+        <md-grid-tile  class='cash-card' md-rowspan="4" md-colspan="6" md-rowspan-md="6" md-colspan-md="12" md-rowspan-sm="5" md-colspan-sm="12" md-rowspan-xs="10" md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
                 <account-value></account-value>
         </md-grid-tile>
 
@@ -91,7 +91,7 @@
         </md-grid-tile>
 
 
-        <md-grid-tile class='cash-card' md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
+        <md-grid-tile ng-if="mediaService.screenIsExtraSmall != true" class='cash-card' md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <canvas id="doughnut" class="chart chart-doughnut" chart-data="dataTransferService.pieData" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsDoughnut" chart-colors="dataTransferService.colorsPie">
@@ -100,7 +100,7 @@
                 <h3>Percentage Breakdown</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
-        <md-grid-tile class='cash-card' md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
+        <md-grid-tile ng-if="mediaService.screenIsExtraSmall != true" class='cash-card' md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <canvas id="radar" class="chart chart-radar" chart-data="dataTransferService.dataRadar" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsRadar" chart-colors="dataTransferService.colorsRadar">
@@ -109,7 +109,7 @@
                 <h3>Invested compared to Current Value</h3>
             </md-grid-tile-footer>
         </md-grid-tile>
-        <md-grid-tile class='cash-card'md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
+        <md-grid-tile ng-if="mediaService.screenIsExtraSmall != true" class='cash-card'md-rowspan="3" md-colspan="2" md-rowspan-md="6" md-colspan-md="4" md-rowspan-sm="8" md-colspan-sm="4" md-rowspan-xs="16"
             md-colspan-xs="12" ng-class="{'coin-card': service.brightTheme == false, 'coin-card-bright': service.brightTheme == true}">
             <canvas id="polar-area" class="chart chart-polar-area" chart-data="dataTransferService.polarData" chart-labels="dataTransferService.pielabels"
                 chart-options="dataTransferService.optionsPolar" chart-colors="dataTransferService.colorsPie">

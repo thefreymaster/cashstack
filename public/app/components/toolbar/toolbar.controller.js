@@ -1,8 +1,10 @@
-app.controller('ToolbarController', function (appDataService, dataTransferService, $firebaseObject, $window, $mdSidenav) {
+app.controller('ToolbarController', function (appDataService, dataTransferService, $firebaseObject, $window, $mdSidenav, mediaService) {
     var controller = this;
     this.hero;
     controller.service = appDataService;
     controller.dataTransferService = dataTransferService;
+    controller.mediaService = mediaService;
+
 
     controller.service = appDataService;
     controller.dataTransferService = dataTransferService;

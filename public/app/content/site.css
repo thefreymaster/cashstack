@@ -1,6 +1,23 @@
-.cash-card{
+.cash-card-light{
     border: 1px solid #dfdfdf;
     border-radius: 3px;
+}
+.cash-card{
+    
+    border: 1px solid rgba(61, 61, 61, 0.15);
+    border-radius: 3px;
+}
+.menu-button{
+        padding: 15px;
+}
+.menu-button-xs{
+        padding: 11px !important;
+}
+.menu-button-sm{
+        padding: 11px !important;
+}
+.md-toolbar-tools {
+    padding:0px !important;
 }
 
 
@@ -266,9 +283,9 @@ div.item-min-width{
 }
 .app-title{
     color:#4c4c4c;
-font-family: 'Lilita One', cursive;
+    font-family: 'Lilita One', cursive;
     font-weight:200;
-    font-size:24px;
+    font-size:32px;
 }
 .value-title{
     font-family:Roboto;
@@ -589,6 +606,7 @@ md-input-container.md-default-theme .md-input, md-input-container .md-input {
 /*MEDIA QUERY CSS*/
 .small-screen-text{
     font-size:56px !important;
+    font-weight: 200;
 }
 .small-ticker{
     font-size:24px !important;

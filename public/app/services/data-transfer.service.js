@@ -4,7 +4,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
 
 
         var service = this;
-        service.running_locally = false;
+        service.running_locally = true;
         var httpService = httpService;
         var dialogService = dialogService;
         console.log('Data Transfer Service Loaded');

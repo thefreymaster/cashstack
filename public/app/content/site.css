@@ -952,6 +952,7 @@ metric{
 }
 .win_lose_simple_name{
     font-size:32px;
+    font-weight: 300;
 }
 
 

@@ -6,7 +6,7 @@
     </span>
     <div ng-class="{'small-screen-text': $ctrl.mediaService.screenIsExtraSmall == true, 'xl-text': $ctrl.mediaService.screenIsExtraLarge == true, 'lg-text': $ctrl.mediaService.screenIsLarge == true, 'md-text': $ctrl.mediaService.screenIsMedium == true, 'sm-text': $ctrl.mediaService.screenIsSmall == true, 'gain': $ctrl.dataTransferService.changeDollar > 0, 'loss': $ctrl.dataTransferService.changeDollar < 0,}"
         class="investment-title center animated flipInX" count-up options="$ctrl.countUpDollar" decimals="2" end-val="$ctrl.dataTransferService.accountEquity">${{$ctrl.dataTransferService.accountEquity | number:2}}</div>
-    <div hide-xs hide-sm hide-md class='username'>{{$ctrl.dataTransferService.combinedData.user.first_name}} {{$ctrl.dataTransferService.combinedData.user.last_name}}</div>
+    <div class='username'>{{$ctrl.dataTransferService.combinedData.user.first_name}} {{$ctrl.dataTransferService.combinedData.user.last_name}}</div>
 
 
 

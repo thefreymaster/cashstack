@@ -3,7 +3,7 @@ angular.module('stockQuotesApp').controller('AppController', ['$scope', '$http',
 
         $scope.dataTransferService = dataTransferService;
 
-
+        $scope.routerstate = $state;
 
 
 

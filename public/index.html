@@ -111,7 +111,8 @@
 
 
 
-    <header md-whiteframe="1">
+    <header md-whiteframe="1" ng-hide='routerstate.current.name == splash'>
+      
       <toolbar></toolbar>
       <div ui-view="statusBar"></div>
     </header>

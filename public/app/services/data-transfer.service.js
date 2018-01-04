@@ -221,7 +221,7 @@ angular.module('stockQuotesApp').service('dataTransferService', ['$http', '$loca
                 if(service.protocol == 'http:' || service.running_locally == true)
                 {
                         console.log("WARNING: Service detected HTTP");
-                        dialogService.showUnsecureDialog();
+                        // dialogService.showUnsecureDialog();
 
                 }
                 if(service.protocol == 'https:' || service.running_locally == true)

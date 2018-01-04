@@ -9,17 +9,6 @@
         <span class="app-title app-left" ng-class="{'app-bright': service.brightTheme == true}">Cashstack <span class='for_robinhood' hide-xs hide-sm hide-md>For Robinhood</span></span>
 
         <div flex></div>
-        <div hide-xs hide-sm hide-md>
-            <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}">
-
-                <i class="material-icons" ng-if='$ctrl.protocol == "https:"'>lock_outline<md-tooltip>Secured</md-tooltip></i>
-
-                <i class="material-icons" ng-if='$ctrl.protocol == "http:"'>lock_open<md-tooltip>Unsecured</md-tooltip></i>
-
-
-            </div>
-        </div>
-        <div flex></div>
 
         <div hide-xs hide-sm hide-md>
             <div ng-class="{'name-bright': service.brightTheme == true, 'name': service.brightTheme == false}"> {{$ctrl.dataTransferService.combinedData.user.first_name}} {{$ctrl.dataTransferService.combinedData.user.last_name}}</div>

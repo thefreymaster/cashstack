@@ -567,6 +567,12 @@ md-sidenav.md-default-theme, md-sidenav, md-sidenav.md-default-theme md-content,
         transition:250ms;
 
 }
+.toolbar-margin-correction{
+    margin-left:20px !important;
+}
+.toolbar-margin-correction-right{
+    margin-right:0px !important;
+}
 
 
 .material-icons.md-10 { font-size: 10px; }

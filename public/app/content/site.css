@@ -4,8 +4,8 @@
 }
 .cash-card{
     
-    border: 1px solid rgba(61, 61, 61, 0.15);
-    border-radius: 3px;
+    border: 1px solid rgba(61, 61, 61, 0.09);
+    border-radius: 5px;
 }
 .menu-button{
         padding: 15px;
@@ -795,7 +795,7 @@ html::-webkit-scrollbar-thumb
 .coin-investment-metric{
     font-family: Roboto;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px;
     color: white;
         opacity: .25;
 }
@@ -889,26 +889,26 @@ metric{
 
 }
 .xl-text{
-    font-weight:100;
+    font-weight:300;
     font-size:136px;
     font-family:Roboto;
 }
 .lg-text {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 100px;
     font-family: Roboto;
 }
 .md-text {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 100px;
     font-family: Roboto;
 }
 .sm-text{
         font-size: 72px;
-    font-weight: 100;
+    font-weight: 300;
 }
 .lg-text-metric {
-    font-weight: 100;
+    font-weight: 300;
     font-size: 36px;
     font-family: Roboto;
 }
@@ -949,15 +949,15 @@ metric{
     color:#929292;
 }
 .win_lose_title{
-    font-size: 100px;
-    font-weight:100;
+    font-size: 72px;
+    font-weight:300;
 }
 .win_lose_title-xl{
     font-size: 100px;
     font-weight: 100;
 }
 .win_lose_simple_name{
-    font-size:32px;
+    font-size:24px;
     font-weight: 300;
 }
 
@@ -984,13 +984,13 @@ md-grid-tile-footer figcaption  {
     font-size:28px;
 }
 .change-metric-lg{
-    font-size:36px;
+    font-size:24px;
 }
 .change-metric-md{
-    font-size:24px;
+    font-size:18px;
 }
 .change-metric-sm{
-    font-size:24px;
+    font-size:16px;
     font-weight:300 !important;
 
 }
@@ -1001,14 +1001,14 @@ md-grid-tile-footer figcaption  {
 }
 
 .change-title{
-    font-weight:100;
+    font-weight:500;
 }
 
 .change-title-xl{
     font-size:112px;
 }
 .change-title-lg{
-    font-size:81px;
+    font-size:72px;
 }
 .change-title-md{
     font-size:72px;
